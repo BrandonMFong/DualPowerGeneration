@@ -30,7 +30,7 @@ void movePanel(int direction, double resA, double resB, double * drive_motor_fac
 int main(void)
 {
 	//Initialize
-	double currentAngle = SUNRISE_ANGLE;
+	double currentAngle = SUNRISE_ANGLE;   // Do something with this later
 	
 	double motorFactor_or_whatever;
 	
