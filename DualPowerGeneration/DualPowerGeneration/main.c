@@ -58,9 +58,9 @@ int main(void)
 
 void movePanelTo(int direction, double resA, double resB, double * drive_motor_factor)
 {
-	if(WEST) &drive_motor_factor = 1;       // position 1 moving west
+	if(direction == WEST) &drive_motor_factor = 1;       // position 1 moving west
 		
-	else if(EAST) &drive_motor_factor = -1; // position -1 moving east
+	else if(direction == EAST) &drive_motor_factor = -1; // position -1 moving east
 	
 	else else &drive_motor_factor = 0;
 }
