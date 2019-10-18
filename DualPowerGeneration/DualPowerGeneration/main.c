@@ -25,14 +25,17 @@
 
 //void SolarMovement(double res0, double res1, double res2, double res3, double * drive_motor_factor);
 
-void movePanel(double resA, double resB, int direction);
+void movePanel(int direction, double resA, double resB, double * drive_motor_factor);
 
 int main(void)
 {
+	//Initialize
 	double currentAngle = SUNRISE_ANGLE;
 	
+	double motorFactor_or_whatever;
+	
 	double res0;    //West Resistor
-	double res1;    //East Resisor
+	double res1;    //East Resistor
 	
 	double res2;    // North      <- in case we do 360
 	double res3;    // South
@@ -42,20 +45,24 @@ int main(void)
     {
 		// Read values from resistors and assign them to  res variables here
 			//TODO resistor reading here
-		//
+			
+		// Do something with motorFactor variable here
+		    //TODO motor factor
 		
-		if(res0 > res1) movePanel(res0, res1, WEST);
+		if(res0 > res1) movePanelTo(WEST, res0, res1, &motorFactor_or_whatever);
 		
-		if(res1 > res0) movePanel(res1, res0, EAST);
+		if(res1 > res0) movePanelTo(EAST, res1, res0, &motorFactor_or_whatever);
 		
     }
 }
 
-void movePanel(double resA, double resB, int direction)
+void movePanelTo(int direction, double resA, double resB, double * drive_motor_factor)
 {
-	if(WEST) {};        // move west until resA == resB
+	if(WEST) &drive_motor_factor = 1;       // position 1 moving west
 		
-	else if(EAST) {};   // move east until resA == resB
+	else if(EAST) &drive_motor_factor = -1; // position -1 moving east
+	
+	else else &drive_motor_factor = 0;
 }
 
 // void SolarMovement(double res0, double res1, double res2, double res3, double * drive_motor_factor)
