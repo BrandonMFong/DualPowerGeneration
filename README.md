@@ -13,3 +13,8 @@ Abdullah AlRasheed
 Joseph Morga
 
 Lorans Hirmez
+<<<<<<< HEAD
+=======
+
+Mohammad Alzamami
+
