@@ -1,6 +1,6 @@
 # DualPowerGeneration
 Dual Power Generation
 
-Brandon Fong
-
-Abdullah AlRasheed
+Hello, World!
+Hell0, World
+Charles Sotto
