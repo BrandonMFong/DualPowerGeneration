@@ -2,7 +2,7 @@
  * DualPowerGeneration.c
  *
  * Created: 10/11/2019 5:07:09 PM
- * Author : Brandon Fong
+ * Author : Brandon Fong        <- Joseph Was here
  */ 
 
 #include <avr/io.h>
