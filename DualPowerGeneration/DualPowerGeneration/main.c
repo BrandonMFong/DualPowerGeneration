@@ -62,7 +62,7 @@ void movePanelTo(int direction, double resA, double resB, double * drive_motor_f
 		
 	else if(direction == EAST) &drive_motor_factor = -1; // position -1 moving east
 	
-	else else &drive_motor_factor = 0;
+	else &drive_motor_factor = 0;
 }
 
 // void SolarMovement(double res0, double res1, double res2, double res3, double * drive_motor_factor)
