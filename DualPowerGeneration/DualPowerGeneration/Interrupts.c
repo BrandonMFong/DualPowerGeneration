@@ -12,7 +12,17 @@
  */
 ISR (TIMER0_COMPA_vect)
 {
-	// Read Resistor values
+	// Read Resistor 0 values
+}
+
+/* Interrupt for Timer 0 comparing to OCR0A
+ * This is the function that will read the resistor values
+ * Reading the resistor values require an Analog to Digital Converter 
+ * Refer to ADConverter.c
+ */
+ISR (TIMER0_COMPB_vect)
+{
+	// Read Resistor 1 values
 }
 
 /* Interrupt for ADC Converter

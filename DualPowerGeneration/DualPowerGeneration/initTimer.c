@@ -15,11 +15,12 @@ void initTimer0A()
 	/* OCR0A
 	 * The OCR0A defines the top value for the counter, hence also its resolution (pg 98)
 	 */
-	OCR0A = 124;
+	OCR0A = 124; //1
+	OCR0B = 248; //2
 	
 	/* TCCR0A
 	 * Setting mode to CTC (Clear Timer on Compare)
-	 * Comparing to OCR0A
+	 * Comparing to OCR0A	
 	 */
 	TCCR0A |= 1<<WGM01; 
 	
@@ -31,8 +32,9 @@ void initTimer0A()
 	
 	/* TIMSK0
 	 * Setting Timer A interrupt flag to True
+	 * Setting Timer B interrupt flag to True
 	 */
-	TIMSK0 |= 1<<OCIE0A;
+	TIMSK0 |= (1<<OCIE0A)|(1<<OCIE0B);
 }
 
 
