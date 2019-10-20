@@ -70,7 +70,7 @@ int main(void)
     }
 }
 
-
+// Can move these to an interrupt function
 void movePanelTo(int direction, double resA, double resB, double * drive_motor_factor)
 {
 	if(direction == WEST) &drive_motor_factor = 1;       // position 1 moving west
