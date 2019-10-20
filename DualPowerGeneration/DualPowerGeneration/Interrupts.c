@@ -15,6 +15,9 @@ ISR (TIMER0_COMPA_vect)
 	// Read Resistor values
 }
 
+/* Interrupt for ADC Converter
+ * Tells us when we can get the value from the adc reg
+ */
 ISR(ADC_vect)
 {
 	/* ADC
