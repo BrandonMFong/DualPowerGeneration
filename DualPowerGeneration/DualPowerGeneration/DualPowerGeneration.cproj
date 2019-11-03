@@ -126,6 +126,12 @@
     <Compile Include="DAConvert.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Maneuver.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Param_Const_GLVar.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Interrupts.c">
       <SubType>compile</SubType>
     </Compile>
