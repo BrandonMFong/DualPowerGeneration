@@ -60,5 +60,23 @@ ISR (TIMER0_COMPB_vect)
 	 //*/
 	//uint16_t AD = ADC;
 //}
+ISR(ADC_vect)
+{
+	/* ADC
+	 * ADC holds the value at the anolog value
+	 */
+	uint16_t AD = ADC;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
