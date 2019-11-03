@@ -53,6 +53,7 @@ ISR (TIMER0_COMPB_vect)
 	// Read Resistor 1 values
 }
 
+<<<<<<< HEAD
 /* Interrupt for ADC Converter
  * Tells us when we can get the value from the adc reg
  * NOTE: might not need this if I'm reading from the timer vector
@@ -71,6 +72,9 @@ ISR(ADC_vect)
 	 */
 	uint16_t AD = ADC;
 }
+=======
+
+>>>>>>> fix
 
 
 
