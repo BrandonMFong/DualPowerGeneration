@@ -5,6 +5,11 @@
  *  Author: Brandon
  */ 
 
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+#include "Param_Const_GLVar.h"
+
 void adc_init() {
 	/* ADMUX
 	 * REFS0 = using Vcc as reference voltage

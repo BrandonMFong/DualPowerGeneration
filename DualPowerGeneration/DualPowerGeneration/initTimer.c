@@ -5,6 +5,11 @@
  *  Author: Brandon
  */ 
 
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+#include "Param_Const_GLVar.h"
+
 /* Function: initTimerA
  * Using this timer to set a sampling frequency to read RESISTORS
  * Reason:  We don't want to continuously read resistors.  Reading every 160ms.
