@@ -25,16 +25,7 @@ ISR (TIMER0_COMPB_vect)
 	// Read Resistor 1 values
 }
 
-/* Interrupt for ADC Converter
- * Tells us when we can get the value from the adc reg
- */
-ISR(ADC_vect)
-{
-	/* ADC
-	 * ADC holds the value at the anolog value
-	 */
-	uint16_t AD = ADC;
-}
+
 
 
 
