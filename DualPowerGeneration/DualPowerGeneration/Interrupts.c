@@ -35,3 +35,16 @@ ISR(ADC_vect)
 	 */
 	uint16_t AD = ADC;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
