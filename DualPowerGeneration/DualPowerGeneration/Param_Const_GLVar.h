@@ -24,7 +24,7 @@
 #define CHANNEL_RESISTOR_3 = 3
 
 /*** GLOBAL VARIABLES ***/
-double currentAngle = SUNRISE_ANGLE;   // Do something with this later
+double currentAngle = SUNRISE_ANGLE;   // default possition of the panel
 
 double motorFactor_or_whatever;
 
@@ -37,7 +37,7 @@ double res3;    // South
 
 /*** PROTOTYPES ***/
 //void SolarMovement(double res0, double res1, double res2, double res3, double * drive_motor_factor);
-void movePanel(int direction, double resA, double resB, double * drive_motor_factor);
+void movePanelTo(int direction, double resA, double resB, double * drive_motor_factor);
 void initTimer0A();
 void adc_init();
 uint16_t adc_read(uint8_t ch);
