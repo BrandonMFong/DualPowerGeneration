@@ -21,26 +21,20 @@
 ISR (TIMER0_COMPA_vect)
 {
 	res0 = adc_read(CHANNEL_RESISTOR_0);
-	// Call your function here Joseph to move the solar panel
+	res1 = adc_read(CHANNEL_RESISTOR_1);
+	
+	if(res0 > res1) movePanelTo(WEST, res0, res1, &motorFactor_or_whatever);
+	else if(res1 > res0) movePanelTo(EAST, res1, res0, &motorFactor_or_whatever);
 	// Implement your values in Maneuver.c
 }
 
 ISR (TIMER0_COMPB_vect)
 {
-	res1 = adc_read(CHANNEL_RESISTOR_1);
-	// Call function
-}
-
-ISR (TIMER2_COMPA_vect)
-{
 	res2 = adc_read(CHANNEL_RESISTOR_2);
-	// Call function
-}
-
-ISR (TIMER2_COMPB_vect)
-{
 	res3 = adc_read(CHANNEL_RESISTOR_3);
-	// Call function
+	
+	if(res2 > res3) movePanelTo(NORTH, res2, res3, &motorFactor_or_whatever);
+	else if(res3 > res2) movePanelTo(SOUTH, res3, res2, &motorFactor_or_whatever);
 }
 
 /* Interrupt for ADC Converter
