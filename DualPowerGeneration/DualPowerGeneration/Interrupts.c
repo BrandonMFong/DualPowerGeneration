@@ -32,22 +32,9 @@ ISR (TIMER0_COMPB_vect)
 {
 	res2 = adc_read(CHANNEL_RESISTOR_2);
 	res3 = adc_read(CHANNEL_RESISTOR_3);
-	// Call function
-	// Read Resistor 0 values
-}
-
-/* Interrupt for Timer 0 comparing to OCR0A
- * This is the function that will read the resistor values
- * Reading the resistor values require an Analog to Digital Converter 
- * Refer to ADConverter.c
- */
-ISR (TIMER0_COMPB_vect)
-{
-	// Read Resistor 1 values
 	
 	if(res2 > res3) movePanelTo(NORTH, res2, res3, &motorFactor_or_whatever);
 	else if(res3 > res2) movePanelTo(SOUTH, res3, res2, &motorFactor_or_whatever);
-
 }
 
 /* Interrupt for ADC Converter
@@ -61,11 +48,5 @@ ISR (TIMER0_COMPB_vect)
 	 //*/
 	//uint16_t AD = ADC;
 //}
-ISR(ADC_vect)
-{
-	/* ADC
-	 * ADC holds the value at the anolog value
-	 */
-	uint16_t AD = ADC;
-}
+
 
