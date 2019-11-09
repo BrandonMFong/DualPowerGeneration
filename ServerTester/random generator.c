@@ -1,39 +1,38 @@
- // calculate torque and angular velocity of the wind turbine
- // take the average of the values to get the average power
- // use equation P = torque* angular velocity.
- // torque in N/m and angular velocity in revolutions per minute
- #include <stdio.h>
-    #include <stdlib.h>
+#include <stdio.h>
 
-    int main() {
-        double angularvelocity(){
-      int c, n;
+int main() {
+   int i,total;
+   //int srand[60];
+   int n = 60;
+   int rpm(){
+int rand[60];
+   int total_rpm = 0;
 
-      printf("3600 random numbers in 1 to 3600\n");
+   for(i = 0; i < n; i++) {
+       int num;
+       num =  abs(rand[i] % (3600 + 1 - 0) + 0);
 
-      for (c = 1; c <= 60; c++) {
-        n = rand() % 3600 + 1;
-        printf("%d\n", n);
-      }
-        }
-        double torque(){
-            int d, n;
+     total_rpm += num;
+      printf("%d\n", num);
+   }
 
-      printf("random numbers in 1 to 10\n");
-    int b;
-      for (d = 1; d <= 10; d++) {
-        n = rand() % 10 + 1;
-        printf("%d\n", b);
-      }
-      double e;
-      double average(angularvelocity, torque){
-          double sum;
-      sum = angularvelocity * torque;
-      printf("%lf", e);
-      }
+   printf("Average rpm = %f\n", total_rpm/(float)n);
+   }
+   int torque(){
+   int srand[60];
+   int total_torque = 0;
+
+   for(int c = 0; c < n; c++) {
+       int num;
+       num =  abs(srand[c] % (1000 + 1 - 0) + 0);
+
+     total_torque += num;
+      printf("%d\n", num);
+   }
+
+   printf("Average torque = %f\n", total_torque/(float)n);
+   }
 
 
-      return e;
-        }
-      }
-
+   return 0;
+}
