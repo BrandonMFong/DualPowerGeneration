@@ -9,7 +9,7 @@ int rand[60];
 
    for(i = 0; i < n; i++) {
        int num;
-       num =  rand[i] % (3600 + 1 - 0) + 0;
+       num =  abs(rand[i] % (3600 + 1 - 0) + 0);
 
      total += num;
       printf("%d\n", num);
