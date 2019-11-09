@@ -6,27 +6,17 @@
  */ 
 void movePanelTo(int direction, double resA, double resB, double * drive_motor_factor)
 {
-	if(direction == WEST) &drive_motor_factor = 1;       // position 1 moving west
-	
-	else if(direction == EAST) &drive_motor_factor = -1; // position -1 moving east
-	
-	else &drive_motor_factor = 0;
+	while (resA > resB)
+	{
+		//Move 1 degree to the given direction
+		switch(direction)
+		{
+			case WEST: &drive_motor_factor = 1; break;
+			case EAST: &drive_motor_factor = -1; break;
+			case NORTH: &drive_motor_factor = 1; break;
+			case SOUTH: &drive_motor_factor = -1; break;
+			default: &drive_motor_factor = 0; break
+		}
+	}
 }
 
-// void SolarMovement(double res0, double res1, double res2, double res3, double * drive_motor_factor)
-// {
-// 	if(res0 < res1)
-// 	{
-// 		&drive_motor_factor = 1; // position 1 moving west
-// 	}
-// 	else if (res1 > res0)
-// 	{
-// 		&drive_motor_factor = -1; // position -1 moving east
-// 	}
-// 	else &drive_motor_factor = 0;
-//
-// }
-
-if(res0 > res1) movePanelTo(WEST, res0, res1, &motorFactor_or_whatever);
-
-if(res1 > res0) movePanelTo(EAST, res1, res0, &motorFactor_or_whatever);

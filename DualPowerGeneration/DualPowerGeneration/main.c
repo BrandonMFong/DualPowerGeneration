@@ -22,8 +22,11 @@
 int main(void)
 {
 	//Initialize
-	initTimer0A(); // Initializing timer A 
+	initTimer0(); // Initializing timer 0
+	initTimer1(); // Initializing timer 1
+	initTimer2(); // Initializing timer 2
 	adc_init(); // Initializing ADC
+	dac_init(); // Initializing DAC
 	sei();
 	
     while (1) {}

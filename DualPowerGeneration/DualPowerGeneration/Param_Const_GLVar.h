@@ -24,7 +24,7 @@
 #define CHANNEL_RESISTOR_3 = 3
 
 /*** GLOBAL VARIABLES ***/
-double currentAngle = SUNRISE_ANGLE;   // Do something with this later
+double currentAngle = SUNRISE_ANGLE;   // default possition of the panel
 
 double motorFactor_or_whatever;
 
@@ -34,12 +34,19 @@ double res1;    //East Resistor
 double res2;    // North      <- in case we do 360
 double res3;    // South
 
+int speed; // value I am using for the pulse width
+
 
 /*** PROTOTYPES ***/
 //void SolarMovement(double res0, double res1, double res2, double res3, double * drive_motor_factor);
-void movePanel(int direction, double resA, double resB, double * drive_motor_factor);
+void movePanelTo(int direction, double resA, double resB, double * drive_motor_factor);
 void initTimer0A();
+void movePanel(int direction, double resA, double resB, double * drive_motor_factor);
+void initTimer0();
+void initTimer1();
+void initTimer2();
 void adc_init();
 uint16_t adc_read(uint8_t ch);
+void dac_init();
 
 #endif /* GLOBAL_VARIABLES_H_ */
