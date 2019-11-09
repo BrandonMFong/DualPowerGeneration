@@ -10,12 +10,14 @@
 #include <util/delay.h>
 #include "Param_Const_GLVar.h"
 
+// Link: https://sites.google.com/site/qeewiki/books/avr-guide/timers-on-the-atmega328
+
 /* Function: initTimerA
  * Using this timer to set a sampling frequency to read RESISTORS
  * Reason:  We don't want to continuously read resistors.  Reading every 160ms.
  * Values can be changed
  */
-void initTimer0A()
+void initTimer0()
 {
 	/* OCR0A
 	 * The OCR0A defines the top value for the counter, hence also its resolution (pg 98)
@@ -42,27 +44,59 @@ void initTimer0A()
 	TIMSK0 |= (1<<OCIE0A)|(1<<OCIE0B);
 }
 
-void initTimer2A()
+// refer to page 131 in data sheet
+void initTimer1()
+{
+	// Note the WGM1n = 15 means fast pwm compare on ocr1a
+	//TCCR1A – Timer/Counter1 Control Register A
+	TCCR1A |= (1<<COM1A1)|(1<<COM1A0)|(1<<WGM10)|(1<<WGM11);
+	
+	// TCCR1B – Timer/Counter1 Control Register B
+	// Not going to prescale
+	TCCR1B |= (1<<WGM12)|(1<<WGM13);
+	
+	// TCCR1C – Timer/Counter1 Control Register C
+	TCCR1C = 
+	
+	// TCNT1H and TCNT1L – Timer/Counter1
+	TCNT1 = 
+	
+	//OCR1AH and OCR1AL – Output Compare Register 1 A
+	OCR1A =
+	
+	// OCR1BH and OCR1BL – Output Compare Register 1 B
+	OCR1B = 
+	
+	// ICR1H and ICR1L – Input Capture Register 1
+	ICR1H = 
+	
+	// TIMSK1 – Timer/Counter1 Interrupt Mask Register
+	TIMSK1 = 
+	
+	// TIFR1 – Timer/Counter1 Interrupt Flag Register
+	TIFR1 = 
+}
+void initTimer2()
 {
 	/* OCR0A
 	 * The OCR0A defines the top value for the counter, hence also its resolution (pg 98)
 	 */
-	OCR0A = 124;
+	OCR2A = 124;
 	
 	/* TCCR0A
 	 * Setting mode to CTC (Clear Timer on Compare)
 	 * Comparing to OCR0A
 	 */
-	TCCR0A |= 1<<WGM01; 
+	TCCR2A |= 1<<WGM21; 
 	
 	/* TCCR0B
 	 * Incrementing timer at a frequency = F_CPU / 256 = 62.5 kHz
 	 * CSO[2:0] = 3'b100;
 	 */
-	TCCR0B |= 1<<CS02;
+	TCCR2B |= 1<<CS22;
 	
 	/* TIMSK0
 	 * Setting Timer A interrupt flag to True
 	 */
-	TIMSK0 |= 1<<OCIE0A;
+	TIMSK2 |= 1<<OCIE2A;
 }

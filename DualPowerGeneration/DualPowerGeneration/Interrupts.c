@@ -11,6 +11,7 @@
 #include <util/delay.h>
 #include "Param_Const_GLVar.h"
 
+
 /* Interrupt for Timer 0 comparing to OCR0A
  * This is the function that will read the resistor values
  * Reading the resistor values require an Analog to Digital Converter 
