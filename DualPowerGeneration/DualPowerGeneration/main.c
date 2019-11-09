@@ -13,86 +13,26 @@
 //Consider:  frequency to sample.  the amount we sample affects power efficiency
 //Joseph's diagram is on google drive
 
-#define F_CPU 16000000UL  // this is the clock frequency of the board
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-
-#define SUNRISE_ANGLE = 0
-#define SUNSET_ANGLE = 180
-#define WEST = 0
-#define EAST = 1
-#define NORTH = 2
-#define SOUTH = 3
-
-/*** GLOBAL VARIABLES ***/ 
-// Joseph, moving your variables as global - Brandon
-// All are init to 0 by default
-double currentAngle = SUNRISE_ANGLE;   // Do something with this later
-
-double motorFactor_or_whatever;
-
-double res0;    //West Resistor
-double res1;    //East Resistor
-
-double res2;    // North      <- in case we do 360
-double res3;    // South
-
-
-/*** PROTOTYPES ***/
-//void SolarMovement(double res0, double res1, double res2, double res3, double * drive_motor_factor);
-void movePanel(int direction, double resA, double resB, double * drive_motor_factor);
-void initTimer0A();
-void adc_init();
-uint16_t adc_read(uint8_t ch);
+#include "Param_Const_GLVar.h"
 
 int main(void)
 {
 	//Initialize
-	initTimer0A(); // Initializing timer A 
+	initTimer0(); // Initializing timer 0
+	initTimer1(); // Initializing timer 1
+	initTimer2(); // Initializing timer 2
+	adc_init(); // Initializing ADC
+	dac_init(); // Initializing DAC
 	sei();
 	
-    while (1) 
-    {
-		// Read values from resistors and assign them to  res variables here
-			// TODO resistor reading here
-			// Done by interrupt function ISR (TIMER0_COMPA_vect)
-		
-		// Do something with motorFactor variable here
-		    //TODO motor factor 
-		
-		// TODO - implement the below functions to the interrupts
-		// Refer to Interrupts.c
-		if(res0 > res1) movePanelTo(WEST, res0, res1, &motorFactor_or_whatever);
-		
-		if(res1 > res0) movePanelTo(EAST, res1, res0, &motorFactor_or_whatever);
-		
-    }
+    while (1) {}
 }
 
-// Can move these to an interrupt function
-void movePanelTo(int direction, double resA, double resB, double * drive_motor_factor)
-{
-	if(direction == WEST) &drive_motor_factor = 1;       // position 1 moving west
-		
-	else if(direction == EAST) &drive_motor_factor = -1; // position -1 moving east
-	
-	else &drive_motor_factor = 0;
-}
 
-// void SolarMovement(double res0, double res1, double res2, double res3, double * drive_motor_factor)
-// {	
-// 	if(res0 < res1)
-// 	{
-// 		&drive_motor_factor = 1; // position 1 moving west
-// 	}
-// 	else if (res1 > res0)
-// 	{
-// 		&drive_motor_factor = -1; // position -1 moving east
-// 	}
-// 	else &drive_motor_factor = 0;
-// 	
-// }
 
 
 

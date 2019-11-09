@@ -12,3 +12,12 @@
  * There have been some practices about making a DAC from an ADC
  * PID (proportional-integral-derivative) algorithm
  */
+
+/*
+ * Not really a DAC
+ * Just making an output pin here
+ */
+void dac_init()
+{
+	DDRB |= (1<<DDB1); // this connects to OC1A, refer to text (I think 119)
+}
