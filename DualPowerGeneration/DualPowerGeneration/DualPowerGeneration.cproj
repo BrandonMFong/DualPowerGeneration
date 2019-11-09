@@ -123,7 +123,7 @@
     <Compile Include="ADConverter.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="DAConvert.c">
+    <Compile Include="DAConverter.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Maneuver.c">
