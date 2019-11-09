@@ -36,6 +36,7 @@ ISR (TIMER0_COMPB_vect)
 	
 	if(res2 > res3) movePanelTo(NORTH, res2, res3, &motorFactor_or_whatever);
 	else if(res3 > res2) movePanelTo(SOUTH, res3, res2, &motorFactor_or_whatever);
+
 	// Read Resistor 0 values
 }
 

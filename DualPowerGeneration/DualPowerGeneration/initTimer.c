@@ -45,6 +45,7 @@ void initTimer0()
 }
 
 // refer to page 131 in data sheet
+// Don't edit this
 void initTimer1()
 {
 	// Note the WGM1n = 15 means fast pwm compare on ocr1a
