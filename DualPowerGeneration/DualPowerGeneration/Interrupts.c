@@ -45,10 +45,10 @@ ISR (TIMER0_COMPB_vect)
  * Reading the resistor values require an Analog to Digital Converter 
  * Refer to ADConverter.c
  */
-ISR (TIMER0_COMPB_vect)
-{
-	// Read Resistor 1 values
-}
+//ISR (TIMER0_COMPB_vect) //comenting this out until we get the right vector to play with.  We need timer 2
+//{
+	//// Read Resistor 1 values
+//}
 
 /* Interrupt for ADC Converter
  * Tells us when we can get the value from the adc reg

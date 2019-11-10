@@ -78,6 +78,28 @@ void initTimer1()
 
 	// TIFR1 – Timer/Counter1 Interrupt Flag Register
 	TIFR1 =
+	
+	/* TODO config timer registers */
+	//// TCCR1C – Timer/Counter1 Control Register C
+	//TCCR1C = 0;
+	//
+	//// TCNT1H and TCNT1L – Timer/Counter1
+	//TCNT1 = 0;
+	//
+	////OCR1AH and OCR1AL – Output Compare Register 1 A
+	//OCR1A =0;
+	//
+	//// OCR1BH and OCR1BL – Output Compare Register 1 B
+	//OCR1B = 0;
+	//
+	//// ICR1H and ICR1L – Input Capture Register 1
+	//ICR1H = 0;
+	//
+	//// TIMSK1 – Timer/Counter1 Interrupt Mask Register
+	//TIMSK1 = 0;
+	//
+	//// TIFR1 – Timer/Counter1 Interrupt Flag Register
+	//TIFR1 = 0;
 }
 void initTimer2()
 {

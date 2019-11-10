@@ -11,22 +11,22 @@
 
 /*** CONSTANTS ***/
 #define F_CPU 16000000UL  // this is the clock frequency of the board
-#define SUNRISE_ANGLE = 0
-#define SUNSET_ANGLE = 180
-#define WEST = 0
-#define EAST = 1
-#define NORTH = 2
-#define SOUTH = 3
+#define SUNRISE_ANGLE  0
+#define SUNSET_ANGLE  180
+#define WEST  0
+#define EAST  1
+#define NORTH  2
+#define SOUTH  3
 
-#define CHANNEL_RESISTOR_0 = 0
-#define CHANNEL_RESISTOR_1 = 1
-#define CHANNEL_RESISTOR_2 = 2
-#define CHANNEL_RESISTOR_3 = 3
+#define CHANNEL_RESISTOR_0  0
+#define CHANNEL_RESISTOR_1  1
+#define CHANNEL_RESISTOR_2  2
+#define CHANNEL_RESISTOR_3  3
 
 /*** GLOBAL VARIABLES ***/
 double currentAngle = SUNRISE_ANGLE;   // default possition of the panel
 
-double motorFactor_or_whatever;
+double motorFactor_or_whatever = 0.00;
 
 double res0;    //West Resistor
 double res1;    //East Resistor
