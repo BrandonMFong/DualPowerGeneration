@@ -5,6 +5,11 @@
  *  Author: Brandon
  */ 
 
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+#include "Param_Const_GLVar.h"
+
 /* Problem: 
  * Link: https://www.edn.com/design/integrated-circuit-design/4312523/Create-a-DAC-from-a-microcontroller-s-ADC
  * Link: https://tutorial.cytron.io/2012/06/22/pid-for-embedded-design/
