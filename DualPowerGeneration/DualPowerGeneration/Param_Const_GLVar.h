@@ -23,18 +23,6 @@
 #define CHANNEL_RESISTOR_2  2
 #define CHANNEL_RESISTOR_3  3
 
-/*** GLOBAL VARIABLES ***/
-double currentAngle = SUNRISE_ANGLE;   // default possition of the panel
-
-double motorFactor_or_whatever = 0.00;
-
-double res0;    //West Resistor
-double res1;    //East Resistor
-
-double res2;    // North      <- in case we do 360
-double res3;    // South
-
-int speed; // value I am using for the pulse width
 
 
 /*** PROTOTYPES ***/

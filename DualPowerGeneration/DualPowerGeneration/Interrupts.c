@@ -12,6 +12,14 @@
 #include "Param_Const_GLVar.h"
 
 
+double motorFactor_or_whatever = 0.00;
+
+double res0;    //West Resistor
+double res1;    //East Resistor
+
+double res2;    // North      <- in case we do 360
+double res3;    // South
+
 /* Interrupt for Timer 0 comparing to OCR0A
  * This is the function that will read the resistor values
  * Reading the resistor values require an Analog to Digital Converter 

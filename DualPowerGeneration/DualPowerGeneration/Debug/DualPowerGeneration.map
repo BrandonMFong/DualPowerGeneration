@@ -11,16 +11,16 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
                               C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328/avr5/crtatmega328.o (exit)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
-                              ADConverter.o (__do_clear_bss)
+                              Interrupts.o (__do_clear_bss)
 
 Allocating common symbols
 Common symbol       size              file
 
-res2                0x4               ADConverter.o
-res1                0x4               ADConverter.o
-res3                0x4               ADConverter.o
-speed               0x2               ADConverter.o
-res0                0x4               ADConverter.o
+res2                0x4               Interrupts.o
+res1                0x4               Interrupts.o
+res3                0x4               Interrupts.o
+speed               0x2               main.o
+res0                0x4               Interrupts.o
 
 Discarded input sections
 
@@ -29,43 +29,24 @@ Discarded input sections
  .text          0x00000000        0x0 ADConverter.o
  .data          0x00000000        0x0 ADConverter.o
  .bss           0x00000000        0x0 ADConverter.o
- .bss.motorFactor_or_whatever
-                0x00000000        0x4 ADConverter.o
- .bss.currentAngle
-                0x00000000        0x4 ADConverter.o
  .text          0x00000000        0x0 DAConverter.o
  .data          0x00000000        0x0 DAConverter.o
  .bss           0x00000000        0x0 DAConverter.o
- .bss.motorFactor_or_whatever
-                0x00000000        0x4 DAConverter.o
- .bss.currentAngle
-                0x00000000        0x4 DAConverter.o
  .text          0x00000000        0x0 Maneuver.o
  .data          0x00000000        0x0 Maneuver.o
  .bss           0x00000000        0x0 Maneuver.o
- .bss.motorFactor_or_whatever
-                0x00000000        0x4 Maneuver.o
- .bss.currentAngle
-                0x00000000        0x4 Maneuver.o
  .text          0x00000000        0x0 Interrupts.o
  .data          0x00000000        0x0 Interrupts.o
  .bss           0x00000000        0x0 Interrupts.o
- .bss.currentAngle
-                0x00000000        0x4 Interrupts.o
  .text          0x00000000        0x0 initTimer.o
  .data          0x00000000        0x0 initTimer.o
  .bss           0x00000000        0x0 initTimer.o
- .bss.motorFactor_or_whatever
-                0x00000000        0x4 initTimer.o
- .bss.currentAngle
-                0x00000000        0x4 initTimer.o
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .bss.motorFactor_or_whatever
-                0x00000000        0x4 main.o
  .bss.currentAngle
                 0x00000000        0x4 main.o
+ COMMON         0x00000000        0x2 main.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
@@ -411,28 +392,28 @@ END GROUP
                 0x00800100                _edata = .
                 [!provide]                PROVIDE (__data_end, .)
 
-.bss            0x00800100       0x16
+.bss            0x00800100       0x14
                 0x00800100                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.motorFactor_or_whatever
                 0x00800100        0x4 Interrupts.o
+                0x00800100                motorFactor_or_whatever
  *(COMMON)
- COMMON         0x00800104       0x12 ADConverter.o
+ COMMON         0x00800104       0x10 Interrupts.o
                 0x00800104                res2
                 0x00800108                res1
                 0x0080010c                res3
-                0x00800110                speed
-                0x00800112                res0
-                0x00800116                PROVIDE (__bss_end, .)
+                0x00800110                res0
+                0x00800114                PROVIDE (__bss_end, .)
                 0x00000512                __data_load_start = LOADADDR (.data)
                 0x00000512                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800116        0x0
+.noinit         0x00800114        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800116                _end = .
+                0x00800114                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -520,35 +501,35 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xf01
+.debug_info     0x00000000      0xc72
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328/avr5/crtatmega328.o
- .debug_info    0x000005f4      0x140 ADConverter.o
- .debug_info    0x00000734      0x107 DAConverter.o
- .debug_info    0x0000083b      0x14b Maneuver.o
- .debug_info    0x00000986      0x2d5 Interrupts.o
- .debug_info    0x00000c5b      0x131 initTimer.o
- .debug_info    0x00000d8c      0x175 main.o
+ .debug_info    0x000005f4       0xb7 ADConverter.o
+ .debug_info    0x000006ab       0x82 DAConverter.o
+ .debug_info    0x0000072d       0xcd Maneuver.o
+ .debug_info    0x000007fa      0x2b1 Interrupts.o
+ .debug_info    0x00000aab       0xac initTimer.o
+ .debug_info    0x00000b57      0x11b main.o
 
-.debug_abbrev   0x00000000      0x898
+.debug_abbrev   0x00000000      0x852
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328/avr5/crtatmega328.o
- .debug_abbrev  0x000005a2       0x8b ADConverter.o
- .debug_abbrev  0x0000062d       0x60 DAConverter.o
- .debug_abbrev  0x0000068d       0x6f Maneuver.o
- .debug_abbrev  0x000006fc       0xc3 Interrupts.o
- .debug_abbrev  0x000007bf       0x60 initTimer.o
- .debug_abbrev  0x0000081f       0x79 main.o
+ .debug_abbrev  0x000005a2       0x78 ADConverter.o
+ .debug_abbrev  0x0000061a       0x4f DAConverter.o
+ .debug_abbrev  0x00000669       0x5e Maneuver.o
+ .debug_abbrev  0x000006c7       0xc3 Interrupts.o
+ .debug_abbrev  0x0000078a       0x4f initTimer.o
+ .debug_abbrev  0x000007d9       0x79 main.o
 
-.debug_line     0x00000000      0x65e
+.debug_line     0x00000000      0x602
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x133 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328/avr5/crtatmega328.o
- .debug_line    0x00000133       0xfd ADConverter.o
- .debug_line    0x00000230       0xbf DAConverter.o
- .debug_line    0x000002ef       0x90 Maneuver.o
- .debug_line    0x0000037f      0x151 Interrupts.o
- .debug_line    0x000004d0      0x11a initTimer.o
- .debug_line    0x000005ea       0x74 main.o
+ .debug_line    0x00000133       0xe6 ADConverter.o
+ .debug_line    0x00000219       0xa8 DAConverter.o
+ .debug_line    0x000002c1       0x79 Maneuver.o
+ .debug_line    0x0000033a      0x151 Interrupts.o
+ .debug_line    0x0000048b      0x103 initTimer.o
+ .debug_line    0x0000058e       0x74 main.o
 
 .debug_frame    0x00000000      0x264
  *(.debug_frame)
@@ -562,18 +543,18 @@ END GROUP
 .debug_str      0x00000000      0x4b2
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328/avr5/crtatmega328.o
- .debug_str     0x00000208      0x1cc ADConverter.o
-                                0x200 (size before relaxing)
- .debug_str     0x000003d4       0x1c DAConverter.o
-                                0x1e2 (size before relaxing)
- .debug_str     0x000003f0       0x49 Maneuver.o
-                                0x207 (size before relaxing)
- .debug_str     0x00000439       0x36 Interrupts.o
-                                0x218 (size before relaxing)
- .debug_str     0x0000046f       0x32 initTimer.o
-                                0x1f8 (size before relaxing)
- .debug_str     0x000004a1       0x11 main.o
-                                0x202 (size before relaxing)
+ .debug_str     0x00000208      0x186 ADConverter.o
+                                0x1ba (size before relaxing)
+ .debug_str     0x0000038e       0x1c DAConverter.o
+                                0x19c (size before relaxing)
+ .debug_str     0x000003aa       0x50 Maneuver.o
+                                0x1c8 (size before relaxing)
+ .debug_str     0x000003fa       0x62 Interrupts.o
+                                0x205 (size before relaxing)
+ .debug_str     0x0000045c       0x32 initTimer.o
+                                0x1b2 (size before relaxing)
+ .debug_str     0x0000048e       0x24 main.o
+                                0x1d6 (size before relaxing)
 
 .debug_loc      0x00000000      0x46f
  *(.debug_loc)
