@@ -19,6 +19,13 @@
 #include <util/delay.h>
 #include "Param_Const_GLVar.h"
 
+
+/*** GLOBAL VARIABLES ***/
+double currentAngle = SUNRISE_ANGLE;   // default possition of the panel
+
+
+int speed; // value I am using for the pulse width
+
 int main(void)
 {
 	//Initialize
@@ -28,7 +35,7 @@ int main(void)
 	adc_init(); // Initializing ADC
 	dac_init(); // Initializing DAC
 	sei();
-	
+	// printf("Hello World.");
     while (1) {}
 }
 
