@@ -36,7 +36,9 @@ int main(void)
 	dac_init(); // Initializing DAC
 	sei();
 	// printf("Hello World.");
-    while (1) {}
+    while (1) 
+	{
+	}
 }
 
 
