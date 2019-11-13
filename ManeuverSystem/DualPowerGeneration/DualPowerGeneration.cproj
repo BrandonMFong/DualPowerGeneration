@@ -40,6 +40,7 @@
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
+<<<<<<< HEAD:ManeuverSystem/DualPowerGeneration/DualPowerGeneration.cproj
     <avrtool>custom</avrtool>
     <avrtoolserialnumber />
     <avrdeviceexpectedsignature>0x1E9514</avrdeviceexpectedsignature>
@@ -70,6 +71,21 @@
     </custom>
     <CustomProgrammingToolCommand>
     </CustomProgrammingToolCommand>
+=======
+    <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
+    <avrtoolserialnumber />
+    <avrdeviceexpectedsignature>0x1E9514</avrdeviceexpectedsignature>
+    <com_atmel_avrdbg_tool_simulator>
+      <ToolOptions xmlns="">
+        <InterfaceProperties>
+        </InterfaceProperties>
+      </ToolOptions>
+      <ToolType xmlns="">com.atmel.avrdbg.tool.simulator</ToolType>
+      <ToolNumber xmlns="">
+      </ToolNumber>
+      <ToolName xmlns="">Simulator</ToolName>
+    </com_atmel_avrdbg_tool_simulator>
+>>>>>>> Buidling solution:DualPowerGeneration/DualPowerGeneration/DualPowerGeneration.cproj
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
