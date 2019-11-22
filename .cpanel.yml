@@ -1,6 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/dualpower/public_html/
-    - /bin/cp index.html $DEPLOYPATH
-    - /bin/cp -R img $DEPLOYPATH
+    - export DEPLOYPATH=/home/dualpower/
+    - /bin/cp -R public_html $DEPLOYPATH
