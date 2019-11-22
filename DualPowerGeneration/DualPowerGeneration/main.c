@@ -2,46 +2,40 @@
  * DualPowerGeneration.c
  *
  * Created: 10/11/2019 5:07:09 PM
- * Author : Brandon Fong        <- Joseph Was here
+ * Author : Brandon Fong        <- Joseph Was here :3
  * 
  *
  * Date last modified: 
  */ 
-
-#include <avr/io.h>
-
-#define SUNRISE_ANGLE = 0
-#define SUNSET_ANGLE = 180
-
-
 //We want four resistors but lets first get the logic down for two
 //Using res0, res1 (i.e. photoresistor 1 and 2)
 //We are assuming the axis of rotation is one fixed motion
-// TODO put Joseph's diagram on repo
-// Consider:  frequency to sample.  the amount we sample affects power efficiency
-void SolarMovement(double res0, double res1, double res2, double res3, double * drive_motor_factor);
+//Consider:  frequency to sample.  the amount we sample affects power efficiency
+//Joseph's diagram is on google drive
+
+
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+#include "Param_Const_GLVar.h"
 
 int main(void)
 {
-    /* Replace with your application code */
-    while (1) 
-    {
-		
-		
-    }
+	//Initialize
+	initTimer0(); // Initializing timer 0
+	initTimer1(); // Initializing timer 1
+	initTimer2(); // Initializing timer 2
+	adc_init(); // Initializing ADC
+	dac_init(); // Initializing DAC
+	sei();
+	
+    while (1) {}
 }
 
-void SolarMovement(double res0, double res1, double res2, double res3, double * drive_motor_factor)
-{	
-	if(res0 < res1)
-	{
-		&drive_motor_factor = 1; // position 1 moving west
-	}
-	else if (res1 > res0)
-	{
-		&drive_motor_factor = -1; // position -1 moving east
-	}
-	else &drive_motor_factor = 0;
-	
-}
+
+
+
+
+
+
 
