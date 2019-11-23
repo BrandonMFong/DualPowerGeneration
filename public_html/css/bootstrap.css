@@ -70,6 +70,10 @@ mark {
 small {
   font-size: 80%;
 }
+medium
+{
+	font-size: 90%;
+}
 sub,
 sup {
   position: relative;
@@ -1212,10 +1216,23 @@ h6 .small,
 .h3 .small,
 .h4 .small,
 .h5 .small,
-.h6 .small {
+.h6 .small{
   font-weight: normal;
   line-height: 1;
   color: #777;
+}
+
+p mem_description {
+  font-weight: normal;
+  line-height: 1;
+  color: #777;
+}
+
+p abstract {
+  font-weight: bold;
+  line-height: 1;
+  /*color: #777;*/
+  color: rgba(0, 0, 0, 0.5);
 }
 h1,
 .h1,
@@ -1287,6 +1304,7 @@ h6,
 .h6 {
   font-size: 12px;
 }
+/* HERE */
 p {
   margin: 0 0 10px;
 }
