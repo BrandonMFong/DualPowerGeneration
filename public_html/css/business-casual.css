@@ -265,7 +265,7 @@ body_for_tabs, html {
   cursor: pointer;
   padding: 14px 16px;
   font-size: 17px;
-  width: 50%;
+  width: 33%;
 }
 
 .tablink:hover {
@@ -311,7 +311,7 @@ body_for_tabs, html {
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
-  color: #f1f1f1;
+  color: #D2C3C3;
 }
 
 /* Position and style the close button (top right corner) */
