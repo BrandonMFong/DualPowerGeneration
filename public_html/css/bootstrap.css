@@ -1121,12 +1121,18 @@ img {
   vertical-align: middle;
 }
 .img-responsive,
+.MemPhoto,
 .thumbnail > img,
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
   max-width: 100%;
+  height: auto;
+}
+.MemPhoto{
+  display: block;
+  width: auto;
   height: auto;
 }
 .img-rounded {
@@ -1227,8 +1233,8 @@ p mem_description {
   line-height: 1;
   padding-right: 15px;
   padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: 10px;
+  margin-left: 10px;
   color: #777;
 }
 

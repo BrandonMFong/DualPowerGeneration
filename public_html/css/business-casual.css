@@ -203,6 +203,8 @@ div.Member
 {
 	min-height: 50px;
 	clear: left;
+	margin-top: 25px;
+	margin-bottom: 25px;
 }
 
 //class for members' photos
