@@ -1134,6 +1134,8 @@ img {
   display: block;
   width: auto;
   height: auto;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 .img-rounded {
   border-radius: 6px;
