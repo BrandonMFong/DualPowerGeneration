@@ -1,0 +1,38 @@
+(function () {
+  let timeout;
+
+  function init(attempts) {
+    clearTimeout(timeout)
+    attempts = attempts || 1
+    if (attempts > 3) return
+    if (typeof CodeFundAd === 'undefined') {
+      timeout = setTimeout(function () { init(attempts + 1) }, 350)
+      return
+    }
+    new CodeFundAd({"selector":"#codefund_ad","template":"centered","theme":"light","fallback":true,"urls":{"impression":"https://codefund.app/display/df9292d4-df00-41dc-a0de-e5433e5afa4e.gif","campaign":"https://codefund.app/impressions/df9292d4-df00-41dc-a0de-e5433e5afa4e/click?campaign_id=395\u0026creative_id=362\u0026property_id=51\u0026template=centered\u0026theme=light","poweredBy":"https://codefund.app/invite/lN4RA92tcuA","adblock":"https://cdn2.codefund.app/assets/px.js","uplift":"https://codefund.app/impressions/df9292d4-df00-41dc-a0de-e5433e5afa4e/uplift?advertiser_id=185"},"creative":{"name":"Advertise Here","headline":"Want to reach our audience?","body":"Learn more about placing ethical ads on this site.","cta":"Contact Us!","imageUrls":{"icon":"https://cdn2.codefund.app/brRGeMymJ3iJNPkpbZeeDa4q","small":"https://cdn2.codefund.app/KAHwpfmZg3beN54agoRzkTWF","large":"https://cdn2.codefund.app/Ysqgpoar4zZH7Ap1XkkhmKaY","wide":"https://cdn2.codefund.app/jLCSmzdPmipvDEKGr4mN8qiR"}}})
+  }
+
+  const codefundStylesheetId = 'codefund-style'
+  const codefundScriptId = 'codefund-script'
+
+  if (!document.getElementById(codefundStylesheetId)) {
+    const stylesheet = document.createElement('link')
+    stylesheet.setAttribute('id', codefundStylesheetId)
+    stylesheet.setAttribute('rel', 'stylesheet')
+    stylesheet.setAttribute('media', 'all')
+    stylesheet.setAttribute('href', 'https://codefund.app/packs/css/code_fund_ad-b6b3de79.css')
+    stylesheet.addEventListener('load', init)
+    document.head.appendChild(stylesheet)
+  }
+
+  if (document.getElementById(codefundScriptId)) {
+    init()
+  } else {
+    const script = document.createElement('script')
+    script.setAttribute('id', codefundScriptId)
+    script.setAttribute('type', 'text/javascript')
+    script.setAttribute('src', 'https://codefund.app/packs/js/code_fund_ad-9e57ce5be5de715cc250.js')
+    script.addEventListener('load', init)
+    document.head.appendChild(script)
+  }
+})()
