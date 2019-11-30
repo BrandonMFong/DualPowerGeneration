@@ -6,5 +6,5 @@ Software Team use dev branch
   Lorans -> Max Power Branch
   Ahmad -> Timers Branch
   Joseph -> Interrupts Branch
-  Brandon -> DAC Branch
+  Abdullah -> DAC Branch
   Debug entire app -> Testbench Branch
