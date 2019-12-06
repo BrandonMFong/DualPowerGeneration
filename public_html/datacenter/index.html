@@ -47,27 +47,7 @@
 		<div class="row">
 			<div class="box">
 				<div class="col-lg-12 text-center">
-					<?php
-						$conn = mysqli_connect("rohancp", "dualpower_BrandonMFong", "819295224bfWANG/", "dualpower_DataCenter");
-						
-						// Check connection
-						if (!$conn) 
-						{
-							die("Connection failed: " . mysql_error());
-						}
-						
-						$sql = "SELECT * from Client";
-						$result = $conn->query($sql);
-						// output data of each row
-						while($row = mysql_fetch_assoc($result)) 
-						{
-						echo "<tr><td>" . $row["Organization_Name"]. "</td><td>" . $row["Admin_FirstName"] . "</td><td>"
-						. $row["Admin_LastName"]. $row["ID"]. "</td></tr>";
-						}
-						echo "</table>";
-
-						$conn->close();
-					?>
+					<?php include 'data.php';?>
 
 				</div>
 			</div>
