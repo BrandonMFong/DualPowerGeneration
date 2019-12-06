@@ -36,7 +36,14 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo $row["Organization_Name"] "|" $row["Admin_FirstName"] "|" $row["Admin_LastName"] "|" $row["ID"] "|<br>";
+        echo $row["Organization_Name"];
+		echo "|" ;
+		echo $row["Admin_FirstName"] ;
+		echo "|" ;
+		echo $row["Admin_LastName"] ;
+		echo "|" ;
+		echo $row["ID"] ;
+		echo "|<br>";
     }
 } else {
     echo "0 results";
