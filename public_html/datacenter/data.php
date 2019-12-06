@@ -16,8 +16,6 @@
 /** Loads the WordPress Environment and Template */
 //require( dirname( __FILE__ ) . '/wp-blog-header.php' );
 
-echo "test";
-
 $servername = "localhost";
 $username = "dualpower_BrandonMFong";
 $password = "dualpower27182";
