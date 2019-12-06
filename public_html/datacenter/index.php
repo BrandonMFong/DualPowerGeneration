@@ -17,6 +17,32 @@
 //require( dirname( __FILE__ ) . '/wp-blog-header.php' );
 
 echo "test";
+
+$servername = "localhost";
+$username = "dualpower_BrandonMFong";
+$password = "dualpower27182";
+$dbname = "dualpower_DataCenter";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * from Client";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo $row["Organization_Name"];
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
+
 ?>
 
 
