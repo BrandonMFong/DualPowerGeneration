@@ -55,9 +55,13 @@ if ($result->num_rows > 0) {
 		echo "|" ;
 		echo $row["Time"] ;
 		echo "|" ;
+		echo $row["Power"] ;
+		echo "|" ;
 		echo $row["ID"] ;
 		echo "|" ;
 		echo $row["Time"] ;
+		echo "|" ;
+		echo $row["Power"] ;
 		echo "|<br>";
     }
 } else {

@@ -13,11 +13,11 @@ insert into Device (ID, Solar_ID, Wind_ID, Start_Date)
 	values (1500, 1501, 1502, current_timestamp());
 	
 -- Solar TABLE #1
-insert into Solar (ID, Time)
-	values (1501, current_timestamp());
+insert into Solar (ID, Time, Power)
+	values (1501, current_timestamp(), abs(rand()));
 	
 -- Wind TABLE #2
-insert into Wind (ID, Time)
-	values (1502, current_timestamp());
+insert into Wind (ID, Time, Power)
+	values (1502, current_timestamp(), abs(rand()));
 	
 -- ID convention: Clientid-deviceid-solar-wind
