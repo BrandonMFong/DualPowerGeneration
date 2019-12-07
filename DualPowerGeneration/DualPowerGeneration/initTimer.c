@@ -107,10 +107,10 @@ void initTimer2()
 	 * The OCR0A defines the top value for the counter, hence also its resolution (pg 98)
 	 */
 
-	OCR0A = 124;
-
-
 	OCR2A = 124;
+
+
+	OCR2B = 248;
 
 
 	/* TCCR0A
@@ -130,7 +130,7 @@ void initTimer2()
 	 * Setting Timer B interrupt flag to True
 	 */
 
-	TIMSK0 |= (1<<OCIE0A)|(1<<OCIE0B);
+	TIMSK2 |= (1<<OCIE2A)|(1<<OCIE2B);
 
 	TIMSK2 |= 1<<OCIE2A;
 
