@@ -49,19 +49,19 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo $row["Organization_Name"];
+        echo $row["Client.Organization_Name"];
 		echo "|" ;
-		echo $row["ID"] ;
+		echo $row["Solar.ID"] ;
 		echo "|" ;
-		echo $row["Time"] ;
+		echo $row["Solar.Time"] ;
 		echo "|" ;
-		echo $row["Power"] ;
+		echo $row["Solar.Power"] ;
 		echo "|" ;
-		echo $row["ID"] ;
+		echo $row["Wind.ID"] ;
 		echo "|" ;
-		echo $row["Time"] ;
+		echo $row["Wind.Time"] ;
 		echo "|" ;
-		echo $row["Power"] ;
+		echo $row["Wind.Power"] ;
 		echo "|<br>";
     }
 } else {
