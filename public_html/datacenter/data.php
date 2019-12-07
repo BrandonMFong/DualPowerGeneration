@@ -28,19 +28,36 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * from Client";
+$sql = 
+"
+select 	c.Organization_Name,
+		s.*,
+        w.*
+	from Client c
+    	join Device_Client dc
+        	on c.ID = dc.Client_ID
+        join Device d 
+        	on d.ID = dc.Device_ID
+        join Solar s
+        	on s.ID = d.Solar_ID
+       	join Wind w 
+        	on w.ID = d.Wind_ID
+
+";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo $row["Organization_Name"];
+        echo $row["c.Organization_Name"];
 		echo "|" ;
-		echo $row["Admin_FirstName"] ;
+		echo $row["s.ID"] ;
 		echo "|" ;
-		echo $row["Admin_LastName"] ;
+		echo $row["s.Time"] ;
 		echo "|" ;
-		echo $row["ID"] ;
+		echo $row["w.ID"] ;
+		echo "|" ;
+		echo $row["w.Time"] ;
 		echo "|<br>";
     }
 } else {
