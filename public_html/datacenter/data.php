@@ -49,15 +49,15 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo $row["c.Organization_Name"];
+        echo $row["Organization_Name"];
 		echo "|" ;
-		echo $row["s.ID"] ;
+		echo $row["ID"] ;
 		echo "|" ;
-		echo $row["s.Time"] ;
+		echo $row["Time"] ;
 		echo "|" ;
-		echo $row["w.ID"] ;
+		echo $row["ID"] ;
 		echo "|" ;
-		echo $row["w.Time"] ;
+		echo $row["Time"] ;
 		echo "|<br>";
     }
 } else {
