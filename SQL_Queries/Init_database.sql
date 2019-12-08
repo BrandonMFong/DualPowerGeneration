@@ -24,21 +24,13 @@ create table Device
 create table Solar 
 (
 	ID int,
-<<<<<<< HEAD
-	Time Datetime
-=======
 	Time Datetime,
 	Power double
->>>>>>> releases
 );
 
 create table Wind 
 (
 	ID int,
-<<<<<<< HEAD
-	Time Datetime
-=======
 	Time Datetime,
 	Power double
->>>>>>> releases
 );
