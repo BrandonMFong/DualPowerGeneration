@@ -43,7 +43,7 @@
 		where 
 			cl.ID = " . $username . "
 			AND
-			pw.Password = " . $password;
+			pw.Password = '" . $password ."'";
 	
 	$credential_results = $conn->query($credentials);
 	$credential_row = $credential_results->fetch_assoc();
