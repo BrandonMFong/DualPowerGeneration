@@ -53,7 +53,7 @@
 	echo $credential_row["Password"] ;
 	echo "|" ;
 
-	if (($username === $credential_row["ID"]) & ($password === $credential_row["Password"]) // TRUE if $a is equal to $b, and they are of the same type.
+	if (((int)$username === $credential_row["ID"]) & ($password === $credential_row["Password"]) // TRUE if $a is equal to $b, and they are of the same type.
 	{
 		$sql = 
 		"
