@@ -31,8 +31,26 @@
 	/* User login info */
 	$username = $_GET['Username'];
 	$password = $_GET['Password'];
+	
+	$credentials = 
+	"
+		select 
+		pw.Password,
+        cl.ID
+		from Password pw
+			join Client cl 
+				on pw.Client_ID = cl.ID
+		where 
+			cl.ID = $username
+			AND
+			pw.Password = $password
+				
+	";
+	
+	$credential_results = $conn->query($credentials);
+	$credential_row = $credential_results->fetch_assoc();
 
-	if (($username === "dualpower") & ($password === "dualpower")) // TRUE if $a is equal to $b, and they are of the same type.
+	if (($username === $credential_row["ID"]) & ($password === $credential_row["Password"]) // TRUE if $a is equal to $b, and they are of the same type.
 	{
 		$sql = 
 		"
@@ -75,9 +93,10 @@
 		}
 		$conn->close();
 	}
-	else {
+	else 
+	{
 
-	print ("login fail");
+		print ("login fail");
 
 	}
 ?>
