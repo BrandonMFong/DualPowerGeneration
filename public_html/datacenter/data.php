@@ -29,9 +29,10 @@
 	}
 	
 	/* User login info */
-	$username = $_POST['username'];
+	$username = $_GET['Username'];
+	$password = $_GET['Password'];
 
-	if ($username == "dualpower") 
+	if (($username === "dualpower") & ($password === "dualpower")) // TRUE if $a is equal to $b, and they are of the same type.
 	{
 		$sql = 
 		"
