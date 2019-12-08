@@ -41,11 +41,9 @@
 			join Client cl 
 				on pw.Client_ID = cl.ID
 		where 
-			cl.ID = $username
+			cl.ID = " . $username . "
 			AND
-			pw.Password = $password
-				
-	";
+			pw.Password = " . $password;
 	
 	$credential_results = $conn->query($credentials);
 	$credential_row = $credential_results->fetch_assoc();
@@ -93,7 +91,9 @@
 				echo $row["Wind.Power"] ;
 				echo "|<br>";
 			}
-		} else {
+		} 
+		else 
+		{
 			echo "0 results";
 		}
 		$conn->close();
