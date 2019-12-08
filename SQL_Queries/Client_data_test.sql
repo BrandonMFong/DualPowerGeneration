@@ -21,3 +21,8 @@ insert into Wind (ID, Time, Power)
 	values (1502, current_timestamp(), abs(rand()));
 	
 -- ID convention: Clientid-deviceid-solar-wind
+	
+-- Password TABLE #2
+insert into Password (Client_ID, Password)
+	values 
+		(1000, 'dualpower');

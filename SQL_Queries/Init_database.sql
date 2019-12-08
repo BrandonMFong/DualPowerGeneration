@@ -34,3 +34,9 @@ create table Wind
 	Time Datetime,
 	Power double
 );
+
+create table Password 
+(
+	Client_ID int,
+	Password varchar(255)
+);
