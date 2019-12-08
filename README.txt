@@ -8,3 +8,6 @@ Software Team use dev branch
   Joseph -> Interrupts Branch
   Abdullah -> DAC Branch
   Debug entire app -> Testbench Branch
+  
+TODO:
+	- Sleep Mode
