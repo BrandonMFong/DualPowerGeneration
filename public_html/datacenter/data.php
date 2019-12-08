@@ -49,6 +49,11 @@
 	
 	$credential_results = $conn->query($credentials);
 	$credential_row = $credential_results->fetch_assoc();
+	
+	echo $credential_row["ID"];
+	echo "|" ;
+	echo $credential_row["Password"] ;
+	echo "|" ;
 
 	if (($username === $credential_row["ID"]) & ($password === $credential_row["Password"]) // TRUE if $a is equal to $b, and they are of the same type.
 	{
