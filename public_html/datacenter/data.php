@@ -16,6 +16,7 @@
 /** Loads the WordPress Environment and Template */
 //require( dirname( __FILE__ ) . '/wp-blog-header.php' );
 
+	$state = 0;
 	$servername = "localhost";
 	$username = "dualpower_BrandonMFong";
 	$password = "dualpower27182";
@@ -28,81 +29,103 @@
 		die("Connection failed: " . $conn->connect_error);
 	}
 	
-	/* User login info */
-	$username = $_GET['Username'];
-	$password = $_GET['Password'];
-	
-	$credentials = 
-	"
-		select 
-		pw.Password,
-        cl.ID
-		from Password pw
-			join Client cl 
-				on pw.Client_ID = cl.ID
-		where 
-			cl.ID = " . $username . "
-			AND
-			pw.Password = '" . $password ."'";
-	
-	$credential_results = $conn->query($credentials);
-	$credential_row = $credential_results->fetch_assoc();
-	
-	echo $credential_row["ID"];
-	echo "|" ;
-	echo $credential_row["Password"] ;
-	echo "|" ;
-
-	if (((int)$username === $credential_row["ID"]) & ($password === $credential_row["Password"])) // TRUE if $a is equal to $b, and they are of the same type.
+	switch($state)
 	{
-		$sql = 
-		"
-		select 	c.Organization_Name,
-				s.*,
-				w.*
-			from Client c
-				join Device_Client dc
-					on c.ID = dc.Client_ID
-				join Device d 
-					on d.ID = dc.Device_ID
-				join Solar s
-					on s.ID = d.Solar_ID
-				join Wind w 
-					on w.ID = d.Wind_ID
-
-		";
-		$result = $conn->query($sql);
-
-		if ($result->num_rows > 0) {
-			// output data of each row
-			while($row = $result->fetch_assoc()) {
-				echo $row["Client.Organization_Name"];
-				echo "|" ;
-				echo $row["Solar.ID"] ;
-				echo "|" ;
-				echo $row["Solar.Time"] ;
-				echo "|" ;
-				echo $row["Solar.Power"] ;
-				echo "|" ;
-				echo $row["Wind.ID"] ; // the tables have the same names, how do I distinguish between the two?
-				echo "|" ;
-				echo $row["Wind.Time"] ;
-				echo "|" ;
-				echo $row["Wind.Power"] ;
-				echo "|<br>";
-			}
-		} 
-		else 
+		case 0:
 		{
-			echo "0 results";
+?>
+			<!-- https://www.homeandlearn.co.uk/php/php4p1.html-->
+			<!-- https://www.homeandlearn.co.uk/php/php4p6.html-->
+			<FORM NAME ="form1" METHOD ="GET" ACTION = "">
+
+				<INPUT TYPE = "text" VALUE ="Username" NAME = "Username">
+				<INPUT TYPE = "text" VALUE ="Password" NAME = "Password">
+				<INPUT TYPE = "Submit" Name = "Submit1" VALUE = "Login">
+
+			</FORM>
+<?php
+
+			/* User login info */
+			$username = $_GET['Username'];
+			$password = $_GET['Password'];
+			
+			$credentials = 
+			"
+				select 
+				pw.Password,
+				cl.ID
+				from Password pw
+					join Client cl 
+						on pw.Client_ID = cl.ID
+				where 
+					cl.ID = " . $username . "
+					AND
+					pw.Password = '" . $password ."'";
+			
+			$credential_results = $conn->query($credentials);
+			$credential_row = $credential_results->fetch_assoc();
+			
+			echo $credential_row["ID"];
+			echo "|" ;
+			echo $credential_row["Password"] ;
+			echo "|" ;
+
+			if (((int)$username === $credential_row["ID"]) & ($password === $credential_row["Password"])){$i = 1;} // TRUE if $a is equal to $b, and they are of the same type.
+			
+			else 
+			{
+
+				print ("login fail");
+
+			}
 		}
-		$conn->close();
-	}
-	else 
-	{
+		case 1: 
+		{
+			$sql = 
+			"
+			select 	c.Organization_Name,
+					s.*,
+					w.*
+				from Client c
+					join Device_Client dc
+						on c.ID = dc.Client_ID
+					join Device d 
+						on d.ID = dc.Device_ID
+					join Solar s
+						on s.ID = d.Solar_ID
+					join Wind w 
+						on w.ID = d.Wind_ID
 
-		print ("login fail");
+			";
+			$result = $conn->query($sql);
 
+			if ($result->num_rows > 0) 
+			{
+				// output data of each row
+				while($row = $result->fetch_assoc()) 
+				{
+					echo $row["Client.Organization_Name"];
+					echo "|" ;
+					echo $row["Solar.ID"] ;
+					echo "|" ;
+					echo $row["Solar.Time"] ;
+					echo "|" ;
+					echo $row["Solar.Power"] ;
+					echo "|" ;
+					echo $row["Wind.ID"] ; // the tables have the same names, how do I distinguish between the two?
+					echo "|" ;
+					echo $row["Wind.Time"] ;
+					echo "|" ;
+					echo $row["Wind.Power"] ;
+					echo "|<br>";
+				}
+			} 
+			else 
+			{
+				echo "0 results";
+			}
+			$conn->close();
+		}
 	}
 ?>
 
