@@ -30,7 +30,7 @@
 	}
 	
 	
-	if($state === 0)
+	if($state == 0)
 	{
 ?>
 		<!-- https://www.homeandlearn.co.uk/php/php4p1.html-->
@@ -73,7 +73,7 @@
 
 		// }
 	}
-	elseif($state === 1) 
+	elseif($state == 1) 
 	{
 		$sql = 
 		"
