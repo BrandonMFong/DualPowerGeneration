@@ -23,15 +23,16 @@
 	$dbname = "dualpower_DataCenter";
 
 	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Check connection
-	if ($conn->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
-	}
+	
 	
 	
 	if($state == 0)
 	{
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
 ?>
 		<!-- https://www.homeandlearn.co.uk/php/php4p1.html-->
 		<!-- https://www.homeandlearn.co.uk/php/php4p6.html-->
@@ -45,8 +46,8 @@
 <?php
 
 		/* User login info */
-		$username = $_GET['Username'];
-		$password = $_GET['Password'];
+		$username = trim($_GET['Username']);
+		$password = trim($_GET['Password']);
 		
 		$credentials = 
 		"
@@ -62,19 +63,34 @@
 				pw.Password = '" . $password ."'";
 		
 		$credential_results = $conn->query($credentials);
-		$credential_row = $credential_results->fetch_assoc();
+		if ($credential_results->num_rows > 0) 
+		{
+			while($credential_row = $credential_results->fetch_assoc())
+			{
 
-		if (((int)$username === $credential_row["ID"]) & ($password === $credential_row["Password"])){$i = 1;} // TRUE if $a is equal to $b, and they are of the same type.
-		
-		// else 
-		// {
+				if (((int)$username === $credential_row["ID"]) & ($password === $credential_row["Password"])){$i = 1;} // TRUE if $a is equal to $b, and they are of the same type.
+			
+			// else 
+			// {
 
-			// print ("login fail");
+				// print ("login fail");
 
-		// }
+			// }
+			}
+		}
+		else 
+		{
+			echo "0 results";
+		}
+		$conn->close();
 	}
 	elseif($state == 1) 
 	{
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
 		$sql = 
 		"
 		select 	c.Organization_Name,
