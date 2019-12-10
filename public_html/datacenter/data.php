@@ -28,11 +28,11 @@
 	echo $state;
 	if($state == 0)
 	{
-		// $conn = new mysqli($servername, $username, $password, $dbname);
-		// // Check connection
-		// if ($conn->connect_error) {
-			// die("Connection failed: " . $conn->connect_error);
-		// }
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
 ?>
 		<!-- https://www.homeandlearn.co.uk/php/php4p1.html-->
 		<!-- https://www.homeandlearn.co.uk/php/php4p6.html-->
@@ -49,26 +49,26 @@
 		$username = trim($_GET['Username']);
 		$password = trim($_GET['Password']);
 		
-		// $credentials = 
-		// "
-			// select 
-			// pw.Password,
-			// cl.ID
-			// from Password pw
-				// join Client cl 
-					// on pw.Client_ID = cl.ID
-			// where 
-				// cl.ID = " . $username . "
-				// AND
-				// pw.Password = '" . $password ."'";
+		$credentials = 
+		"
+			select 
+			pw.Password,
+			cl.ID
+			from Password pw
+				join Client cl 
+					on pw.Client_ID = cl.ID
+			where 
+				cl.ID = " . $username . "
+				AND
+				pw.Password = '" . $password ."'";
 		
-		// $credential_results = $conn->query($credentials);
-		// if ($credential_results->num_rows > 0) 
-		// {
-			// while($credential_row = $credential_results->fetch_assoc())
-			// {
+		$credential_results = $conn->query($credentials);
+		if ($credential_results->num_rows > 0) 
+		{
+			while($credential_row = $credential_results->fetch_assoc())
+			{
 
-				if (($username === "1000") & ($password === "dualpower")){$i = 1;} // TRUE if $a is equal to $b, and they are of the same type.
+				if (((int)$username === $credential_row["ID"]) & ($password === $credential_row["Password"])){$state = 1;} // TRUE if $a is equal to $b, and they are of the same type.
 			
 			// else 
 			// {
@@ -76,14 +76,13 @@
 				// print ("login fail");
 
 			// }
-			// }
-		// }
+			}
+		}
 		else 
 		{
-			// echo "0 results";
-			echo "Login Please";
+			echo "0 results";
 		}
-		// $conn->close();
+		$conn->close();
 	}
 	elseif($state == 1) 
 	{
