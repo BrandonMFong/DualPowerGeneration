@@ -23,17 +23,17 @@
 	$dbname = "dualpower_DataCenter";
 
 	// Create connection
-	
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	}
 	while(1)
 	{
 		echo $state;
 		if($state == 0)
 		{
-			$conn = new mysqli($servername, $username, $password, $dbname);
-			// Check connection
-			if ($conn->connect_error) {
-				die("Connection failed: " . $conn->connect_error);
-			}
+			
 ?>
 			<!-- https://www.homeandlearn.co.uk/php/php4p1.html-->
 			<!-- https://www.homeandlearn.co.uk/php/php4p6.html-->
@@ -84,15 +84,10 @@
 				// echo "0 results";
 				echo "Login";
 			}
-			$conn->close();
 		}
 		elseif($state == 1) 
 		{
-			$conn = new mysqli($servername, $username, $password, $dbname);
-			// Check connection
-			if ($conn->connect_error) {
-				die("Connection failed: " . $conn->connect_error);
-			}
+			
 			$sql = 
 			"
 			select 	c.Organization_Name,
@@ -136,13 +131,14 @@
 			{
 				echo "0 results";
 			}
-			$conn->close();
 		}
 		else
 		{
 			echo "Login Fail";
 		}
 	}
+	
+	$conn->close();
 ?>
 
 
