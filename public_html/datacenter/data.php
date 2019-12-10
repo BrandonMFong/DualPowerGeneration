@@ -64,20 +64,15 @@
 			
 			$credential_results = $conn->query($credentials);
 			$credential_row = $credential_results->fetch_assoc();
-			
-			echo $credential_row["ID"];
-			echo "|" ;
-			echo $credential_row["Password"] ;
-			echo "|" ;
 
 			if (((int)$username === $credential_row["ID"]) & ($password === $credential_row["Password"])){$i = 1;} // TRUE if $a is equal to $b, and they are of the same type.
 			
-			else 
-			{
+			// else 
+			// {
 
-				print ("login fail");
+				// print ("login fail");
 
-			}
+			// }
 		}
 		case 1: 
 		{
@@ -104,19 +99,19 @@
 				// output data of each row
 				while($row = $result->fetch_assoc()) 
 				{
-					echo $row["Client.Organization_Name"];
+					echo $row["Organization_Name"];
 					echo "|" ;
-					echo $row["Solar.ID"] ;
+					echo $row["ID"] ;
 					echo "|" ;
-					echo $row["Solar.Time"] ;
+					echo $row["Time"] ;
 					echo "|" ;
-					echo $row["Solar.Power"] ;
+					echo $row["Power"] ;
 					echo "|" ;
-					echo $row["Wind.ID"] ; // the tables have the same names, how do I distinguish between the two?
+					echo $row["ID"] ; // the tables have the same names, how do I distinguish between the two?
 					echo "|" ;
-					echo $row["Wind.Time"] ;
+					echo $row["Time"] ;
 					echo "|" ;
-					echo $row["Wind.Power"] ;
+					echo $row["Power"] ;
 					echo "|<br>";
 				}
 			} 
