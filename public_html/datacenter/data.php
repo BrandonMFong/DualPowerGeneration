@@ -28,65 +28,65 @@
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
-	while(1)
-	{
-		echo $state;
-		if($state == 0)
-		{
+	// while(1)
+	// {
+		// echo $state;
+		// if($state == 0)
+		// {
 			
-?>
-			<!-- https://www.homeandlearn.co.uk/php/php4p1.html-->
-			<!-- https://www.homeandlearn.co.uk/php/php4p6.html-->
-			<FORM NAME ="form1" METHOD ="GET" ACTION = "">
 
-				<INPUT TYPE = "text" VALUE ="Username" NAME = "Username">
-				<INPUT TYPE = "text" VALUE ="Password" NAME = "Password">
-				<INPUT TYPE = "Submit" Name = "Submit1" VALUE = "Login">
+			// <!--// <!-- https://www.homeandlearn.co.uk/php/php4p1.html-->
+			// <!-- https://www.homeandlearn.co.uk/php/php4p6.html-->
+			// <!--<FORM NAME ="form1" METHOD ="GET" ACTION = "">
 
-			</FORM>
-<?php
+				// // <INPUT TYPE = "text" VALUE ="Username" NAME = "Username">
+				// // <INPUT TYPE = "text" VALUE ="Password" NAME = "Password">
+				// // <INPUT TYPE = "Submit" Name = "Submit1" VALUE = "Login">
 
-			/* User login info */
-			$username = trim($_GET['Username']);
-			$password = trim($_GET['Password']);
+			 // </FORM>-->
+ 
+
+			// /* User login info */
+			// $username = trim($_GET['Username']);
+			// $password = trim($_GET['Password']);
 			
-			$credentials = 
-			"
-				select 
-				pw.Password,
-				cl.ID
-				from Password pw
-					join Client cl 
-						on pw.Client_ID = cl.ID
-				where 
-					cl.ID = " . $username . "
-					AND
-					pw.Password = '" . $password ."'";
+			// $credentials = 
+			// "
+				// select 
+				// pw.Password,
+				// cl.ID
+				// from Password pw
+					// join Client cl 
+						// on pw.Client_ID = cl.ID
+				// where 
+					// cl.ID = " . $username . "
+					// AND
+					// pw.Password = '" . $password ."'";
 			
-			$credential_results = $conn->query($credentials);
-			if ($credential_results->num_rows > 0) 
-			{
-				while($credential_row = $credential_results->fetch_assoc())
-				{
-
-					if (($username === "1000") & ($password === "dualpower")){$state = 1;} // TRUE if $a is equal to $b, and they are of the same type.
-				
-				// else 
+			// $credential_results = $conn->query($credentials);
+			// if ($credential_results->num_rows > 0) 
+			// {
+				// while($credential_row = $credential_results->fetch_assoc())
 				// {
 
-					// print ("login fail");
+					// if (($username === "1000") & ($password === "dualpower")){$state = 1;} // TRUE if $a is equal to $b, and they are of the same type.
+				
+				// // else 
+				// // {
 
+					// // print ("login fail");
+
+				// // }
 				// }
-				}
-			}
-			else 
-			{
-				// echo "0 results";
-				echo "Login";
-			}
-		}
-		elseif($state == 1) 
-		{
+			// }
+			// else 
+			// {
+				// // echo "0 results";
+				// echo "Login";
+			// }
+		// }
+		// elseif($state == 1) 
+		// {
 			
 			$sql = 
 			"
@@ -131,12 +131,12 @@
 			{
 				echo "0 results";
 			}
-		}
-		else
-		{
-			echo "Login Fail";
-		}
-	}
+		// }
+		// else
+		// {
+			// echo "Login Fail";
+		// }
+	// }
 	
 	$conn->close();
 ?>
