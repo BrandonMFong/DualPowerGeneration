@@ -25,7 +25,7 @@
 	// Create connection
 	
 	
-	
+	echo $state;
 	if($state == 0)
 	{
 		$conn = new mysqli($servername, $username, $password, $dbname);
