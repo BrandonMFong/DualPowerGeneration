@@ -29,99 +29,102 @@
 		die("Connection failed: " . $conn->connect_error);
 	}
 	
-	switch($state)
+	
+	if($i === 0)
 	{
-		case 0:
-		{
 ?>
-			<!-- https://www.homeandlearn.co.uk/php/php4p1.html-->
-			<!-- https://www.homeandlearn.co.uk/php/php4p6.html-->
-			<FORM NAME ="form1" METHOD ="GET" ACTION = "">
+		<!-- https://www.homeandlearn.co.uk/php/php4p1.html-->
+		<!-- https://www.homeandlearn.co.uk/php/php4p6.html-->
+		<FORM NAME ="form1" METHOD ="GET" ACTION = "">
 
-				<INPUT TYPE = "text" VALUE ="Username" NAME = "Username">
-				<INPUT TYPE = "text" VALUE ="Password" NAME = "Password">
-				<INPUT TYPE = "Submit" Name = "Submit1" VALUE = "Login">
+			<INPUT TYPE = "text" VALUE ="Username" NAME = "Username">
+			<INPUT TYPE = "text" VALUE ="Password" NAME = "Password">
+			<INPUT TYPE = "Submit" Name = "Submit1" VALUE = "Login">
 
-			</FORM>
+		</FORM>
 <?php
 
-			/* User login info */
-			$username = $_GET['Username'];
-			$password = $_GET['Password'];
-			
-			$credentials = 
-			"
-				select 
-				pw.Password,
-				cl.ID
-				from Password pw
-					join Client cl 
-						on pw.Client_ID = cl.ID
-				where 
-					cl.ID = " . $username . "
-					AND
-					pw.Password = '" . $password ."'";
-			
-			$credential_results = $conn->query($credentials);
-			$credential_row = $credential_results->fetch_assoc();
+		/* User login info */
+		$username = $_GET['Username'];
+		$password = $_GET['Password'];
+		
+		$credentials = 
+		"
+			select 
+			pw.Password,
+			cl.ID
+			from Password pw
+				join Client cl 
+					on pw.Client_ID = cl.ID
+			where 
+				cl.ID = " . $username . "
+				AND
+				pw.Password = '" . $password ."'";
+		
+		$credential_results = $conn->query($credentials);
+		$credential_row = $credential_results->fetch_assoc();
 
-			if (((int)$username === $credential_row["ID"]) & ($password === $credential_row["Password"])){$i = 1;} // TRUE if $a is equal to $b, and they are of the same type.
-			
-			// else 
-			// {
+		if (((int)$username === $credential_row["ID"]) & ($password === $credential_row["Password"])){$i = 1;} // TRUE if $a is equal to $b, and they are of the same type.
+		
+		// else 
+		// {
 
-				// print ("login fail");
+			// print ("login fail");
 
-			// }
-		}
-		case 1: 
-		{
-			$sql = 
-			"
-			select 	c.Organization_Name,
-					s.*,
-					w.*
-				from Client c
-					join Device_Client dc
-						on c.ID = dc.Client_ID
-					join Device d 
-						on d.ID = dc.Device_ID
-					join Solar s
-						on s.ID = d.Solar_ID
-					join Wind w 
-						on w.ID = d.Wind_ID
-
-			";
-			$result = $conn->query($sql);
-
-			if ($result->num_rows > 0) 
-			{
-				// output data of each row
-				while($row = $result->fetch_assoc()) 
-				{
-					echo $row["Organization_Name"];
-					echo "|" ;
-					echo $row["ID"] ;
-					echo "|" ;
-					echo $row["Time"] ;
-					echo "|" ;
-					echo $row["Power"] ;
-					echo "|" ;
-					echo $row["ID"] ; // the tables have the same names, how do I distinguish between the two?
-					echo "|" ;
-					echo $row["Time"] ;
-					echo "|" ;
-					echo $row["Power"] ;
-					echo "|<br>";
-				}
-			} 
-			else 
-			{
-				echo "0 results";
-			}
-			$conn->close();
-		}
+		// }
 	}
+	elseif($i === 1) 
+	{
+		$sql = 
+		"
+		select 	c.Organization_Name,
+				s.*,
+				w.*
+			from Client c
+				join Device_Client dc
+					on c.ID = dc.Client_ID
+				join Device d 
+					on d.ID = dc.Device_ID
+				join Solar s
+					on s.ID = d.Solar_ID
+				join Wind w 
+					on w.ID = d.Wind_ID
+
+		";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) 
+		{
+			// output data of each row
+			while($row = $result->fetch_assoc()) 
+			{
+				echo $row["Organization_Name"];
+				echo "|" ;
+				echo $row["ID"] ;
+				echo "|" ;
+				echo $row["Time"] ;
+				echo "|" ;
+				echo $row["Power"] ;
+				echo "|" ;
+				echo $row["ID"] ; // the tables have the same names, how do I distinguish between the two?
+				echo "|" ;
+				echo $row["Time"] ;
+				echo "|" ;
+				echo $row["Power"] ;
+				echo "|<br>";
+			}
+		} 
+		else 
+		{
+			echo "0 results";
+		}
+		$conn->close();
+	}
+	else
+	{
+		echo "Login Fail";
+	}
+
 ?>
 
 
