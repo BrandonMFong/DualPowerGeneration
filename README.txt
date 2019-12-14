@@ -2,7 +2,7 @@ Hardware Team use Electronics branch
   
 
 Software Team use dev branch
-  Brandon -> Releases Branch
+  Brandon -> Releases, MaxPower, Maneuver Branch
   Lorans -> Max Power Branch
   Ahmad -> Timers Branch
   Joseph -> Interrupts Branch
