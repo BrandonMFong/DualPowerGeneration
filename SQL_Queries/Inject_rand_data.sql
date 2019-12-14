@@ -33,3 +33,8 @@ insert into Wind (ID, Time, Power)
 >>>>>>> releases
 	
 -- ID convention: Clientid-deviceid-solar-wind
+	
+-- Password TABLE #2
+insert into Password (Client_ID, Password)
+	values 
+		(1000, 'dualpower');
