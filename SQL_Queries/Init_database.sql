@@ -17,12 +17,26 @@ create table Device
 	ID int,
 	Solar_ID int,
 	Wind_ID int,
-	Start_Date datetime,
+	Start_Date datetime
 	
 );
 
 create table Solar 
 (
 	ID int,
-	
-)
+	Time Datetime,
+	Power double
+);
+
+create table Wind 
+(
+	ID int,
+	Time Datetime,
+	Power double
+);
+
+create table Password 
+(
+	Client_ID int,
+	Password varchar(255)
+);

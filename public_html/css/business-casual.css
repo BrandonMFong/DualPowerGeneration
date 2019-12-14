@@ -279,6 +279,7 @@ body_for_tabs, html {
   display: none;
   padding: 100px 20px;
   height: 100%;
+  width: auto;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
