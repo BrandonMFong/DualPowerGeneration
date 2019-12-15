@@ -3,12 +3,19 @@
 
 # How to test if a file/directory exists https://www.guru99.com/python-check-if-file-exists.html & https://stackabuse.com/creating-and-deleting-directories-with-python/
 # How to create a file https://www.guru99.com/reading-and-writing-files-in-python.html
+
+# Current Workflow:
+# 1. Creates file
+# 2. Calls a function to write into a file
+# 3. Calles a function to close the file
+# I.E. Init_File() -> Inject_Data() -> Close_File() 
+
 import datetime
 import os
 
-class Make_File:
+class File:
 
-    def Init_File(self, wind_data, solar_data): # function to create a file
+    def Init_File(wind_data, solar_data): # function to create a file
         Date_and_Time = datetime.datetime.now(); # gets current date and time
 
         # This path below may change depending on where the script is in the raspberry pi
@@ -26,20 +33,19 @@ class Make_File:
         # This will be sent through FTP via script to our remote server
         filename = makepath + "/maxpower_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + ".csv"; 
         try:
-            f = open(filename,"w+");
+            file = open(filename,"w+");
         except OSError:
             print("Creation of file %s failed." % filename);
+            return 0;
         else:
             print("Successfully created file: %s" % filename);
+            return file;
 
-        # Calls the function to write into the file
-        self.Inject_Data(wind_data, solar_data); # error here
-
-    def Inject_Data(wind_data, solar_data):
-        f.write("test");
+    def Inject_Data(file, wind_data, solar_data):
+        file.write("DATETIME, {}, {}" .format(wind_data, solar_data));
         return 0;
 
-    def Close_File():
+    def Close_File(file):
         f.close();
 
     # debugging
