@@ -1,5 +1,7 @@
-# Property by Your Engineering Solutions (Y.E.S.)
-# Engineers: Lorans Hirmez, Brandon Fong
+#####################################################
+# Property by Your Engineering Solutions (Y.E.S.)   #
+# Engineers: Lorans Hirmez, Brandon Fong            #
+#####################################################
 
 # How to test if a file/directory exists https://www.guru99.com/python-check-if-file-exists.html & https://stackabuse.com/creating-and-deleting-directories-with-python/
 # How to create a file https://www.guru99.com/reading-and-writing-files-in-python.html
@@ -58,4 +60,4 @@ class File_Handler:
 
     def Close_File():
         System.File.close();
-        System.File = none; # clear variable
+        System.File = 0; # clear variable
