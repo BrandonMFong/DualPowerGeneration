@@ -204,10 +204,11 @@ ul.icons li a {
 	min-height: 50px;
 	clear: left;
 	margin-top: 25px;
-	margin-bottom: 25px;
+    margin-bottom: 25px;
+    padding: 25px
 }
 
-//class for members' photos
+/*class for members' photos */
 .MemPhoto
 {
 	clear: left; /*using this to make sure the next photo isn't position next to the last*/
