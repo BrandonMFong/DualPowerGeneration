@@ -1,3 +1,5 @@
+**** IMPORTANT URL HAS CHANGED, PLEASE RUN .\Scripts\Change_GIT_URL.ps1 **** 
+
 Hardware Team use Electronics branch
   
 
