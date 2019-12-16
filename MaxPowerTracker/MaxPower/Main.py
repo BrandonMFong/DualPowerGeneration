@@ -12,7 +12,7 @@ from MaxPower_Classes import Max_Power_Objects # importing the class
 from Files import File_Handler # To create files ready for ftp
 import System # Setting globals
 import threading # Allows to run two functions at the same time http://blog.acipo.com/python-threading-arguments/
-
+# TODO reading torque and rpm should be timed (https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time)
 # Init
 System.init();
 Max_Power_Objects.init();
