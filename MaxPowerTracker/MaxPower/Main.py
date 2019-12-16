@@ -11,16 +11,16 @@ from MaxPower_Classes import Max_Power_Solar # importing the class
 from MaxPower_Classes import Max_Power_Objects # importing the class
 from Files import File_Handler # To create files ready for ftp
 import System # Setting globals
-from threading import Thread # TODO learn to execute 2 functions at a time
+import threading # Allows to run two functions at the same time http://blog.acipo.com/python-threading-arguments/
 
 # Init
 System.init();
 Max_Power_Objects.init();
 
+
 while True:
     # This creates a file in a directory outside of our git repo named \FTP
-    # For debugging please check if the file is created
-    # file holds the instance of what was created
+    # NOTE: For debugging please check if the file is created
     if not File_Handler.Init_File():
         print("File.Init_File() returned 0 (Success)");
     else:
@@ -28,21 +28,33 @@ while True:
 
     # This is the job to run calculations and inject the data into a file
     while True:
-        # WIND 
-        Max_Power_Wind.Avg_RPM(Max_Power_Wind.Get_RPM());
-        print("\nAverage RPM: ", Max_Power_Objects.Average_RPM_Wind);print("\n");
+        ### WIND ###
+        # Creates and object to thread the two functions
+        # Threading allows us to run these two functions at the same time
+        THREAD_Max_Power_Wind_Get_RPM = threading.Thread(target=Max_Power_Wind.Get_RPM);
+        THREAD_Max_Power_Wind_Get_TORQUE = threading.Thread(target=Max_Power_Wind.Get_Torque);
 
-        Max_Power_Wind.Avg_Torque(Max_Power_Wind.Get_Torque());
+        # Starts threading the functions
+        THREAD_Max_Power_Wind_Get_RPM.start(); 
+        THREAD_Max_Power_Wind_Get_TORQUE.start();
+
+        # This waits until the above threading is finished
+        THREAD_Max_Power_Wind_Get_RPM.join(); 
+        THREAD_Max_Power_Wind_Get_TORQUE.join();
+
+
+        print("\nAverage RPM: ", Max_Power_Objects.Average_RPM_Wind);print("\n");
         print("\nAverage Torque: ", Max_Power_Objects.Average_TORQUE_Wind);print("\n");
 
         # Getting Average Power per minute
         Max_Power_Wind.Avg_Pwr(Max_Power_Objects.Average_TORQUE_Wind, Max_Power_Objects.Average_RPM_Wind);
         print("\nAverage Power per minute: ", Max_Power_Objects.Average_POWER_WIND);print("\n");
 
-        # SOLAR
+        ### SOLAR ###
         Max_Power_Objects.Average_POWER_SOLAR = 0; # TODO make solar function
 
         # Writes data into the file
+        # Error: not writing into files
         File_Handler.Inject_Data(Max_Power_Objects.Average_POWER_WIND, Max_Power_Objects.Average_POWER_SOLAR);
 
     File_Handler.Close_File();

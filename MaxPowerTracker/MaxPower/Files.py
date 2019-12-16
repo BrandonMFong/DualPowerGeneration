@@ -52,10 +52,10 @@ class File_Handler:
             System.File.write("{}, {}, {}" .format(
                 Date_and_Time.strftime("%m-%d-%Y %H:%M:%S"), wind_data, solar_data));
         except OSError:
-            print("Writing of file failed");
+            print("Writing of file failed\n");
             return 1;
         else:
-            print("Writing successful");
+            print("Writing successful\n");
             return 0;
 
     def Close_File():
