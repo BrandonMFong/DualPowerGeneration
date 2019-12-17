@@ -13,10 +13,12 @@ from Files import File_Handler # To create files ready for ftp
 import System # Setting globals
 import threading # Allows to run two functions at the same time http://blog.acipo.com/python-threading-arguments/
 # TODO reading torque and rpm should be timed (https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time)
+# download rpi mod https://sourceforge.net/projects/raspberry-gpio-python/files/latest/download
 
 # Init
 System.init();
 Max_Power_Objects.init();
+i = 0;
 
 
 while True:
@@ -28,7 +30,7 @@ while True:
         print("File.Init_File returned 1 (Error)");
 
     # This is the job to run calculations and inject the data into a file
-    while True:
+    while i < 2:
         ### WIND ###
         # Creates and object to thread the two functions
         # Threading allows us to run these two functions at the same time
@@ -56,9 +58,10 @@ while True:
 
         # Writes data into the file
         # Error: not writing into files
-        File_Handler.Inject_Data(Max_Power_Objects.Average_POWER_WIND, Max_Power_Objects.Average_POWER_SOLAR);
-        File_Handler.Save_File();
+        File_Handler.Inject_Data(Max_Power_Objects.Average_POWER_WIND, Max_Power_Objects.Average_POWER_SOLAR); # doesn't write an extra line
+        i = i + 1;
 
+    File_Handler.Close_File;
     # After this you should run the script to send via FTP
 
     break;
