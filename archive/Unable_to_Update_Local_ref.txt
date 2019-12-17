@@ -1,0 +1,6 @@
+12/16/2019:
+
+There was an issue with deploying to our cpanel server.  
+
+I had to run: git remote prune origin
+This cleared all the old branches I made because I made new branches.  
