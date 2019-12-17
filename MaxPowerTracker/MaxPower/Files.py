@@ -58,6 +58,9 @@ class File_Handler:
             print("Writing successful\n");
             return 0;
 
+    def Save_File():
+        System.File.close();
+
     def Close_File():
         System.File.close();
         System.File = 0; # clear variable
