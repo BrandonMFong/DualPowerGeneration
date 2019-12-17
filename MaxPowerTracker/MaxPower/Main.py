@@ -1,32 +1,68 @@
-# Python, there is no main.  It's like a script.  Just like powershell
-
-#This is for debugging purposes only
-# Property by Your Engineering Solutions (Y.E.S.)
-# Engineers: Lorans Hirmez, Brandon Fong
-
+#####################################################
+# Property by Your Engineering Solutions (Y.E.S.)   #
+# Engineers: Lorans Hirmez, Brandon Fong            #
+#####################################################
 
 #In this section, we need to get IO from tachometer
 # TODO figure out how to interface with GPIO RPI with pyhton
 from random import random # for the random function
 from MaxPower_Classes import Max_Power_Wind # importing the class
-from Make_File import Make_File
+from MaxPower_Classes import Max_Power_Solar # importing the class
+from MaxPower_Classes import Max_Power_Objects # importing the class
+from Files import File_Handler # To create files ready for ftp
+import System # Setting globals
+import threading # Allows to run two functions at the same time http://blog.acipo.com/python-threading-arguments/
+# TODO reading torque and rpm should be timed (https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time)
+# download rpi mod https://sourceforge.net/projects/raspberry-gpio-python/files/latest/download
 
-#  Variables, no data type declaration needed
-n = 60;
-total_torque = 0;
-
-Average_RPM = Max_Power_Wind.Avg_RPM(Max_Power_Wind.Get_RPM(), n);
-print("Average RPM: ", Average_RPM);
+# Init
+System.init();
+Max_Power_Objects.init();
+i = 0;
 
 
-Average_TORQUE = Max_Power_Wind.Avg_Torque(Max_Power_Wind.Get_Torque(), n);
-print("Average Torque: ", Average_TORQUE);
+while True:
+    # This creates a file in a directory outside of our git repo named \FTP
+    # NOTE: For debugging please check if the file is created
+    if not File_Handler.Init_File():
+        print("File.Init_File() returned 0 (Success)");
+    else:
+        print("File.Init_File returned 1 (Error)");
 
-# Getting Average Power per minute
-Average_POWER_WIND = Max_Power_Wind.Avg_Pwr(Average_TORQUE, Average_RPM);
-print("Average Power per minute: ", Average_POWER_WIND);
-Average_POWER_SOLAR = 0; # TODO make solar function
+    # This is the job to run calculations and inject the data into a file
+    while i < 2:
+        ### WIND ###
+        # Creates and object to thread the two functions
+        # Threading allows us to run these two functions at the same time
+        THREAD_Max_Power_Wind_Get_RPM = threading.Thread(target=Max_Power_Wind.Get_RPM);
+        THREAD_Max_Power_Wind_Get_TORQUE = threading.Thread(target=Max_Power_Wind.Get_Torque);
 
-# This creates a file in a directory outside of our git repo named \FTP
-# For debugging please check if the file is created
-Make_File.Init_File(Average_POWER_WIND, Average_POWER_SOLAR);
+        # Starts threading the functions
+        THREAD_Max_Power_Wind_Get_RPM.start(); 
+        THREAD_Max_Power_Wind_Get_TORQUE.start();
+
+        # This waits until the above threading is finished
+        THREAD_Max_Power_Wind_Get_RPM.join(); 
+        THREAD_Max_Power_Wind_Get_TORQUE.join();
+
+
+        print("\nAverage RPM: ", Max_Power_Objects.Average_RPM_Wind);print("\n");
+        print("\nAverage Torque: ", Max_Power_Objects.Average_TORQUE_Wind);print("\n");
+
+        # Getting Average Power per minute
+        Max_Power_Wind.Avg_Pwr(Max_Power_Objects.Average_TORQUE_Wind, Max_Power_Objects.Average_RPM_Wind);
+        print("\nAverage Power per minute: ", Max_Power_Objects.Average_POWER_WIND);print("\n");
+
+        ### SOLAR ###
+        Max_Power_Objects.Average_POWER_SOLAR = 0; # TODO make solar function
+
+        # Writes data into the file
+        # Error: not writing into files
+        File_Handler.Inject_Data(Max_Power_Objects.Average_POWER_WIND, Max_Power_Objects.Average_POWER_SOLAR); # doesn't write an extra line
+        i = i + 1;
+
+    File_Handler.Close_File;
+    # After this you should run the script to send via FTP
+
+    break;
+
