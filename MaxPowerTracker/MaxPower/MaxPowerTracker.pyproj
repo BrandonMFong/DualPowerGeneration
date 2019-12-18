@@ -22,6 +22,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="EmulatorGUI\GPIO.py" />
+    <Compile Include="EmulatorGUI\PIN.py" />
+    <Compile Include="EmulatorGUI\setup.py" />
+    <Compile Include="EmulatorGUI\tester2.py" />
+    <Compile Include="EmulatorGUI\TypeChecker.py" />
+    <Compile Include="EmulatorGUI\__init__.py" />
     <Compile Include="MaxPower_Classes.py">
       <SubType>Code</SubType>
     </Compile>
@@ -32,6 +38,17 @@
     <Compile Include="System.py">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EmulatorGUI\" />
+    <Folder Include="EmulatorGUI\GPIOSimulator-0.1\" />
+    <Folder Include="EmulatorGUI\RPiSim\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmulatorGUI\GPIOSimulator-0.1.tar" />
+    <Content Include="EmulatorGUI\GPIOSimulator-0.1.tar.gz" />
+    <Content Include="EmulatorGUI\PKG-INFO" />
+    <Content Include="EmulatorGUI\README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
