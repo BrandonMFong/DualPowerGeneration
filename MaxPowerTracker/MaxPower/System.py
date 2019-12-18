@@ -11,11 +11,13 @@ def init():
     global Seconds;
     global File;
     global delay;
+    global Max_Lines;
 
     # Initialize
-    Seconds = 60;
+    Seconds = 60; 
     File = 0;
-    delay = 1; # 1 second
+    delay = 1; 
+    Max_Lines = 50;
 
 # Counts to Seconds
 def timer():
