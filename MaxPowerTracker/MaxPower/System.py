@@ -23,8 +23,9 @@ def timer():
     global timer_flag;
     timer_flag = False;
     while i < Seconds:
-        time.sleep(1);
+        time.sleep(delay);
         i = i + 1;
+        print("Time: ", i);
     timer_flag = True;
 
 

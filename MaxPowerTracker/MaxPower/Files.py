@@ -50,7 +50,7 @@ class File_Handler:
     def Inject_Data(wind_data, solar_data):
         Date_and_Time = datetime.datetime.now(); # gets current date and time
         try:
-            System.File.write("{}, {}, {}" .format(
+            System.File.write("{}, {}, {}\n" .format(
                 Date_and_Time.strftime("%m-%d-%Y %H:%M:%S"), wind_data, solar_data));
         except OSError:
             print("Writing of file failed\n");
