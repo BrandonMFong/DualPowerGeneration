@@ -3,6 +3,7 @@
 # Engineers: Lorans Hirmez, Brandon Fong            #
 #####################################################
 
+### LIBRARIES ###
 #In this section, we need to get IO from tachometer
 # TODO figure out how to interface with GPIO RPI with pyhton
 from random import random # for the random function
@@ -13,7 +14,7 @@ from Files import File_Handler # To create files ready for ftp
 import System # Setting globals
 import threading # Allows to run two functions at the same time http://blog.acipo.com/python-threading-arguments/
 # TODO reading torque and rpm should be timed (https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time)
-# download rpi mod https://sourceforge.net/projects/raspberry-gpio-python/files/latest/download
+from EmulatorGUI import GPIO # simulates GPIO functions on rpi  
 
 # Init
 System.init();
