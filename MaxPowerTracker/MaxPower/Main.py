@@ -13,25 +13,30 @@ import MaxPower_Classes
 from Files import File_Handler
 import System 
 import threading 
+from FTP import FTP
 # TODO reading torque and rpm should be timed (https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time)
-from EmulatorGUI import GPIO # simulates GPIO functions on rpi  
+#from EmulatorGUI import GPIO # simulates GPIO functions on rpi  
 
 # Init
 System.init();
 MaxPower_Classes.init();
 i = 0;
+Sender = FTP();
 
 
 while True:
-    # This creates a file in a directory outside of our git repo named \FTP
+    # This creates a file in a directory outside of our git repo named ..\FTP
     # NOTE: For debugging please check if the file is created
     if not File_Handler.Init_File():
-        print("File.Init_File() returned 0 (Success)");
+        print("File.Init_File() returned 0 (Success)\n");
     else:
-        print("File.Init_File returned 1 (Error)");
+        print("File.Init_File returned 1 (Error)\n");
 
+    print("Entering loop\n");
+    
+    i = 0;
     # This is the job to run calculations and inject the data into a file
-    while i < 2:
+    while i < System.Max_Lines:
         ### WIND ###
         # Creates and object to thread the two functions
         # Threading allows us to run these two functions at the same time
@@ -60,12 +65,13 @@ while True:
         MaxPower_Classes.Average_POWER_SOLAR = 0; # TODO make solar function
 
         # Writes data into the file
-        # Error: not writing into files
         File_Handler.Inject_Data(MaxPower_Classes.Average_POWER_WIND, MaxPower_Classes.Average_POWER_SOLAR); # doesn't write an extra line
+        print("\n Total lines in file: {} \n" .format(i+1));
         i = i + 1;
 
-    File_Handler.Close_File;
-    # After this you should run the script to send via FTP
+    File_Handler.Close_File; # Closes and saves file
+    
+    Sender.send_using_batch(); # Runs script to send via ftp
 
-    break;
+    
 

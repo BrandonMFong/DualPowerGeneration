@@ -15,13 +15,16 @@ class Max_Power_Wind:
     # These values aren't being set
     def Avg_Pwr(Torque, RPM):
         pi = math.pi;
+        global Average_POWER_WIND;
         Average_POWER_WIND = (Torque * RPM * pi)/30;
 
     def Avg_Torque(Total_Torque):
+        global Average_TORQUE_Wind;
         Average_TORQUE_Wind = Total_Torque/System.Seconds;
 
     def Avg_RPM(Total_RPM):
-        MaxPower_Classes.Average_RPM_Wind = Total_RPM/System.Seconds;
+        global Average_RPM_Wind;
+        Average_RPM_Wind = Total_RPM/System.Seconds;
 
     # This is being tracked with the tachometer
     # Task:
@@ -40,6 +43,7 @@ class Max_Power_Wind:
             print("total_rpm = {}" .format(total_rpm));
 
         Max_Power_Wind.Avg_RPM(total_rpm);
+
     # Equation: Torque = Radius * Force * sin(Theta)
     def Get_Torque():
         total_torque = 0;
