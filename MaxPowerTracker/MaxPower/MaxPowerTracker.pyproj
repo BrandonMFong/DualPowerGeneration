@@ -12,6 +12,7 @@
     <OutputPath>.</OutputPath>
     <Name>MaxPowerTracker</Name>
     <RootNamespace>ServerTester</RootNamespace>
+    <TestFramework>Pytest</TestFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
