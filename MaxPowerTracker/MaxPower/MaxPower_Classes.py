@@ -8,6 +8,8 @@ import math
 from random import random
 import System
 import time
+# TODO use the following library to simulate the rotation of the blades to calculate rpm 
+#from pynput.keyboard import Key, Listener
 
 
 ### CLASSES ###
