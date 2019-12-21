@@ -48,7 +48,7 @@
 		{
 			echo "<div class=\"Member\">";
             echo "<h3><strong> " .  $row["FirstName"] . " " . $row["LastName"] . " </strong></h3>";
-            echo "<img class=\"MemPhoto\" src=\"/img/" . $row["FirstName"] . ".PNG alt=".  $row["FirstName"] . " " . $row["LastName"] .  " width=\"500\" height=\"500\" style=\"float:left\"/>";
+            echo "<img class=\"MemPhoto\" src=\"../img/" . $row["FirstName"] . ".PNG alt=".  $row["FirstName"] . " " . $row["LastName"] .  " width=\"500\" height=\"500\" style=\"float:left\"/>";
             echo "<p align=\"center\"><mem_description>" . $row["Description"] . "</mem_description></p>";
             echo "</div>";
         }
