@@ -298,6 +298,13 @@ body_for_tabs, html {
   max-height: 2em; /* a x number of line to show (ex : 2 line)  */
 }
 
+.slides
+{
+    clear: left;
+    overflow: auto;
+    max-width: 80%;
+    height: auto;
+}
 /* Style the tab content (and add height:100% for full page content) */
 .tabcontent {
   display: none;
