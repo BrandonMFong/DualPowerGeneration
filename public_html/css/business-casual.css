@@ -28,6 +28,7 @@ p {
     font-size: 1.25em;
     line-height: 1.6;
     color: #000;
+    margin: 25px;
 }
 
 hr {
@@ -59,8 +60,9 @@ hr {
 }
 
 .brand-name {
-    margin: 0;
-    font-size: 4em;
+    margin: inherit;
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 
 .tagline-divider {
@@ -212,8 +214,11 @@ ul.icons li a {
 .MemPhoto
 {
 	clear: left; /*using this to make sure the next photo isn't position next to the last*/
-	overflow: auto; /* controling the margins with photo and paragraphs */
+    overflow: auto; /* controling the margins with photo and paragraphs */
+    max-width: 80%;
+    height: auto;
 }
+/* width=\"500\" height=\"500\" style=\"float:left\"*/
 
 /* CSS for hamburger icon */
 .container_for_menu {
@@ -223,6 +228,7 @@ ul.icons li a {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  max-width: 80%;
 }
 
 .bar1, .bar2, .bar3 {
@@ -259,20 +265,37 @@ body_for_tabs, html {
 }
 
 /* Style tab links */
-.tablink {
-  background-color: #555;
-  color: white;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  font-size: 17px;
-  width: 33%;
+.tablink 
+{
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 33%;
 }
 
 .tablink:hover {
-  background-color: #777;
+    background-color: #777;
+}
+
+.tab
+{
+    margin: 10px;
+    padding: 30px;
+}
+
+.btntxt
+{
+    overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  display: block;
+  line-height: 1em; /* a */
+  max-height: 2em; /* a x number of line to show (ex : 2 line)  */
 }
 
 /* Style the tab content (and add height:100% for full page content) */
