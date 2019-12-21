@@ -1119,6 +1119,7 @@ figure {
 }
 img {
   vertical-align: middle;
+  max-width: 80%;
 }
 .img-responsive,
 .MemPhoto,
