@@ -215,7 +215,6 @@ ul.icons li a {
     overflow: auto; /* controling the margins with photo and paragraphs */
     max-width: 80%;
     height: auto;
-    float: left;
 }
 /* width=\"500\" height=\"500\" style=\"float:left\"*/
 
