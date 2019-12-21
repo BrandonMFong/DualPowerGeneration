@@ -10,7 +10,7 @@
                             <p>
                                 <abstract>
     ";
-    include '../txt/abstract.txt';
+    include 'txt/abstract.txt';
     echo
     "
         </abstract>
