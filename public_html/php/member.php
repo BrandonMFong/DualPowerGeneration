@@ -1,22 +1,20 @@
 <?php
-/**
- * Front to the WordPress application. This file doesn't do anything, but loads
- * wp-blog-header.php which does and tells WordPress to load the theme.
- *
- * @package WordPress
- */
+    /* This is a php script that writes out the member description
+        The information is in the database
+        Will not need to keep deploying for text, just need to update the database
+    */
+    // Set division
+    echo 
+    "
+        <div id=\"Members\" class=\"tabcontent\">
+            <div class=\"container\">
+                <div class=\"row\">
+                    <div class=\"box\">
+                        <div class=\"col-lg-12 text-center\">
+                            <div class=\"Members\">
+                                <h2><medium><strong><i>Members</i></strong></medium></h2>
+    ";
 
-/**
- * Tells WordPress to load the WordPress theme and output it.
- *
- * @var bool
- */
-//define( 'WP_USE_THEMES', true );
-
-/** Loads the WordPress Environment and Template */
-//require( dirname( __FILE__ ) . '/wp-blog-header.php' );
-
-	$state = 0;
 	$servername = "localhost";
 	$username = "dualpower_BrandonMFong";
 	$password = "dualpower27182";
@@ -38,9 +36,6 @@
                     on duser.DP_User_ID = dbio.DP_User_ID_fk
 	";
     $result = $conn->query($sql);
-?>
-    
-<?php
 	if ($result->num_rows > 0) 
 	{
 		// output data of each row
@@ -48,7 +43,7 @@
 		{
 			echo "<div class=\"Member\">";
             echo "<h3><strong> " .  $row["FirstName"] . " " . $row["LastName"] . " </strong></h3>";
-            echo "<img class=\"MemPhoto\" src=\"img/" . $row["FirstName"] . ".PNG\" alt=\"".  $row["FirstName"] . " " . $row["LastName"] .  "\" width=\"500\" height=\"500\" style=\"float:left\"/>";
+            echo "<img class=\"MemPhoto\" src=\"img/" . $row["FirstName"] . ".PNG\" alt=\"".  $row["FirstName"] . " " . $row["LastName"] .  "\" />";
             echo "<p align=\"center\"><mem_description>" . $row["Description"] . "</mem_description></p>";
             echo "</div>";
         }
@@ -58,7 +53,18 @@
 		echo "0 results";
 	}
 
-	$conn->close();
+    $conn->close();
+    
+    // Close division 
+    echo 
+    "
+						    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    ";
 ?>
 
 

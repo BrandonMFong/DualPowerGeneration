@@ -212,8 +212,12 @@ ul.icons li a {
 .MemPhoto
 {
 	clear: left; /*using this to make sure the next photo isn't position next to the last*/
-	overflow: auto; /* controling the margins with photo and paragraphs */
+    overflow: auto; /* controling the margins with photo and paragraphs */
+    max-width: 80%;
+    height: auto;
+    float: left;
 }
+/* width=\"500\" height=\"500\" style=\"float:left\"*/
 
 /* CSS for hamburger icon */
 .container_for_menu {

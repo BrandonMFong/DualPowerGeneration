@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-<!-- TODO make DATA Center page-->
 <html lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content=""><meta name="author" content="">
@@ -63,23 +61,7 @@
 		</div>
 	</div>
 	
-	
-	<div id="Home" class="tabcontent">
-		<div class="container">
-			<div class="row">
-				<div class="box">
-					<div class="col-lg-12 text-center">
-						<h2><small><strong>Abstract</strong></small></h2>
-						<p>
-							<abstract>
-							With the world’s increasing population there is an increase in daily required energy. By 2050 the population is expected to rise to 9.7 billion, which would be an increase of 2 billion people from our present time. Earth itself cannot change in a way to provide the needed energy to supply the services to satisfy social and economic development, welfare and health. With the use of renewable energy resources we can help supply the energy demand for future generations. The renewable resources that will be reviewed includes: Solar and Wind power generation.
-							</abstract>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php include 'php/abstract.php'; ?>
 	
 	<div id="Diagrams" class="tabcontent">
 		<div class="container">
@@ -104,37 +86,12 @@
 		</div>
 	</div>
 	
-	<div id="Members" class="tabcontent">
-		<div class="container">
-			<div class="row">
-				<div class="box">
-					<div class="col-lg-12 text-center">
-						<!-- Members & descriptions -->
-						<!-- Setting up a template --> 
-						<div class="Members">
-							<h2><medium><strong><i>Members</i></strong></medium></h2>
-							
-							<?php include 'php/member.php';?>
-			
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-<!---------------------------------------------------------------------------------------------------------->
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<div class="copyright">
-						<?php include 'php/footer.php';?>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+
+	<?php 
+		include 'php/member.php';
+		include 'php/footer.php';
+	?>
+
 	<!-- jQuery --><script src="js/jquery.js"></script><!-- Bootstrap Core JavaScript --><script src="js/bootstrap.min.js"></script><script type="application/ld+json">
 		{
 		  "@context" : "http://schema.org",
