@@ -1230,14 +1230,14 @@ h6 .small,
   color: #777;
 }
 
-mem_description {
+mem_description.p {
   font-weight: normal;
   line-height: 1;
   margin: 25px;
   color: #777;
 }
 
-abstract {
+abstract.p {
   font-weight: bold;
   line-height: 1;
   /*color: #777;*/
