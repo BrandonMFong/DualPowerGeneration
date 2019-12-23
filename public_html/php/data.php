@@ -15,15 +15,10 @@
 
 /** Loads the WordPress Environment and Template */
 //require( dirname( __FILE__ ) . '/wp-blog-header.php' );
-
-	$state = 0;
-	$servername = "localhost";
-	$username = "dualpower_BrandonMFong";
-	$password = "dualpower27182";
-	$dbname = "dualpower_DataCenter";
+	include 'environment.php';
 
 	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+	$conn = new mysqli($servername, $username, $password, $dbname_datacenter);
 	// Check connection
 	if ($conn->connect_error) 
 	{
