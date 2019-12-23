@@ -14,14 +14,10 @@
                             <div class=\"Members\">
                                 <h2><medium><strong><i>Members</i></strong></medium></h2>
     ";
-
-	$servername = "localhost";
-	$username = "dualpower_BrandonMFong";
-	$password = "dualpower27182";
-	$dbname = "dualpower_Members";
+    include 'environment.php';
 
 	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+	$conn = new mysqli($servername, $username, $password, $dbname_membmers);
 	// Check connection
 	if ($conn->connect_error) 
 	{
