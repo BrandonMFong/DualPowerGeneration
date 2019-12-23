@@ -1,2 +1,3 @@
 # Ignore all ppk files
 *.ppk
+/FTP/*
