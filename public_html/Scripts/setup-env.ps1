@@ -53,10 +53,13 @@ catch
     exit;
 }
 ############################## I M P O R T A N T ############################################
+
 Write-Warning "It's going to ask if you want to remove all files at C:\xampp\htdocs\";
 Write-Warning "Just say yes to all of if you are okay with it.";
 Write-Warning "I suggest you move your files out of C:\xampp\htdocs\";
+
 Push-Location $scripts_dir; 
+    $temp = $xampp_dir + $repo_name;
     if(!(Test-Path $xampp))
     {
         Write-Warning "Xampp is not downloaded on this machine or it is located somewhere different.";
@@ -69,12 +72,14 @@ Push-Location $scripts_dir;
         Write-Host "Successfully made " $xampp_dir " & " $xampp;
     }
     # Removes files
-    if(Test-Path $xampp_dir*)
+    if(Test-Path $temp)
     {
         Write-Host "There are files here, going to clear out directory...";
+        Write-Warning "Deleting folder:";
+        Write-Host $temp;
         try 
         {
-            Remove-Item $xampp_dir* -Force -Confirm; # Just say "Yes to All"
+            Remove-Item $temp -Force -Confirm; # Just say "Yes to All"
         }
         catch 
         {
