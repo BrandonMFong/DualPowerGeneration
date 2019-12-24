@@ -9,11 +9,7 @@
 	global $dbname_datacenter;
 	global $dbname_member;
     
-<<<<<<< HEAD
-    if(file_exists('logs/.is_local'))
-=======
     if(file_exists('logs/.is_local')) // This is for testing if we are testing locally
->>>>>>> start on bash script to insert data to our remote server
     {
         $css_bootstrap = 'http://localhost/PUBLIC_HTML/css/bootstrap.min.css';
         $css_business_casual = 'http://localhost/PUBLIC_HTML/css/business-casual.css';
