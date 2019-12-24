@@ -25,7 +25,6 @@ class File_Handler:
         Date_and_Time = datetime.datetime.now(); # gets current date and time
 
         # This path below may change depending on where the script is in the raspberry pi
-        # This ignored in git repo
         makepath = "../../FTP" # defines where the file will be imported
 
         if(not (os.path.isdir(makepath))): # if that directory doesn't exist, create it
