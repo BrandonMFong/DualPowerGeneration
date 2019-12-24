@@ -6,15 +6,24 @@
 
 ### LIBRARIES ###
 import subprocess, sys
+from subprocess import call 
 
+global file_basename;
+file_basename = '..\\..\\Scripts\\FTP';
 class FTP:
     @staticmethod # Declaring that this method is static 
     def send_using_powershell():
-        p = subprocess.Popen(["powershell.exe", 
-              "..\\..\\Scripts\\FTP.ps1"], 
-              stdout=sys.stdout);
+        file = file_basename + '.ps1';
+        p = subprocess.Popen(["powershell.exe", "{}".format(file)], stdout=sys.stdout);
         p.communicate();
 
-    @staticmethod # Declaring that this method is static 
+    @staticmethod
     def send_using_batch():
-        subprocess.call([r'..\\..\\Scripts\\FTP.bat'])
+        file = file_basename + '.bat';
+        subprocess.call([r'..\\..\\Scripts\\FTP.bat'], shell=True)
+
+    @staticmethod 
+    def send_using_cmd():
+        dir = r"{}".format(file_basename);
+        cmdline = "FTP.bat"
+        rc = call(cmdline, cwd=dir) # run `cmdline` in `dir`
