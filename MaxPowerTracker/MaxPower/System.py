@@ -16,10 +16,17 @@ def init():
     # Initialize
     # This will create Max_Lines, 1 line every Seconds passes
     # Max_Lines * Seconds will pass
+<<<<<<< HEAD
     Seconds = 5; 
     File = 0;
     delay = 1; 
     Max_Lines = 1;
+=======
+    Seconds = 60; 
+    File = 0;
+    delay = 1; 
+    Max_Lines = 10;
+>>>>>>> adding extra column to .csv file output
 
 # Counts to Seconds
 def timer():
