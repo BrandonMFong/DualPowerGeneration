@@ -14,10 +14,12 @@ def init():
     global Max_Lines;
 
     # Initialize
+    # This will create Max_Lines, 1 line every Seconds passes
+    # Max_Lines * Seconds will pass
     Seconds = 60; 
     File = 0;
     delay = 1; 
-    Max_Lines = 50;
+    Max_Lines = 10;
 
 # Counts to Seconds
 def timer():
@@ -30,4 +32,6 @@ def timer():
         print("Time: ", i);
     timer_flag = True;
 
+class Client:
+    ID = 1000; # Hard coding, TODO figure out a way to figure out client by device.  OS ip address? 
 
