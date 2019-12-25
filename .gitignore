@@ -2,4 +2,9 @@
 *.ppk
 /FTP/*
 logs
+<<<<<<< HEAD
 .vs/*
+=======
+.vscode
+.well-known
+>>>>>>> setup-env.ps1 should not require user to edit it now
