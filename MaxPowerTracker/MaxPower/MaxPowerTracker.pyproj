@@ -23,6 +23,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="IO.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="EmulatorGUI\GPIO.py" />
     <Compile Include="EmulatorGUI\PIN.py" />
     <Compile Include="EmulatorGUI\setup.py" />

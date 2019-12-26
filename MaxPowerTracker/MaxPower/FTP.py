@@ -13,10 +13,14 @@ file_basename = '..\\..\\Scripts\\FTP';
 class FTP:
     @staticmethod # Declaring that this method is static 
     def send_using_powershell():
-        file = file_basename + '.ps1';
-        p = subprocess.Popen(["powershell.exe", "{}".format(file)], stdout=sys.stdout);
-        p.communicate();
-
+        try:
+            file = file_basename + '.ps1';
+            p = subprocess.Popen(["powershell.exe", "{}".format(file)], stdout=sys.stdout);
+            p.communicate();
+        except Exception as ex:
+            print(ex);
+            print("File not sent through ftp");
+            
     @staticmethod
     def send_using_batch():
         file = file_basename + '.bat';
@@ -24,7 +28,6 @@ class FTP:
             os.system('cmd /c {}' .format(file));
         except Exception as ex:
             print(ex);
-            print("Something wrong and there is nothing that can solve this at the moment");
             print("File not sent through ftp");
             
     @staticmethod
@@ -34,7 +37,6 @@ class FTP:
             os.system('cmd /c {}' .format(file));
         except Exception as ex:
             print(ex);
-            print("Something wrong and there is nothing that can solve this at the moment");
             print("File not sent through ftp");
 
     #@staticmethod 

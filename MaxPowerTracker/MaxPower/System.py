@@ -16,10 +16,10 @@ def init():
     # Initialize
     # This will create Max_Lines, 1 line every Seconds passes
     # Max_Lines * Seconds will pass
-    Seconds = 5; 
+    Seconds = 60; 
     File = 0;
     delay = 1; 
-    Max_Lines = 1;
+    Max_Lines = 10;
 
 # Counts to Seconds
 def timer():

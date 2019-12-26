@@ -8,13 +8,10 @@ import math
 from random import random
 import System
 import time
-# TODO use the following library to simulate the rotation of the blades to calculate rpm 
-import pynput
 
 
 ### CLASSES ###
 class Max_Power_Wind:
-    # These values aren't being set
     def Avg_Pwr(Torque, RPM):
         pi = math.pi;
         global Average_POWER_WIND;
@@ -35,6 +32,7 @@ class Max_Power_Wind:
     # when timer is up, calculate the average of the count over a minute (60 seconds, hence the timer duration)
     def Get_RPM():
         total_rpm = 0;
+        keyboard = Controller();
         # Getting RPM
         while True:
             if System.timer_flag: break;

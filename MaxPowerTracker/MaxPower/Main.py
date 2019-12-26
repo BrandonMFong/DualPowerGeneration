@@ -7,8 +7,7 @@
 # In this section, we need to get IO from tachometer
 # TODO figure out how to interface with GPIO RPI with pyhton
 from random import random 
-from MaxPower_Classes import Max_Power_Wind 
-from MaxPower_Classes import Max_Power_Solar 
+from MaxPower_Classes import Max_Power_Wind, Max_Power_Solar 
 import MaxPower_Classes
 from Files import File_Handler
 import System 
