@@ -16,6 +16,7 @@
 import datetime
 import os
 import System
+from System import Client
 
 class File_Handler:
 
@@ -24,7 +25,8 @@ class File_Handler:
         Date_and_Time = datetime.datetime.now(); # gets current date and time
 
         # This path below may change depending on where the script is in the raspberry pi
-        makepath = "../../../FTP" # defines where the file will be imported
+        # This ignored in git repo
+        makepath = "../../FTP" # defines where the file will be imported
 
         if(not (os.path.isdir(makepath))): # if that directory doesn't exist, create it
             try:
@@ -50,7 +52,7 @@ class File_Handler:
     def Inject_Data(wind_data, solar_data):
         Date_and_Time = datetime.datetime.now(); # gets current date and time
         try:
-            System.File.write("{}, {}, {}\n" .format(
+            System.File.write("{}, {}, {}, {}\n" .format(Client.ID,
                 Date_and_Time.strftime("%m-%d-%Y %H:%M:%S"), wind_data, solar_data));
         except OSError:
             print("Writing of file failed\n");

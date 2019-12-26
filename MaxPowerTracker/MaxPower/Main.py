@@ -71,7 +71,7 @@ while True:
 
     File_Handler.Close_File; # Closes and saves file
     
-    Sender.send_using_batch(); # Runs script to send via ftp
+    Sender.send_using_powershell(); # Runs script to send via ftp
 
     
 

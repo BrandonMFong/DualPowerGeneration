@@ -1,0 +1,3 @@
+to rebase branch b's commits on top of branch c's commits run:
+
+git rebase c b;
