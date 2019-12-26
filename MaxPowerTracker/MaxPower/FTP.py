@@ -20,8 +20,12 @@ class FTP:
     @staticmethod
     def send_using_batch():
         file = file_basename + '.bat';
-        subprocess.call([r'..\\..\\Scripts\\FTP.bat'], shell=True)
-
+        try:
+            subprocess.call([r'B:\COLLEGE\19_20\Fall_19\CompE_496A\DualPowerGeneration\Scripts\FTP.bat'])
+        except Exception as ex:
+            print(ex);
+            print("Something wrong and there is nothing that can solve this at the moment");
+            print("File not sent through ftp");
     @staticmethod 
     def send_using_cmd():
         dir = r"{}".format(file_basename);

@@ -2,6 +2,8 @@
 *.ppk
 /FTP/*
 logs
-.vs/*
+.vs
+MaxPowerTracker/.vs/*/.suo
+MaxPowerTracker/.vs/MaxPowerTracker/v16/.suo
 .vscode
 .well-known
