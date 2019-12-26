@@ -5,7 +5,7 @@
 #####################################################
 
 ### LIBRARIES ###
-import subprocess, sys
+import subprocess, sys, os
 from subprocess import call 
 
 global file_basename;
@@ -21,13 +21,24 @@ class FTP:
     def send_using_batch():
         file = file_basename + '.bat';
         try:
-            subprocess.call([r'B:\COLLEGE\19_20\Fall_19\CompE_496A\DualPowerGeneration\Scripts\FTP.bat'])
+            os.system('cmd /c {}' .format(file));
         except Exception as ex:
             print(ex);
             print("Something wrong and there is nothing that can solve this at the moment");
             print("File not sent through ftp");
-    @staticmethod 
+            
+    @staticmethod
     def send_using_cmd():
-        dir = r"{}".format(file_basename);
-        cmdline = "FTP.bat"
-        rc = call(cmdline, cwd=dir) # run `cmdline` in `dir`
+        file = file_basename + '.cmd'; # this only runs batch files, but what is a .cmd file?
+        try:
+            os.system('cmd /c {}' .format(file));
+        except Exception as ex:
+            print(ex);
+            print("Something wrong and there is nothing that can solve this at the moment");
+            print("File not sent through ftp");
+
+    #@staticmethod 
+    #def send_using_cmd():
+    #    dir = r"{}".format(file_basename);
+    #    cmdline = "FTP.bat"
+    #    rc = call(cmdline, cwd=dir) # run `cmdline` in `dir`

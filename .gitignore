@@ -3,7 +3,6 @@
 /FTP/*
 logs
 .vs
-MaxPowerTracker/.vs/*/.suo
-MaxPowerTracker/.vs/MaxPowerTracker/v16/.suo
+#MaxPowerTracker/.vs/MaxPowerTracker/v16/.suo
 .vscode
 .well-known
