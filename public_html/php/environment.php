@@ -11,17 +11,17 @@
     global $page_Home;
     global $page_DataCenter;
     global $currpage;
-
+    
     // Testing what environment you are in
     switch($currpage)
     {
-        case "Data Center": // For the Data center
+        case "DataCenter": // For the Data center
         {
-            $css_bootstrap = '~/public_html/css/bootstrap.min.css';
-            $css_business_casual = '~/public_html/css/business-casual.css';
-            $css_fonts = '~/public_html/font-awesome/css/font-awesome.min.css';
-            $js_bootstrap = '~/public_html/js/bootstrap.min.js';
-            $js_jquery = '~/public_html/js/jquery.js';
+            $css_bootstrap = '../css/bootstrap.min.css';
+            $css_business_casual = '../css/business-casual.css';
+            $css_fonts = '../font-awesome/css/font-awesome.min.css';
+            $js_bootstrap = '../js/bootstrap.min.js';
+            $js_jquery = '../js/jquery.js';
             if(file_exists('../logs/.is_local'))
             {
                 $servername = "localhost";
@@ -31,6 +31,7 @@
                 $dbname_membmers = "dualpower_Members";
                 $page_Home = "http://localhost/public_html/";
                 $page_DataCenter = "http://localhost/public_html/datacenter/";
+                break;
             }
             else 
             {
@@ -41,6 +42,7 @@
                 $dbname_membmers = "dualpower_Members";
                 $page_Home = "http://www.dualpowergeneration.sdsu.edu/";
                 $page_DataCenter = "http://www.dualpowergeneration.sdsu.edu/datacenter/";
+                break;
             }
         }
         default: // Default is Home Page
@@ -59,6 +61,7 @@
                 $dbname_membmers = "dualpower_Members";
                 $page_Home = "http://localhost/public_html/";
                 $page_DataCenter = "http://localhost/public_html/datacenter/";
+                break;
             }
             else 
             {
@@ -69,6 +72,7 @@
                 $dbname_membmers = "dualpower_Members";
                 $page_Home = "http://www.dualpowergeneration.sdsu.edu/";
                 $page_DataCenter = "http://www.dualpowergeneration.sdsu.edu/datacenter/";
+                break;
             }
         }
     }   
