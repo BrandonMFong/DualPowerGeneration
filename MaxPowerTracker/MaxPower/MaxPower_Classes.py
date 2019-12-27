@@ -8,6 +8,7 @@ import math
 from random import random
 import System
 import time
+import IO
 
 
 ### CLASSES ###
@@ -30,16 +31,12 @@ class Max_Power_Wind:
     # This functions needs to be on during the duration of the timer from 0 to 60
     # everytime the tachometer sees that piece of metal increment the num variable
     # when timer is up, calculate the average of the count over a minute (60 seconds, hence the timer duration)
-    def Get_RPM():
+    def Get_RPM():# OLD -> num = abs(random() % (3600 + 1 - 0) + 0);
         total_rpm = 0;
-        keyboard = Controller();
         # Getting RPM
         while True:
             if System.timer_flag: break;
-            time.sleep(0.1); # just putting some delay
-            # OLD -> num = abs(random() % (3600 + 1 - 0) + 0);
-            num = random(); # getting random value simulating rpm trigger
-            total_rpm = total_rpm + num;
+            if IO.Keyboard_IO.on_press: total_rpm = total_rpm + 1;
             print("total_rpm = {}" .format(total_rpm));
 
         Max_Power_Wind.Avg_RPM(total_rpm);

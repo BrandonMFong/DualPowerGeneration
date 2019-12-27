@@ -6,39 +6,22 @@
 ### LIBRARIES ###
 # TODO use the following library to simulate the rotation of the blades to calculate rpm 
 import pynput
-from pynput import keyboard
+from pynput.keyboard import Key, Listener # https://pythonhosted.org/pynput/keyboard.html
 
 # TODO figure out how to only call the rpm function when you press the key
-class Input_Output:
-    # Thread start
-    def start():
-        listener = keyboard.Listener(
-            on_press=on_press,
-            on_release=on_release)
-        listener.start()
-        
-    # Thread Join
-    def join():
-        # Collect events until released
-        with keyboard.Listener(
-                on_press=on_press,
-                on_release=on_release) as listener:
-            listener.join()
-
+class Keyboard_IO:
     def on_press(key):
-        try:
-            print('alphanumeric key {0} pressed'.format(
-                key.char))
-            return True;
-        except AttributeError:
-            print('special key {0} pressed'.format(
-                key))
-            return True;
+        self.increment(True);
 
     def on_release(key):
-        print('{0} released'.format(
-            key))
-        if key == keyboard.Key.esc:
-            # Stop listener
-            return False
+        increment(False);
+        return False;
+        
+    def increment(flag):
+        if(flag): return 1;
+        else: return 0;
+
+    # Collect events until released
+    with Listener(on_press=on_press,on_release=on_release) as listener:
+        listener.join()
     
