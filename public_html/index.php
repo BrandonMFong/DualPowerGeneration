@@ -2,19 +2,11 @@
 
 <html lang="en">
 
-<?php include 'php/header.php'; ?>
-
-<!-- https://www.w3schools.com/howto/default.asp -->
-<!-- https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php-->
-
-<div id="mySidenav" class="sidenav">
-  <a href="https://dualpowergeneration.sdsu.edu/">Home</a>
-  <a href="https://github.com/BrandonMFong/DualPowerGeneration">Open Source</a>
-  <a href="https://www.gofundme.com/f/senior-design-project-renewable-energy?utm_medium=email&utm_source=product&utm_campaign=p_email%2B5311-donation-receipt-wp-v5&utm_content=internal">GoFundMe</a>
-  <a href="https://dualpowergeneration.sdsu.edu/datacenter">Data Center</a>
-  <a href="pages/Slides.html">Slides</a>
-  <!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>-->
-</div>
+<?php 
+	$currpage = "Home"; // Include this to distinguish the page for the other php
+	include 'php/header.php';
+	include 'php/sidenav.php'; 
+?>
 
 <body>
 	<!-- Animated Icon -->
