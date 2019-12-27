@@ -1,4 +1,5 @@
 <?php 
+    global $currpage;
     include 'environment.php';
 
     echo "<script src=\"".$js_jquery."\"></script>";

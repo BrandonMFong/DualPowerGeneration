@@ -3,6 +3,7 @@
 	<title>Your Engineering Solutions</title>
 	<link rel="shortcut icon" href="img/temp_logo.png">
     <?php
+        global $currpage;
         include 'environment.php';
         echo "<link href=\"" . $css_bootstrap . "\" rel=\"stylesheet\" />";
         echo "<link href=\"" . $css_business_casual . "\" rel=\"stylesheet\" />";

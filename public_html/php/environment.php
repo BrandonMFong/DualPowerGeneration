@@ -7,32 +7,69 @@
 	global $username;
 	global $password;
 	global $dbname_datacenter;
-	global $dbname_member;
-    
-    if(file_exists('logs/.is_local')) // This is for testing if we are testing locally
+    global $dbname_member;
+    global $page_Home;
+    global $page_DataCenter;
+    global $currpage;
+
+    // Testing what environment you are in
+    switch($currpage)
     {
-        $css_bootstrap = 'http://localhost/PUBLIC_HTML/css/bootstrap.min.css';
-        $css_business_casual = 'http://localhost/PUBLIC_HTML/css/business-casual.css';
-        $css_fonts = 'http://localhost/PUBLIC_HTML/font-awesome/css/font-awesome.min.css';
-        $js_bootstrap = 'http://localhost/PUBLIC_HTML/js/bootstrap.min.js';
-        $js_jquery = 'http://localhost/PUBLIC_HTML/js/jquery.js';
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname_datacenter = "dualpower_DataCenter";
-        $dbname_membmers = "dualpower_Members";
-    }
-    else
-    {
-        $css_bootstrap = 'https://duapowergeneration.sdsu.edu/css/bootstrap.min.css';
-        $css_business_casual = 'https://duapowergeneration.sdsu.edu/css/business-casual.css';
-        $css_fonts = 'https://duapowergeneration.sdsu.edu/font-awesome/css/font-awesome.min.css';
-        $js_bootstrap = 'https://duapowergeneration.sdsu.edu/js/bootstrap.min.js';
-        $js_jquery = 'https://duapowergeneration.sdsu.edu/js/jquery.js';
-        $servername = "localhost";
-        $username = "dualpower_BrandonMFong";
-        $password = "dualpower27182";
-        $dbname_datacenter = "dualpower_DataCenter";
-        $dbname_membmers = "dualpower_Members";
-    }
+        case "Data Center": // For the Data center
+        {
+            $css_bootstrap = '../css/bootstrap.min.css';
+            $css_business_casual = '../css/business-casual.css';
+            $css_fonts = '../font-awesome/css/font-awesome.min.css';
+            $js_bootstrap = '../js/bootstrap.min.js';
+            $js_jquery = '../js/jquery.js';
+            if(file_exists('../logs/.is_local'))
+            {
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname_datacenter = "dualpower_DataCenter";
+                $dbname_membmers = "dualpower_Members";
+                $page_Home = "http://localhost/public_html/";
+                $page_DataCenter = "http://localhost/public_html/datacenter/";
+            }
+            else 
+            {
+                $servername = "localhost";
+                $username = "dualpower_BrandonMFong";
+                $password = "dualpower27182";
+                $dbname_datacenter = "dualpower_DataCenter";
+                $dbname_membmers = "dualpower_Members";
+                $page_Home = "http://www.dualpowergeneration.sdsu.edu/";
+                $page_DataCenter = "http://www.dualpowergeneration.sdsu.edu/datacenter/";
+            }
+        }
+        default: // Default is Home Page
+        {
+            $css_bootstrap = 'css/bootstrap.min.css';
+            $css_business_casual = 'css/business-casual.css';
+            $css_fonts = 'font-awesome/css/font-awesome.min.css';
+            $js_bootstrap = 'js/bootstrap.min.js';
+            $js_jquery = 'js/jquery.js';
+            if(file_exists('logs/.is_local'))
+            {
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname_datacenter = "dualpower_DataCenter";
+                $dbname_membmers = "dualpower_Members";
+                $page_Home = "http://localhost/public_html/";
+                $page_DataCenter = "http://localhost/public_html/datacenter/";
+            }
+            else 
+            {
+                $servername = "localhost";
+                $username = "dualpower_BrandonMFong";
+                $password = "dualpower27182";
+                $dbname_datacenter = "dualpower_DataCenter";
+                $dbname_membmers = "dualpower_Members";
+                $page_Home = "http://www.dualpowergeneration.sdsu.edu/";
+                $page_DataCenter = "http://www.dualpowergeneration.sdsu.edu/datacenter/";
+            }
+        }
+    }   
 ?>
