@@ -40,8 +40,8 @@
                 $password = "dualpower27182";
                 $dbname_datacenter = "dualpower_DataCenter";
                 $dbname_membmers = "dualpower_Members";
-                $page_Home = "http://www.dualpowergeneration.sdsu.edu/";
-                $page_DataCenter = "http://www.dualpowergeneration.sdsu.edu/datacenter/";
+                $page_Home = "https://dualpowergeneration.sdsu.edu/";
+                $page_DataCenter = "https://dualpowergeneration.sdsu.edu/datacenter/";
                 break;
             }
         }
@@ -70,8 +70,8 @@
                 $password = "dualpower27182";
                 $dbname_datacenter = "dualpower_DataCenter";
                 $dbname_membmers = "dualpower_Members";
-                $page_Home = "http://www.dualpowergeneration.sdsu.edu/";
-                $page_DataCenter = "http://www.dualpowergeneration.sdsu.edu/datacenter/";
+                $page_Home = "https://dualpowergeneration.sdsu.edu/";
+                $page_DataCenter = "https://dualpowergeneration.sdsu.edu/datacenter/";
                 break;
             }
         }
