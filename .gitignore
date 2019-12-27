@@ -1,8 +1,13 @@
 # Ignore all ppk files
 *.ppk
 /FTP/*
+<<<<<<< HEAD
 logs
 .vs
 #MaxPowerTracker/.vs/MaxPowerTracker/v16/.suo
+=======
+logs/
+.vs/*
+>>>>>>> online debug
 .vscode
 .well-known
