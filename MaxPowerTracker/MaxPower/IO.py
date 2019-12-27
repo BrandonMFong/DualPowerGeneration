@@ -7,6 +7,8 @@
 # TODO use the following library to simulate the rotation of the blades to calculate rpm 
 import pynput
 from pynput import keyboard
+
+# TODO figure out how to only call the rpm function when you press the key
 class Input_Output:
     # Thread start
     def start():
