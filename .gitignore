@@ -1,7 +1,7 @@
 # Ignore all ppk files
 *.ppk
 /FTP/*
-logs
+logs/
 .vs/*
 .vscode
 .well-known

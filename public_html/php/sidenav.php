@@ -1,4 +1,5 @@
 <?php
+    global $currpage;
     include 'environment.php';
     echo "<div id=\"mySidenav\" class=\"sidenav\">";
     echo "<a href=\"". $page_Home . "\">Home</a>";

@@ -2,6 +2,7 @@
 <html lang="en">
 
 <?php 
+	global $currpage;
 	$currpage = "Data Center"; // Include this to distinguish the page for the other php
 	include '../php/header.php'; 
 	include '../php/sidenav.php'; 
