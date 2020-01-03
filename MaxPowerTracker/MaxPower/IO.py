@@ -8,20 +8,22 @@
 import pynput
 from pynput.keyboard import Key, Listener # https://pythonhosted.org/pynput/keyboard.html
 
-# TODO figure out how to only call the rpm function when you press the key
+# Flags to notify that a value was read
+# probably can only replicate this with the rpm 
+global rpm_flag;
+
+rpm_flag = False;
+
+# Below is just for simulation purposes
 class Keyboard_IO:
-    def on_press(key):
-        self.increment(True);
 
-    def on_release(key):
-        increment(False);
-        return False;
-        
-    def increment(flag):
-        if(flag): return 1;
-        else: return 0;
+    def start_io():
+        def simulate_rpm(key):
+            rpm_flag = True;
+            with open("log.txt", 'a') as f:
+                f.write("Key was pressed\n");
+        with Listener(on_press=simulate_rpm) as input:
+            input.join();
 
-    # Collect events until released
-    with Listener(on_press=on_press,on_release=on_release) as listener:
-        listener.join()
+
     

@@ -13,7 +13,7 @@ from Files import File_Handler
 import System 
 import threading 
 from FTP import FTP
-# TODO reading torque and rpm should be timed (https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time)
+import IO
 #from EmulatorGUI import GPIO # simulates GPIO functions on rpi  
 
 # Init
@@ -34,7 +34,7 @@ while True:
     print("Entering loop\n");
     
     i = 0;
-    # This is the job to run calculations and inject the data into a file
+    # Main loop
     while i < System.Max_Lines:
         ### WIND ###
         # Creates and object to thread the two functions
@@ -49,9 +49,11 @@ while True:
         THREAD_Max_Power_Wind_Get_TORQUE.start();
 
         # This waits until the above threading is finished
+        IO.Keyboard_IO.start_io(); # this thread is taking precedence
         THREAD_Timer.join();
         THREAD_Max_Power_Wind_Get_RPM.join(); 
         THREAD_Max_Power_Wind_Get_TORQUE.join();
+        IO.Keyboard_IO.start_io();
 
         print("\nAverage RPM: ", MaxPower_Classes.Average_RPM_Wind);print("\n");
         print("\nAverage Torque: ", MaxPower_Classes.Average_TORQUE_Wind);print("\n");

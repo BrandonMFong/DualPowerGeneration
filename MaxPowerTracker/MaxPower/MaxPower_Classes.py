@@ -36,7 +36,11 @@ class Max_Power_Wind:
         # Getting RPM
         while True:
             if System.timer_flag: break;
-            if IO.Keyboard_IO.on_press: total_rpm = total_rpm + 1;
+            # this is not being called
+            if IO.rpm_flag: # if a key was pressed, increment    
+                total_rpm = total_rpm + 1;
+                IO.rpm_flag = False;
+
             print("total_rpm = {}" .format(total_rpm));
 
         Max_Power_Wind.Avg_RPM(total_rpm);

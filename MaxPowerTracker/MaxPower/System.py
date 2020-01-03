@@ -8,10 +8,7 @@ import time
 
 def init():
     # Delcare
-    global Seconds;
-    global File;
-    global delay;
-    global Max_Lines;
+    global Seconds, File, delay, Max_Lines;
 
     # Initialize
     # This will create Max_Lines, 1 line every Seconds passes
