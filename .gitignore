@@ -2,6 +2,6 @@
 *.ppk
 /FTP/*
 logs/
-.vs/*
+MaxPowerTracker/.vs/*
 .vscode
 .well-known
