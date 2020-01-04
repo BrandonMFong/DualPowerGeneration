@@ -49,11 +49,10 @@ while True:
         THREAD_Max_Power_Wind_Get_TORQUE.start();
 
         # This waits until the above threading is finished
-        IO.Keyboard_IO.start_io(); # this thread is taking precedence
+        #IO.Keyboard_IO.start_io(); # this thread is taking precedence
         THREAD_Timer.join();
         THREAD_Max_Power_Wind_Get_RPM.join(); 
         THREAD_Max_Power_Wind_Get_TORQUE.join();
-        IO.Keyboard_IO.start_io();
 
         print("\nAverage RPM: ", MaxPower_Classes.Average_RPM_Wind);print("\n");
         print("\nAverage Torque: ", MaxPower_Classes.Average_TORQUE_Wind);print("\n");

@@ -1,4 +1,10 @@
 <?php
+    /* ENVIRONMENT */
+    // The purpose of this file is mainly to figure environment you are in
+    // Whether it be local or on the server
+    // This file has all the global variables that makes our site parameterized 
+    // Please be cautious when editting this script for it may have big affects on the functionality of 
+    // our Dualpowergeneration.sdsu.edu site
     global $css_bootstrap;
     global $css_business_casual;
     global $css_fonts;

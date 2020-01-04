@@ -36,10 +36,18 @@ class Max_Power_Wind:
         # Getting RPM
         while True:
             if System.timer_flag: break;
-            # this is not being called
-            if IO.rpm_flag: # if a key was pressed, increment    
-                total_rpm = total_rpm + 1;
-                IO.rpm_flag = False;
+            time.sleep(random());
+            total_rpm = total_rpm + 1;
+
+            ## this is not being called
+            # TODO figure this out
+            # At this moment the IO function is detecting the key being pressed and setting the flag true
+            # This is supposed to trigger this if statement to increment but it is not
+            # Though this is a simulation, it is important to call this function from any external events
+            # This is an important step to detecting one revolution of the wind turbine
+            #if IO.rpm_flag: # if a key was pressed, increment    
+            #    total_rpm = total_rpm + 1;
+            #    IO.rpm_flag = False;
 
             print("total_rpm = {}" .format(total_rpm));
 
