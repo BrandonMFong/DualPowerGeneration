@@ -36,8 +36,6 @@ class Max_Power_Wind:
         # Getting RPM
         while True:
             if System.timer_flag: break;
-            time.sleep(random());
-            total_rpm = total_rpm + 1;
 
             ## this is not being called
             # TODO figure this out
@@ -45,9 +43,9 @@ class Max_Power_Wind:
             # This is supposed to trigger this if statement to increment but it is not
             # Though this is a simulation, it is important to call this function from any external events
             # This is an important step to detecting one revolution of the wind turbine
-            #if IO.rpm_flag: # if a key was pressed, increment    
-            #    total_rpm = total_rpm + 1;
-            #    IO.rpm_flag = False;
+            if IO.rpm_flag: # if a key was pressed, increment    
+                total_rpm = total_rpm + 1;
+                IO.rpm_flag = False;
 
             print("total_rpm = {}" .format(total_rpm));
 
@@ -58,7 +56,8 @@ class Max_Power_Wind:
         total_torque = 0;
         i = 0;
         # Getting Torque
-        while i < System.Seconds: 
+        while True: 
+            if System.timer_flag: break;
             time.sleep(System.delay); # Will execute equation after one second passes
             i = i + 1;
             force_of_the_blades = random(); # simulating a analog read of the torque
