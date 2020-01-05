@@ -26,30 +26,15 @@ class Max_Power_Wind:
         global Average_RPM_Wind;
         Average_RPM_Wind = Total_RPM/System.Seconds;
 
-    # This is being tracked with the tachometer
-    # Task:
-    # This functions needs to be on during the duration of the timer from 0 to 60
-    # everytime the tachometer sees that piece of metal increment the num variable
-    # when timer is up, calculate the average of the count over a minute (60 seconds, hence the timer duration)
-    def Get_RPM():# OLD -> num = abs(random() % (3600 + 1 - 0) + 0);
-        total_rpm = 0;
+    # Taking out the while loop
+    # this function is now going to be called whenever I press the key
+    def Get_RPM():
         # Getting RPM
-        while True:
-            if System.timer_flag: break;
-
-            ## this is not being called
-            # TODO figure this out
-            # At this moment the IO function is detecting the key being pressed and setting the flag true
-            # This is supposed to trigger this if statement to increment but it is not
-            # Though this is a simulation, it is important to call this function from any external events
-            # This is an important step to detecting one revolution of the wind turbine
-            if IO.rpm_flag: # if a key was pressed, increment    
-                total_rpm = total_rpm + 1;
-                IO.rpm_flag = False;
-
+        global total_rpm;
+        if System.timer_flag: Max_Power_Wind.Avg_RPM(total_rpm); # If the timer is up, calculate the avg rpm
+        else: # if a key was pressed, increment
+            total_rpm = total_rpm + 1;
             print("total_rpm = {}" .format(total_rpm));
-
-        Max_Power_Wind.Avg_RPM(total_rpm);
 
     # Equation: Torque = Radius * Force * sin(Theta)
     def Get_Torque():
@@ -83,9 +68,12 @@ def init():
     global radius_of_the_blades;
     global angle_of_the_blades;
     global force_of_the_blades;
+    global total_rpm;
 
     # Solar
     global Average_POWER_SOLAR;
+    global solar_current;
+    global solar_voltage;
 
     # Initialize
     Average_RPM_Wind = 0;
@@ -95,5 +83,6 @@ def init():
     radius_of_the_blades = 50; # Can be changed
     angle_of_the_blades = 120; # Three blades right?
     force_of_the_blades = random(); # TODO figure this out, we need to dynamically calculate this
+    total_rpm = 0;
 
 

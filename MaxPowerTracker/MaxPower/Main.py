@@ -22,9 +22,8 @@ MaxPower_Classes.init();
 i = 0;
 Sender = FTP();
 
-
 while True:
-    # This creates a file in a directory outside of our git repo named ..\FTP
+    # This creates a file in a directory inside our git repo named DualPowerGeneration\FTP
     # NOTE: For debugging please check if the file is created
     if not File_Handler.Init_File():
         print("File.Init_File() returned 0 (Success)\n");
@@ -55,6 +54,7 @@ while True:
         THREAD_Max_Power_Wind_Get_RPM.join(); 
         THREAD_Max_Power_Wind_Get_TORQUE.join();
         THREAD_IO_Keyboard_Listener.join();
+        #IO.Keyboard_IO.join();
 
         print("\nAverage RPM: ", MaxPower_Classes.Average_RPM_Wind);print("\n");
         print("\nAverage Torque: ", MaxPower_Classes.Average_TORQUE_Wind);print("\n");
