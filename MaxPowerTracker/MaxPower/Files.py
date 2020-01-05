@@ -61,9 +61,52 @@ class File_Handler:
             print("Writing successful\n");
             return 0;
 
-    def Save_File():
-        System.File.close();
-
     def Close_File():
         System.File.close();
         System.File = 0; # clear variable
+
+# This is meant for debugging purposes
+# When you don't have the terminal up, you can view the logs to check the outputs
+class Log_Handler:
+    def Init_File(): # function to create a file
+
+        Date_and_Time = datetime.datetime.now(); # gets current date and time
+
+        # This path below may change depending on where the script is in the raspberry pi
+        # This ignored in git repo
+        makepath = "../../logs/MaxPower" # defines where the file will be imported
+
+        if(not (os.path.isdir(makepath))): # if that directory doesn't exist, create it
+            try:
+                os.mkdir(makepath) #mkdir cmd 
+            except OSError:
+                print("Creation of the directory %s failed" % makepath) # Unsuccessful
+            else:
+                print("Successfully created the directory %s " % makepath) # Successful
+        else:
+            print("logs already exits.");
+        # Creates the file to be injected by our power tracker
+        # This will be sent through FTP via script to our remote server
+        filename = makepath +  "/MaxPowerLog_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + ".log"; 
+        try:
+            System.Log = open(filename,"w+"); # this file is global
+        except OSError:
+            print("Creation of file %s failed." % filename);
+            return 1;
+        else:
+            print("Successfully created file: %s" % filename);
+            return 0;
+
+    def Write_Log(string):
+        try:
+            System.Log.write(string);
+        except OSError:
+            print("Writing log failed\n");
+            return 1;
+        else:
+            return 0;
+
+    def Close_File():
+        System.Log.close();
+        System.Log = 0; # clear variable
+

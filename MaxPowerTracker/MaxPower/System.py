@@ -8,13 +8,14 @@ import time
 
 def init():
     # Delcare
-    global Seconds, File, delay, Max_Lines;
+    global Seconds, File, delay, Max_Lines, Log;
 
     # Initialize
     # This will create Max_Lines, 1 line every Seconds passes
     # Max_Lines * Seconds will pass
     Seconds = 5; 
     File = 0;
+    Log = 0;
     delay = 1; 
     Max_Lines = 10;
 
@@ -30,5 +31,4 @@ def timer():
     timer_flag = True;
 
 class Client:
-    ID = 1000; # Hard coding, TODO figure out a way to figure out client by device.  OS ip address? 
-
+    ID = 1000;# Hard coding, TODO figure out a way to figure out client by device.  OS ip address? 

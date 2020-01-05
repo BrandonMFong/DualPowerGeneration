@@ -9,6 +9,8 @@ from random import random
 import System
 import time
 import IO
+from Files import Log_Handler
+import os
 
 
 ### CLASSES ###
@@ -35,6 +37,8 @@ class Max_Power_Wind:
         else: # if a key was pressed, increment
             total_rpm = total_rpm + 1;
             print("total_rpm = {}" .format(total_rpm));
+            Log_Handler.Write_Log(os.path.basename(__file__) + "total_rpm = {}" .format(total_rpm));
+            
 
     # Equation: Torque = Radius * Force * sin(Theta)
     def Get_Torque():
@@ -51,6 +55,7 @@ class Max_Power_Wind:
             num = radius_of_the_blades * force_of_the_blades * math.sin(angle_of_the_blades);
             total_torque = total_torque + num;
             print("i = {}, total_torque = {} " .format(i, total_torque));
+            Log_Handler.Write_Log(os.path.basename(__file__) + "i = {}, total_torque = {} " .format(i, total_torque));
 
         Max_Power_Wind.Avg_Torque(total_torque);
 

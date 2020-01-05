@@ -19,8 +19,6 @@ class Keyboard_IO:
             MaxPower_Classes.total_rpm = 0;
             return exit();
         MaxPower_Classes.Max_Power_Wind.Get_RPM(); # calls this function to increment
-        with open("log.txt", 'a') as f:
-            f.write("Key was pressed\n");
 
     def Keyboard_Listener():
         with Listener(on_press=Keyboard_IO.simulate_rpm) as input:

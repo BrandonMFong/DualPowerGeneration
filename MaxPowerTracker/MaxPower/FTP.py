@@ -7,6 +7,7 @@
 ### LIBRARIES ###
 import subprocess, sys, os
 from subprocess import call 
+from Files import Log_Handler
 
 global file_basename;
 file_basename = '..\\..\\Scripts\\FTP';
@@ -17,6 +18,7 @@ class FTP:
             file = file_basename + '.ps1';
             p = subprocess.Popen(["powershell.exe", "{}".format(file)], stdout=sys.stdout);
             p.communicate();
+            Log_Handler.Write_Log("\n Sent file");
         except Exception as ex:
             print(ex);
             print("File not sent through ftp");
@@ -26,6 +28,7 @@ class FTP:
         file = file_basename + '.bat';
         try:
             os.system('cmd /c {}' .format(file));
+            Log_Handler.Write_Log("\n Sent file");
         except Exception as ex:
             print(ex);
             print("File not sent through ftp");
@@ -35,6 +38,7 @@ class FTP:
         file = file_basename + '.cmd'; # this only runs batch files, but what is a .cmd file?
         try:
             os.system('cmd /c {}' .format(file));
+            Log_Handler.Write_Log("\n Sent file");
         except Exception as ex:
             print(ex);
             print("File not sent through ftp");

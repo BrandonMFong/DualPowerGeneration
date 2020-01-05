@@ -56,7 +56,6 @@
     <Content Include="EmulatorGUI\GPIOSimulator-0.1.tar.gz" />
     <Content Include="EmulatorGUI\PKG-INFO" />
     <Content Include="EmulatorGUI\README.md" />
-    <Content Include="log.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
