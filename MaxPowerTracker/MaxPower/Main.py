@@ -35,26 +35,26 @@ while True:
     i = 0;
     # Main loop
     while i < System.Max_Lines:
-        ### WIND ###
         # Creates and object to thread the two functions
         # Threading allows us to run these two functions at the same time
+        ### WIND ###
         THREAD_Timer = threading.Thread(target=System.timer);
         THREAD_Max_Power_Wind_Get_RPM = threading.Thread(target=Max_Power_Wind.Get_RPM);
         THREAD_Max_Power_Wind_Get_TORQUE = threading.Thread(target=Max_Power_Wind.Get_Torque);
-        THREAD_IO_Keyboard_Listener = threading.Thread(target=IO.Keyboard_IO.Keyboard_Listener);
+        #THREAD_IO_Keyboard_Listener = threading.Thread(target=IO.Keyboard_IO.Keyboard_Listener);
 
         # Starts threading the functions
         THREAD_Timer.start();
         THREAD_Max_Power_Wind_Get_RPM.start(); 
         THREAD_Max_Power_Wind_Get_TORQUE.start();
-        THREAD_IO_Keyboard_Listener.start();
+        #THREAD_IO_Keyboard_Listener.start();
 
         # This waits until the above threading is finished
+        IO.Keyboard_IO.Keyboard_Listener(); # join thread
         THREAD_Timer.join();
         THREAD_Max_Power_Wind_Get_RPM.join(); 
         THREAD_Max_Power_Wind_Get_TORQUE.join();
-        THREAD_IO_Keyboard_Listener.join();
-        #IO.Keyboard_IO.join();
+        #THREAD_IO_Keyboard_Listener.join();
 
         print("\nAverage RPM: ", MaxPower_Classes.Average_RPM_Wind);print("\n");
         print("\nAverage Torque: ", MaxPower_Classes.Average_TORQUE_Wind);print("\n");
