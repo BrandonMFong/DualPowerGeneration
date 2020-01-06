@@ -10,6 +10,7 @@ import pynput
 import MaxPower_Classes
 import System
 import threading
+from random import random
 
 # Below is just for simulation purposes
 class Keyboard_IO:
@@ -23,3 +24,13 @@ class Keyboard_IO:
     def RPM_Listener():
         with Listener(on_press=Keyboard_IO.call_rpm) as input:
             input.join()
+
+class Random_IO:
+    def BLADE_FORCE_listener():
+        return random();
+
+    def SOLAR_CURR_listener():
+        return random();
+
+    def SOLAR_VOLT_listener():
+        return random();

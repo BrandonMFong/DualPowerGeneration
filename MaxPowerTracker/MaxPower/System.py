@@ -13,7 +13,7 @@ def init():
     # Initialize
     # This will create Max_Lines, 1 line every Seconds passes
     # Max_Lines * Seconds will pass
-    Seconds = 5; 
+    Seconds = 3; 
     File = 0;
     Log = 0;
     delay = 1; 
@@ -27,7 +27,7 @@ def timer():
     while i < Seconds:
         time.sleep(delay);
         i = i + 1;
-        print("Time: ", i);
+        print("Time: {} seconds\n" .format(i));
     timer_flag = True;
 
 class Client:
