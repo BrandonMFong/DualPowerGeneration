@@ -6,13 +6,13 @@
 ### LIBRARIES ###
 # In this section, we need to get IO from tachometer
 # TODO figure out how to interface with GPIO RPI with pyhton
+from FTP import FTP
+from Files import File_Handler, Log_Handler
 from random import random 
 from MaxPower_Classes import Max_Power_Wind, Max_Power_Solar 
 import MaxPower_Classes
-from Files import File_Handler, Log_Handler
 import System 
 import threading 
-from FTP import FTP
 import IO
 import os
 #from EmulatorGUI import GPIO # simulates GPIO functions on rpi  
@@ -26,16 +26,12 @@ Sender = FTP();
 while True:
     # This creates a file in a directory inside our git repo named DualPowerGeneration\FTP
     # NOTE: For debugging please check if the file is created
-    if File_Handler.Init_File():
-        print("File.File_Handler.Init_File returned 1 \n");
-    else:
-        print("File.File_Handler.Init_File() returned 0 \n");
+    if File_Handler.Init_File(): print("File.File_Handler.Init_File returned 1 \n");
+    else: print("File.File_Handler.Init_File() returned 0 \n");
 
     # This creates the log file at DualPowerGeneration\logs
-    if Log_Handler.Init_File():
-        print("File.Log_Handler.Init_File returned 1 \n");
-    else:
-        print("File.Log_Handler.Init_File() returned 0 \n");
+    if Log_Handler.Init_File(): print("File.Log_Handler.Init_File returned 1 \n");
+    else: print("File.Log_Handler.Init_File() returned 0 \n");
 
     print("Entering loop\n");
     
@@ -46,22 +42,16 @@ while True:
         # Threading allows us to run these two functions at the same time
         ### WIND ###
         THREAD_Timer = threading.Thread(target=System.timer);
-        THREAD_Max_Power_Wind_Get_RPM = threading.Thread(target=Max_Power_Wind.Get_RPM);
         THREAD_Max_Power_Wind_Get_TORQUE = threading.Thread(target=Max_Power_Wind.Get_Torque);
-        #THREAD_IO_Keyboard_Listener = threading.Thread(target=IO.Keyboard_IO.Keyboard_Listener);
 
         # Starts threading the functions
         THREAD_Timer.start();
-        THREAD_Max_Power_Wind_Get_RPM.start(); 
         THREAD_Max_Power_Wind_Get_TORQUE.start();
-        #THREAD_IO_Keyboard_Listener.start();
 
         # This waits until the above threading is finished
-        IO.Keyboard_IO.Keyboard_Listener(); # join thread
+        IO.Keyboard_IO.RPM_Listener(); # join thread, TODO 
         THREAD_Timer.join();
-        THREAD_Max_Power_Wind_Get_RPM.join(); 
         THREAD_Max_Power_Wind_Get_TORQUE.join();
-        #THREAD_IO_Keyboard_Listener.join();
 
         print("\nAverage RPM: ", MaxPower_Classes.Average_RPM_Wind);print("\n"); 
         Log_Handler.Write_Log(os.path.basename(__file__) + "\nAverage RPM: {} \n" .format(MaxPower_Classes.Average_RPM_Wind));
@@ -83,6 +73,7 @@ while True:
         i = i + 1;
 
     File_Handler.Close_File; # Closes and saves file
+    Log_Handler.Close_File; # Closes and saves file
     
     Sender.send_using_batch(); # Runs script to send via ftp
 

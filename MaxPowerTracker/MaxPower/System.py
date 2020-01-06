@@ -31,4 +31,4 @@ def timer():
     timer_flag = True;
 
 class Client:
-    ID = 1000;# Hard coding, TODO figure out a way to figure out client by device.  OS ip address? 
+    ID = 1000; # Hard coding, TODO figure out a way to figure out client by device.  OS ip address? 

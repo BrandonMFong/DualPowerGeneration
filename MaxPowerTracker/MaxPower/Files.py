@@ -13,13 +13,12 @@
 # I.E. Init_File() -> Inject_Data() -> Close_File() 
 
 ### LIBRARIES ###
+from System import Client
 import datetime
 import os
 import System
-from System import Client
 
 class File_Handler:
-
     def Init_File(): # function to create a file
 
         Date_and_Time = datetime.datetime.now(); # gets current date and time

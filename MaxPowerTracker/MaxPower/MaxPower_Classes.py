@@ -4,12 +4,12 @@
 #####################################################
 
 ### LIBRARIES ###
-import math
+from Files import Log_Handler
 from random import random
+import math
 import System
 import time
 import IO
-from Files import Log_Handler
 import os
 
 
@@ -19,14 +19,17 @@ class Max_Power_Wind:
         pi = math.pi;
         global Average_POWER_WIND;
         Average_POWER_WIND = (Torque * RPM * pi)/30;
+        Log_Handler.Write_Log(os.path.basename(__file__) + "Avg Pwr Wind calculated\n");
 
     def Avg_Torque(Total_Torque):
         global Average_TORQUE_Wind;
         Average_TORQUE_Wind = Total_Torque/System.Seconds;
+        Log_Handler.Write_Log(os.path.basename(__file__) + "Avg Torque Wind calculated\n");
 
     def Avg_RPM(Total_RPM):
         global Average_RPM_Wind;
         Average_RPM_Wind = Total_RPM/System.Seconds;
+        Log_Handler.Write_Log(os.path.basename(__file__) + "Avg RPM Wind calculated\n");
 
     # Taking out the while loop
     # this function is now going to be called whenever I press the key
@@ -37,7 +40,7 @@ class Max_Power_Wind:
         else: # if a key was pressed, increment
             total_rpm = total_rpm + 1;
             print("total_rpm = {}" .format(total_rpm));
-            Log_Handler.Write_Log(os.path.basename(__file__) + "total_rpm = {}" .format(total_rpm));
+            Log_Handler.Write_Log(os.path.basename(__file__) + "total_rpm = {}\n" .format(total_rpm));
             
 
     # Equation: Torque = Radius * Force * sin(Theta)
@@ -51,11 +54,10 @@ class Max_Power_Wind:
             i = i + 1;
             force_of_the_blades = random(); # simulating a analog read of the torque
             # Random is temporary, we will read real values
-            # OLD -> num = abs(random() % (500 + 1 - 0) + 0); # Need more information for " ... 1 - 0) + 0"
             num = radius_of_the_blades * force_of_the_blades * math.sin(angle_of_the_blades);
             total_torque = total_torque + num;
             print("i = {}, total_torque = {} " .format(i, total_torque));
-            Log_Handler.Write_Log(os.path.basename(__file__) + "i = {}, total_torque = {} " .format(i, total_torque));
+            Log_Handler.Write_Log(os.path.basename(__file__) + "i = {}, total_torque = {} \n" .format(i, total_torque));
 
         Max_Power_Wind.Avg_Torque(total_torque);
 
