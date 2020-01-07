@@ -71,38 +71,18 @@
     <CustomProgrammingToolCommand>
     </CustomProgrammingToolCommand>
     <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
-    <avrtool>custom</avrtool>
     <avrtoolserialnumber />
     <avrdeviceexpectedsignature>0x1E9514</avrdeviceexpectedsignature>
     <com_atmel_avrdbg_tool_simulator>
-      <ToolOptions>
-        <InterfaceProperties>
-        </InterfaceProperties>
-        <InterfaceName>
-        </InterfaceName>
-      </ToolOptions>
-      <ToolType>com.atmel.avrdbg.tool.simulator</ToolType>
-      <ToolNumber>
-      </ToolNumber>
-      <ToolName>Simulator</ToolName>
-    </com_atmel_avrdbg_tool_simulator>
-    <avrtoolinterface />
-    <custom>
       <ToolOptions xmlns="">
         <InterfaceProperties>
         </InterfaceProperties>
-        <InterfaceName>
-        </InterfaceName>
       </ToolOptions>
-      <ToolType xmlns="">custom</ToolType>
+      <ToolType xmlns="">com.atmel.avrdbg.tool.simulator</ToolType>
       <ToolNumber xmlns="">
       </ToolNumber>
       <ToolName xmlns="">Simulator</ToolName>
     </com_atmel_avrdbg_tool_simulator>
-      <ToolName xmlns="">Custom Programming Tool</ToolName>
-    </custom>
-    <CustomProgrammingToolCommand>
-    </CustomProgrammingToolCommand>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
