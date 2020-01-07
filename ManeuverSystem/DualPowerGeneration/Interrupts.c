@@ -3,7 +3,7 @@
  * CFile1.c
  *
  * Created: 10/18/2019 5:01:30 PM
- *  Author: Brandon
+ *  Author: Joseph Morga, Brandon Fong, Ahmad AlSarhan
  */ 
 
 #include <avr/io.h>
@@ -24,6 +24,9 @@ double res3;    // South
  * This is the function that will read the resistor values
  * Reading the resistor values require an Analog to Digital Converter 
  * Refer to ADConverter.c
+ *
+ * Let resistor 0 and 1 be the x-axis 
+ * Let resistor 2 and 3 be the y-axis
  */
 
 // Joseph below is how I put the adc values from the resistors into your variables.  
@@ -34,7 +37,9 @@ ISR (TIMER0_COMPA_vect)
 	
 	if(res0 > res1) movePanelTo(WEST, res0, res1, &motorFactor_or_whatever);
 	else if(res1 > res0) movePanelTo(EAST, res1, res0, &motorFactor_or_whatever);
-	// Implement your values in Maneuver.c
+	
+	/* Call the output function to turn on the motor */
+	moveJoint(X_AXIS_0_1, NOT_Y_AXIS_2_3, &motorFactor_or_whatever);
 }
 
 ISR (TIMER0_COMPB_vect)
@@ -44,31 +49,15 @@ ISR (TIMER0_COMPB_vect)
 	
 	if(res2 > res3) movePanelTo(NORTH, res2, res3, &motorFactor_or_whatever);
 	else if(res3 > res2) movePanelTo(SOUTH, res3, res2, &motorFactor_or_whatever);
-
-	// Read Resistor 0 values
+	
+	/* Call the output function to turn on the motor */
+	moveJoint(NOT_X_AXIS_0_1, Y_AXIS_2_3, &motorFactor_or_whatever);
 }
-
-/* Interrupt for Timer 0 comparing to OCR0A
- * This is the function that will read the resistor values
- * Reading the resistor values require an Analog to Digital Converter 
- * Refer to ADConverter.c
- */
-//ISR (TIMER0_COMPB_vect) //comenting this out until we get the right vector to play with.  We need timer 2
-//{
-	//// Read Resistor 1 values
-//}
 
 /* Interrupt for ADC Converter
  * Tells us when we can get the value from the adc reg
  * NOTE: might not need this if I'm reading from the timer vector
  */
-//ISR(ADC_vect)
-//{
-	///* ADC
-	 //* ADC holds the value at the anolog value
-	 //*/
-	//uint16_t AD = ADC;
-//}
 ISR(ADC_vect)
 {
 	/* ADC

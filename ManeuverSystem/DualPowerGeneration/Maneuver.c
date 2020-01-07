@@ -2,7 +2,7 @@
  * Maneuver.c
  *
  * Created: 11/3/2019 9:32:36 AM
- *  Author: Brandon
+ *  Author: Joseph Morga, Brandon Fong, Ahmad AlSarhan
  */ 
 
 #include <avr/io.h>
@@ -10,7 +10,7 @@
 #include <util/delay.h>
 #include "Param_Const_GLVar.h"
 
-void movePanelTo(int direction, double resA, double resB, double * drive_motor_factor)
+void movePanelTo(int direction, double resA, double resB, double * drive_motor_factor)// the drive_motor_factor can probably be an int to save mem footprint?
 {
 	while (resA > resB)
 	{
@@ -24,5 +24,19 @@ void movePanelTo(int direction, double resA, double resB, double * drive_motor_f
 			default: {*drive_motor_factor = 0; break;}
 		}
 	}
+}
+
+// Right now we want to use two motors
+void moveJoint(bool x_axis, bool y_axis, double * drive_motor_factor)
+{
+	if(x_axis)
+	{
+		dac_write_digital(*drive_motor_factor);
+	}
+	else if(y_axis)
+	{
+		dac_write_digital(*drive_motor_factor);
+	}
+	else 
 }
 
