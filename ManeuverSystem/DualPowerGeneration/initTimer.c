@@ -2,7 +2,7 @@
  * CFile1.c
  *
  * Created: 10/18/2019 4:59:14 PM
- *  Author: Brandon
+ *  Author: Joseph Morga, Brandon Fong, Ahmad AlSarhan
  */
 
 #include <avr/io.h>
@@ -24,9 +24,7 @@ void initTimer0()
 	 */
 	OCR0A = 124; //1
 	OCR0B = 248; //2
-
-
-
+	
 	/* TCCR0A
 	 * Setting mode to CTC (Clear Timer on Compare)
 	 * Comparing to OCR0A
@@ -106,12 +104,8 @@ void initTimer2()
 	/* OCR0A
 	 * The OCR0A defines the top value for the counter, hence also its resolution (pg 98)
 	 */
-
 	OCR2A = 124;
-
-
 	OCR2B = 248;
-
 
 	/* TCCR0A
 	 * Setting mode to CTC (Clear Timer on Compare)
@@ -129,7 +123,6 @@ void initTimer2()
 	 * Setting Timer A interrupt flag to True
 	 * Setting Timer B interrupt flag to True
 	 */
-
 	TIMSK2 |= (1<<OCIE2A)|(1<<OCIE2B);
 
 	TIMSK2 |= 1<<OCIE2A;

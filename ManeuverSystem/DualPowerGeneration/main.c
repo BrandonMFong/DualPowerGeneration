@@ -2,7 +2,7 @@
  * DualPowerGeneration.c
  *
  * Created: 10/11/2019 5:07:09 PM
- * Author : Brandon Fong        <- Joseph Was here :3
+ *  Author: Joseph Morga, Brandon Fong, Ahmad AlSarhan
  * 
  *
  * Date last modified: 
@@ -21,7 +21,7 @@
 
 
 /*** GLOBAL VARIABLES ***/
-double currentAngle = SUNRISE_ANGLE;   // default possition of the panel
+double currentAngle = SUNRISE_ANGLE;   // default position of the panel
 
 
 int speed; // value I am using for the pulse width
@@ -36,9 +36,7 @@ int main(void)
 	dac_init(); // Initializing DAC
 	sei();
 	// printf("Hello World.");
-    while (1) 
-	{
-	}
+    while (1){}
 }
 
 

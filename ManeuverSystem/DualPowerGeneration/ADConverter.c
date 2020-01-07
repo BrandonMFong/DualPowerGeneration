@@ -2,8 +2,10 @@
  * CFile1.c
  *
  * Created: 10/18/2019 5:00:41 PM
- *  Author: Brandon
+ *  Author: Joseph Morga, Brandon Fong, Ahmad AlSarhan
  */ 
+
+/*** INPUT ***/
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -26,7 +28,6 @@ void adc_init() {
 	
 	/* ADCSRB
 	 * Since we are reading when timer 0 finishes counting to A, we are reading at the same time
-	 * TODO do we need to multiplex.  Read line 43 off ADConverter.c
 	 */
 	ADCSRB = (1<<ADTS1)|(1<<ADTS0);
 }

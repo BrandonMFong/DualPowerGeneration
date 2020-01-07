@@ -2,7 +2,7 @@
  * Param_Const_GLVar.h
  *
  * Created: 11/3/2019 8:21:35 AM
- *  Author: Brandon
+ *  Author: Joseph Morga, Brandon Fong, Ahmad AlSarhan
  */ 
 
 
@@ -23,6 +23,15 @@
 #define CHANNEL_RESISTOR_2  2
 #define CHANNEL_RESISTOR_3  3
 
+#define JOINT_1_init (1<<DDB0)
+#define JOINT_2_init (1<<DDB1)
+#define JOINT_1_move (1<<PORTB0)
+#define JOINT_2_move (1<<PORTB1)
+#define X_AXIS_0_1 true
+#define NOT_X_AXIS_0_1 false
+#define Y_AXIS_2_3 true
+#define NOT_Y_AXIS_2_3 false
+
 
 
 /*** PROTOTYPES ***/
@@ -36,5 +45,7 @@ void initTimer2();
 void adc_init();
 uint16_t adc_read(uint8_t ch);
 void dac_init();
+void moveJoint();
+void dac_write_digital()
 
 #endif /* GLOBAL_VARIABLES_H_ */
