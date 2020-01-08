@@ -23,14 +23,12 @@
 #define CHANNEL_RESISTOR_2  2
 #define CHANNEL_RESISTOR_3  3
 
-#define JOINT_1_init (1<<DDB0)
-#define JOINT_2_init (1<<DDB1)
-#define JOINT_1_move (1<<PORTB0)
-#define JOINT_2_move (1<<PORTB1)
-#define X_AXIS_0_1 true
-#define NOT_X_AXIS_0_1 false
-#define Y_AXIS_2_3 true
-#define NOT_Y_AXIS_2_3 false
+#define JOINT_1_init_X (1<<DDB0)
+#define JOINT_2_init_Y (1<<DDB1)
+#define JOINT_1_move_X (1<<PORTB0)
+#define JOINT_2_move_Y (1<<PORTB1)
+#define is_X_AXIS_0_1 true
+#define is_Y_AXIS_2_3 false
 
 
 

@@ -39,7 +39,7 @@ ISR (TIMER0_COMPA_vect)
 	else if(res1 > res0) movePanelTo(EAST, res1, res0, &motorFactor_or_whatever);
 	
 	/* Call the output function to turn on the motor */
-	moveJoint(X_AXIS_0_1, NOT_Y_AXIS_2_3, &motorFactor_or_whatever);
+	moveJoint(is_X_AXIS_0_1 ,&motorFactor_or_whatever);
 }
 
 ISR (TIMER0_COMPB_vect)
@@ -51,7 +51,7 @@ ISR (TIMER0_COMPB_vect)
 	else if(res3 > res2) movePanelTo(SOUTH, res3, res2, &motorFactor_or_whatever);
 	
 	/* Call the output function to turn on the motor */
-	moveJoint(NOT_X_AXIS_0_1, Y_AXIS_2_3, &motorFactor_or_whatever);
+	moveJoint(is_Y_AXIS_2_3, &motorFactor_or_whatever);
 }
 
 /* Interrupt for ADC Converter

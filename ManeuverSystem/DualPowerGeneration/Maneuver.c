@@ -27,13 +27,13 @@ void movePanelTo(int direction, double resA, double resB, double * drive_motor_f
 }
 
 // Right now we want to use two motors
-void moveJoint(bool x_axis, bool y_axis, double * drive_motor_factor)
+void moveJoint(bool is_x_axis, double * drive_motor_factor)
 {
-	if(x_axis)
+	if(is_x_axis)
 	{
 		dac_write_digital(*drive_motor_factor);
 	}
-	else //y_axis
+	else
 	{
 		dac_write_digital(*drive_motor_factor);
 	}
