@@ -39,17 +39,16 @@ void dac_init()
  * figure out how to decode Joseph's drivefactor logic to the correct analog output
  * Might need to add more parameters
  */
-void dac_write_digital(bool x_motor, bool y_motor, double value)
+void dac_write_digital(bool x_actuator, bool y_actuator, double value)
 {
-	if(x_motor)
+	if(x_actuator)
 	{
 		PORTB &= value;
 	}
-	else if(y_motor)
+	else // y_actuator
 	{
 		PORTB &= value;
 	}
-	else
 }
 
 void dac_write_analog()
