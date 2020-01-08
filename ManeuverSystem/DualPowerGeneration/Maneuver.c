@@ -33,10 +33,9 @@ void moveJoint(bool x_axis, bool y_axis, double * drive_motor_factor)
 	{
 		dac_write_digital(*drive_motor_factor);
 	}
-	else if(y_axis)
+	else //y_axis
 	{
 		dac_write_digital(*drive_motor_factor);
 	}
-	else 
 }
 
