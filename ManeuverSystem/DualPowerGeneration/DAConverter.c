@@ -30,37 +30,9 @@ void dac_init()
  * figure out how to decode Joseph's drivefactor logic to the correct analog output
  * Might need to add more parameters
  */
-//void dac_write_digital(bool is_x_actuator, double value)
-//{
-	//if(is_x_actuator)
-	//{
-		//if(value == 1) //forward
-		//{
-			//PORTB &= JOINT_1_move_X;
-		//}
-		//else //reverse
-		//{
-			//PORTB &= JOINT_1_move_X; // How do you establish a reverse?
-		//}
-	//}
-	//else
-	//{
-		//if(value == 1) //forward
-		//{
-			//PORTB &= JOINT_2_move_Y;
-		//}
-		//else //reverse
-		//{
-			//PORTB &= JOINT_2_move_Y;// How do you establish a reverse?
-		//}
-	//}
-//}
-
-// Right now we want to use two motors or actuators 
-void dac_write_digital(int axis, double * drive_motor_factor)
+void dac_write_digital(bool x_actuator, bool y_actuator, double value)
 {
-	switch(axis)
-	case is_X_AXIS_0_1: 
+	if(x_actuator)
 	{
 		switch(*drive_motor_factor)
 		case 1: //forward
@@ -75,7 +47,7 @@ void dac_write_digital(int axis, double * drive_motor_factor)
 		}
 		default: {PORTB &= JOINT_1_dont_move_X|JOINT_2_dont_move_Y;break;}
 	}
-	case is_Y_AXIS_2_3: 
+	else // y_actuator
 	{
 		switch(*drive_motor_factor)
 		case 1: //forward
@@ -88,7 +60,6 @@ void dac_write_digital(int axis, double * drive_motor_factor)
 		}
 		default: {PORTB &= JOINT_1_dont_move_X|JOINT_2_dont_move_Y;break;}
 	}
-	default: {PORTB &= JOINT_1_dont_move_X|JOINT_2_dont_move_Y;break;}
 }
 // TODO 
 // If I make a pulse width here, I would put its own timer sequence here
