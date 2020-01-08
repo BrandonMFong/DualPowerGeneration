@@ -30,9 +30,9 @@ void dac_init()
  * figure out how to decode Joseph's drivefactor logic to the correct analog output
  * Might need to add more parameters
  */
-void dac_write_digital(bool x_actuator, bool y_actuator, double value)
+void dac_write_digital(bool is_x_actuator, double value)
 {
-	if(x_actuator)
+	if(is_x_actuator)
 	{
 		switch(*drive_motor_factor)
 		case 1: //forward
@@ -47,7 +47,7 @@ void dac_write_digital(bool x_actuator, bool y_actuator, double value)
 		}
 		default: {PORTB &= JOINT_1_dont_move_X|JOINT_2_dont_move_Y;break;}
 	}
-	else // y_actuator
+	else
 	{
 		switch(*drive_motor_factor)
 		case 1: //forward
