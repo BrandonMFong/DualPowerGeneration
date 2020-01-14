@@ -16,13 +16,13 @@ pushd /home/dualpower/public_ftp/incoming/FTP
         do
                 # Testing if archive exists
                 dir=archive/
-                # if [ -d "$dir" ]
-                # then
-                #         echo "$dir Exists\n";
-                # else
-                #         mkdir archive;
-                #         echo "$dir does not exist...\nMade directory.\n";
-                # fi
+                if [ -d "$dir" ]
+                then
+                        echo "$dir Exists\n";
+                else
+                        mkdir archive;
+                        echo "$dir does not exist...\nMade directory.\n";
+                fi
                 # above does not seem to work
                 # it's fine if I made the directory myself, but if we are serving many different clients with different
                 # servers then it would be ideal to have these lines of code to work
