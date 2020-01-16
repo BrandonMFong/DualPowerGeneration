@@ -27,8 +27,11 @@
 #define JOINT_2_init_Y (1<<DDB1)
 #define JOINT_1_move_X (1<<PORTB0)
 #define JOINT_2_move_Y (1<<PORTB1)
-#define is_X_AXIS_0_1 true
-#define is_Y_AXIS_2_3 false
+#define JOINT_1_dont_move_X (0<<PORTB0)
+#define JOINT_2_dont_move_Y (0<<PORTB1)
+#define is_X_AXIS_0_1 1
+#define is_Y_AXIS_2_3 2
+#define is_x_actuator 1
 
 
 

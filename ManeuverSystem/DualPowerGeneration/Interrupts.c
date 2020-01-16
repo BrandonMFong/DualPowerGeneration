@@ -14,6 +14,7 @@
 
 double motorFactor_or_whatever = 0.00;
 
+// Might need to change the data type for these res[0 - 3] cuz adc_read() returns uint16_t
 double res0;    //West Resistor
 double res1;    //East Resistor
 
@@ -30,6 +31,7 @@ double res3;    // South
  */
 
 // Joseph below is how I put the adc values from the resistors into your variables.  
+// Good job on using the adc_read() twice in one timer interrupt.  Honestly didn't think of that -Brandon
 ISR (TIMER0_COMPA_vect)
 {
 	res0 = adc_read(CHANNEL_RESISTOR_0);
@@ -39,7 +41,7 @@ ISR (TIMER0_COMPA_vect)
 	else if(res1 > res0) movePanelTo(EAST, res1, res0, &motorFactor_or_whatever);
 	
 	/* Call the output function to turn on the motor */
-	moveJoint(is_X_AXIS_0_1 ,&motorFactor_or_whatever);
+	dac_write_digital(is_X_AXIS_0_1 ,&motorFactor_or_whatever);
 }
 
 ISR (TIMER0_COMPB_vect)
@@ -51,7 +53,7 @@ ISR (TIMER0_COMPB_vect)
 	else if(res3 > res2) movePanelTo(SOUTH, res3, res2, &motorFactor_or_whatever);
 	
 	/* Call the output function to turn on the motor */
-	moveJoint(is_Y_AXIS_2_3, &motorFactor_or_whatever);
+	dac_write_digital(is_Y_AXIS_2_3, &motorFactor_or_whatever);
 }
 
 /* Interrupt for ADC Converter
