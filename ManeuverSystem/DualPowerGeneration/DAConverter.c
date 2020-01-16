@@ -30,36 +30,159 @@ void dac_init()
  * figure out how to decode Joseph's drivefactor logic to the correct analog output
  * Might need to add more parameters
  */
-void dac_write_digital(bool is_x_actuator, double value)
+//void dac_write_digital(bool is_x_actuator, double value)
+//{
+	//if(is_x_actuator)
+	//{
+		//if(value == 1) //forward
+		//{
+			//PORTB &= JOINT_1_move_X;
+		//}
+		//else //reverse
+		//{
+			//PORTB &= JOINT_1_move_X; // How do you establish a reverse?
+		//}
+	//}
+	//else
+	//{
+		//if(value == 1) //forward
+		//{
+			//PORTB &= JOINT_2_move_Y;
+		//}
+		//else //reverse
+		//{
+			//PORTB &= JOINT_2_move_Y;// How do you establish a reverse?
+		//}
+	//}
+//}
+
+// Right now we want to use two motors or actuators 
+void dac_write_digital(int axis, double * drive_motor_factor)
 {
-	if(is_x_actuator)
+	switch(axis)
+	case is_X_AXIS_0_1: 
 	{
-		if(value == 1) //forward
+		switch(*drive_motor_factor)
+		case 1: //forward
 		{
 			PORTB &= JOINT_1_move_X;
+			break;
 		}
-		else //reverse
+		case -1: //reverse
 		{
 			PORTB &= JOINT_1_move_X; // How do you establish a reverse?
+			break;
 		}
+		default: {PORTB &= JOINT_1_dont_move_X|JOINT_2_dont_move_Y;break;}
 	}
-	else
+	case is_Y_AXIS_2_3: 
 	{
-		if(value == 1) //forward
+		switch(*drive_motor_factor)
+		case 1: //forward
 		{
 			PORTB &= JOINT_2_move_Y;
 		}
-		else //reverse
+		case -1: //reverse
 		{
 			PORTB &= JOINT_2_move_Y;// How do you establish a reverse?
 		}
+		default: {PORTB &= JOINT_1_dont_move_X|JOINT_2_dont_move_Y;break;}
 	}
+	default: {PORTB &= JOINT_1_dont_move_X|JOINT_2_dont_move_Y;break;}
 }
 // TODO 
-// If I make a pulse width here, I would put its own timer sequence her
+// If I make a pulse width here, I would put its own timer sequence here
 // But what if an interrupt is called?
 // Does a linear actuator need an analog signal?
-void dac_write_analog()
+/*
+ * This might stay in this function until resistors are the same
+ * is that safe?
+ */
+void dac_write_analog(int channelA, int channelB, int axis, double * drive_motor_factor)
 {
-	// TODO figure out pulse width modulation
+	// TODO put reverse mode and distinguish the joint movements.  Might have to put another case
+	int msec = 10000;
+	uint16_t resA = adc_read(channelA);
+	uint16_t resB = adc_read(channelB);
+	switch(axis)
+	{
+		case is_X_AXIS_0_1: 
+		{
+			if (resA > resB)
+			{
+				do
+				{
+					resA = adc_read(channelA);
+					resB = adc_read(channelB);
+					_delay_ms(msec);
+					PORTB &= JOINT_1_move_X;
+				} while (resA > (resB/2));
+				
+				do
+				{
+					resA = adc_read(channelA);
+					resB = adc_read(channelB);
+					_delay_ms(msec);
+					PORTB &= JOINT_1_move_X;
+				} while (resA > resB/2);
+			}
+			else
+			{
+				do
+				{
+					resA = adc_read(channelA);
+					resB = adc_read(channelB);
+					_delay_ms(msec);
+					PORTB &= JOINT_1_move_X;
+				} while (resB > (resA/2));
+				
+				do
+				{
+					resA = adc_read(channelA);
+					resB = adc_read(channelB);
+					_delay_ms(msec);
+					PORTB &= JOINT_1_move_X;
+				} while (resB > resA);
+			}
+	}
+		case is_Y_AXIS_2_3:
+		{
+			if (resA > resB)
+			{
+				do
+				{
+					resA = adc_read(channelA);
+					resB = adc_read(channelB);
+					_delay_ms(msec);
+					PORTB &= JOINT_2_move_Y;
+				} while (resA > (resB/2));
+			
+				do
+				{
+					resA = adc_read(channelA);
+					resB = adc_read(channelB);
+					_delay_ms(msec);
+					PORTB &= JOINT_2_move_Y;
+				} while (resA > resB/2);
+			}
+			else
+			{
+				do
+				{
+					resA = adc_read(channelA);
+					resB = adc_read(channelB);
+					_delay_ms(msec);
+					PORTB &= JOINT_2_move_Y;
+				} while (resB > (resA/2));
+			
+				do
+				{
+					resA = adc_read(channelA);
+					resB = adc_read(channelB);
+					_delay_ms(msec);
+					PORTB &= JOINT_2_move_Y;
+				} while (resB > resA);
+			}
+		}
+	}
 }
