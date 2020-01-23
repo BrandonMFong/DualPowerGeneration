@@ -11,5 +11,10 @@ MaxPowerTracker/MaxPower/__pycache__/*
 .vscode
 .well-known
 
+<<<<<<< HEAD
 ## USER DEFINED FILES ##
 VCODE_DualPowerGeneration.code-workspace
+=======
+# MANUEVER SYSTEM
+ManeuverSystem/DualPowerGeneration/Debug/* 
+>>>>>>> [Maneuver] Fixing build issue
