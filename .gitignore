@@ -5,3 +5,6 @@ logs/
 MaxPowerTracker/.vs/*
 .vscode
 .well-known
+
+# MANUEVER SYSTEM
+ManeuverSystem/DualPowerGeneration/Debug/* 
