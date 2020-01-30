@@ -47,7 +47,7 @@ pushd $FTP_dir
                 done < $current_working_file | mysql -u$username -p$password -D$database # might not need this mysql command
                 echo "Finished while loop for the insert query.";
 
-                mv $current_working_file $dir;
-                echo "Moved $current_working_file to $dir";
+                mv $current_working_file $Archive_dir;
+                echo "Moved $current_working_file to $Archive_dir";
         done 
 popd
