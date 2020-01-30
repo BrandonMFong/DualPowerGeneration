@@ -16,8 +16,8 @@ username="dualpower_BrandonMFong"
 password="dualpower27182"
 database="dualpower_DataCenter"
 Archive_dir="archive/"
-FTP_dir="B:/SOURCES/Repos/DualPowerGeneration/FTP"; # Testing locally
-#FTP_dir="/home/dualpower/public_ftp/incoming/FTP"; # On server
+#FTP_dir="B:/SOURCES/Repos/DualPowerGeneration/FTP"; # Testing locally
+FTP_dir="/home/dualpower/public_ftp/incoming/FTP"; # On server
 
 pushd FTP_dir
         while [ $(find . -maxdepth 1 -type f|wc -l) -gt 0 ]; # keeps reading files in dir until there are not more files in dir
