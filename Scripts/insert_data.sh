@@ -23,12 +23,12 @@ pushd FTP_dir
         while [ $(find . -maxdepth 1 -type f|wc -l) -gt 0 ]; # keeps reading files in dir until there are not more files in dir
         do
                 # Testing if archive existss
-                if [ -d $dir ] # TODO figure out error
+                if [ -d $Archive_dir ] # TODO figure out error
                 then
-                        echo "$dir Exists/n";
+                        echo "$Archive_dir Exists\n";
                 else
-                        mkdir archive;
-                        echo "$dir does not exist.../nMade directory./n";
+                        mkdir $Archive_dir;
+                        echo "$Archive_dir does not exist...\nMade directory.\n";
                 fi
 
                 echo "Removing empty files";
