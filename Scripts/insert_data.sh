@@ -11,6 +11,10 @@
 =======
 >>>>>>> editting reading .csv file syntax
 
+# Local Test Notes:
+# I cannot connect to the mysql server with the socket in my.cnf, what the freeaaaaaak
+# look for /etc/mysql/my.cnf
+
 # Important references:
 # http://lubos.rendek.org/import-data-from-csv-file-to-mysql-with-bash-script/
 # https://hoststud.com/resources/how-to-execute-mysql-queries-from-command-line-bash-shell.136/
