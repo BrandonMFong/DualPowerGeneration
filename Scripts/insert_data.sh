@@ -3,13 +3,6 @@
 #This script is to only interact with the dualpower_DataCenter db 
 # The purpose of this script is to read the .csv file that was sent and insert into the database
 # refer to /DualPowerGeneration/MaxPowerTracker/example_file.csv for the column descriptions
-<<<<<<< HEAD
-
-# Local Test Notes:
-# I cannot connect to the mysql server with the socket in my.cnf, what the freeaaaaaak
-# look for /etc/mysql/my.cnf
-=======
->>>>>>> editting reading .csv file syntax
 
 # Local Test Notes:
 # I cannot connect to the mysql server with the socket in my.cnf, what the freeaaaaaak
