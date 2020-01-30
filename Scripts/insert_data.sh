@@ -2,6 +2,10 @@
 # The purpose of this script is to read the .csv file that was sent and insert into the database
 # refer to /DualPowerGeneration/MaxPowerTracker/example_file.csv for the column descriptions
 
+# Local Test Notes:
+# I cannot connect to the mysql server with the socket in my.cnf, what the freeaaaaaak
+# look for /etc/mysql/my.cnf
+
 # Important references:
 # http://lubos.rendek.org/import-data-from-csv-file-to-mysql-with-bash-script/
 # https://hoststud.com/resources/how-to-execute-mysql-queries-from-command-line-bash-shell.136/
