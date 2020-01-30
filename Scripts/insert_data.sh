@@ -23,10 +23,8 @@ pushd $FTP_dir
         while [ $(find . -maxdepth 1 -type f|wc -l) -gt 0 ]; # keeps reading files in dir until there are not more files in dir
         do
                 # Testing if archive existss
-                if [ -d $Archive_dir ] # TODO figure out error
+                if ! [ -d $Archive_dir ] # TODO figure out error
                 then
-                        echo "$Archive_dir Exists";
-                else
                         mkdir $Archive_dir;
                         echo "$Archive_dir does not exist...Made directory.";
                 fi
@@ -44,9 +42,9 @@ pushd $FTP_dir
                 while IFS=,  read -r Client_ID DateTime Max_Power_for_Wind Max_Power_for_Solar
                 do
                         # Query string
-                        #query=
+                        # This accesses the db correctly but it now says that client does not exist in the directory
                         echo "set @Solar_ID = (select Solar_ID from client as cl join device_client as dc on cl.ID = dc.Client_ID join device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID); set @Wind_ID = (select Solar_ID from client as cl join device_client as dc on cl.ID = dc.Client_ID join device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID); insert into solar (ID,Time,Power) values (@Solar_ID, '$DateTime', $Max_Power_for_Solar); insert into wind (ID,Time,Power) values (@Wind_ID, '$DateTime', $Max_Power_for_Wind);";
-                        #mysql -u$username -p$password -D$database -e$query # this is how you access the mysql terminal
+                     
                 # This should be a FIFO procedure for the files coming into the server
                 done < $current_working_file | mysql -u$username -p$password -D$database # might not need this mysql command
                 echo "Finished while loop for the insert query.";
