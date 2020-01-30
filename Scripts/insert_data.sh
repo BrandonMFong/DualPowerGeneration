@@ -44,7 +44,7 @@ pushd FTP_dir
                         query="set @Solar_ID = (select Solar_ID from client as cl join device_client as dc on cl.ID = dc.Client_ID join device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID); set @Wind_ID = (select Solar_ID from client as cl join device_client as dc on cl.ID = dc.Client_ID join device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID); insert into solar (ID,Time,Power) values (@Solar_ID, '$DateTime', $Max_Power_for_Solar); insert into wind (ID,Time,Power) values (@Wind_ID, '$DateTime', $Max_Power_for_Wind);";
                         mysql -u$username -p$password -D$database -e$query # this is how you access the mysql terminal
                 # This should be a FIFO procedure for the files coming into the server
-                done < $current_working_file #| mysql -u$username -p$password -D$database # might not need this mysql command
+                done < $current_working_file | mysql -u$username -p$password -D$database # might not need this mysql command
                 echo "Finished while loop for the insert query.";
 
                 mv $current_working_file $dir;
