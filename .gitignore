@@ -5,3 +5,4 @@ logs/
 MaxPowerTracker/.vs/*
 .vscode
 .well-known
+VCODE_DualPowerGeneration.code-workspace
