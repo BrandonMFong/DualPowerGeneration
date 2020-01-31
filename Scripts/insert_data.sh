@@ -1,4 +1,6 @@
-# This script is to only interact with the dualpower_DataCenter db 
+# Engineer: Brandon Fong
+#
+#This script is to only interact with the dualpower_DataCenter db 
 # The purpose of this script is to read the .csv file that was sent and insert into the database
 # refer to /DualPowerGeneration/MaxPowerTracker/example_file.csv for the column descriptions
 
@@ -20,6 +22,7 @@ Archive_dir="archive/"
 FTP_dir="/home/dualpower/public_ftp/incoming/FTP"; # On server
 
 pushd $FTP_dir
+        # TODO To run automatically, change while to if and nest entire if statement in an infinite while loop
         while [ $(find . -maxdepth 1 -type f|wc -l) -gt 0 ]; # keeps reading files in dir until there are not more files in dir
         do
                 # Testing if archive existss
