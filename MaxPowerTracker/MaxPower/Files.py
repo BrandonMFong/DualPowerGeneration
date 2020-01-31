@@ -108,4 +108,6 @@ class Log_Handler:
     def Close_File():
         System.Log.close();
         System.Log = 0; # clear variable
+        print("\nMaintenance check in \\logs\\MaxPower.  Delete files if space is needed");
+        # TODO zip folders or delete to save space
 
