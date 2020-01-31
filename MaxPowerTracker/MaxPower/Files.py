@@ -52,7 +52,7 @@ class File_Handler:
         Date_and_Time = datetime.datetime.now(); # gets current date and time
         try:
             System.File.write("{}, {}, {}, {}\n" .format(Client.ID,
-                Date_and_Time.strftime("%m-%d-%Y %H:%M:%S"), wind_data, solar_data));
+                Date_and_Time.strftime("%Y-%m-%d %H:%M:%S"), wind_data, solar_data));
         except OSError:
             print("Writing of file failed\n");
             return 1;
@@ -108,4 +108,6 @@ class Log_Handler:
     def Close_File():
         System.Log.close();
         System.Log = 0; # clear variable
+        print("\nMaintenance check in \\logs\\MaxPower.  Delete files if space is needed");
+        # TODO zip folders or delete to save space
 
