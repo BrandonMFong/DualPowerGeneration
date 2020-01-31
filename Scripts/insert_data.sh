@@ -67,7 +67,6 @@ pushd $FTP_dir
                         mv $current_working_file $Archive_dir;
                         echo "Moved $current_working_file to $Archive_dir";
                 else
-                then
                         echo "Waiting for more files...";
                         sleep $DelayVar;
                 fi
