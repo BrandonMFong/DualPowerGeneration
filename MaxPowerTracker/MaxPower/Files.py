@@ -52,7 +52,7 @@ class File_Handler:
         Date_and_Time = datetime.datetime.now(); # gets current date and time
         try:
             System.File.write("{}, {}, {}, {}\n" .format(Client.ID,
-                Date_and_Time.strftime("%m-%d-%Y %H:%M:%S"), wind_data, solar_data));
+                Date_and_Time.strftime("%Y-%m-%d %H:%M:%S"), wind_data, solar_data));
         except OSError:
             print("Writing of file failed\n");
             return 1;
