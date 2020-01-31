@@ -43,7 +43,13 @@ pushd $FTP_dir
                 do
                         # Query string
                         # This accesses the db correctly but it now says that client does not exist in the directory
-                        echo "set @Solar_ID = (select Solar_ID from Client as cl join Device_Client as dc on cl.ID = dc.Client_ID join Device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID); set @Wind_ID = (select Solar_ID from Client as cl join Device_Client as dc on cl.ID = dc.Client_ID join Device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID); insert into Solar (ID,Time,Power) values (@Solar_ID, '$DateTime', $Max_Power_for_Solar); insert into Wind (ID,Time,Power) values (@Wind_ID, '$DateTime', $Max_Power_for_Wind);";
+                        querystring="set @Solar_ID = (select Solar_ID from Client as cl join Device_Client as dc";
+                        querystring+=" on cl.ID = dc.Client_ID join Device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID);";
+                        querystring+=" set @Wind_ID = (select Wind_ID from Client as cl join Device_Client as dc";
+                        querystring+=" on cl.ID = dc.Client_ID join Device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID);";
+                        querystring+=" insert into Solar (ID,Time,Power) values (@Solar_ID, '$DateTime', $Max_Power_for_Solar);";
+                        querystring+=" insert into Wind (ID,Time,Power) values (@Wind_ID, '$DateTime', $Max_Power_for_Wind);";
+                        echo -n "${querystring}";
                      
                 # This should be a FIFO procedure for the files coming into the server
                 done < $current_working_file | mysql -u$username -p$password -D$database # might not need this mysql command
