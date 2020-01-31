@@ -1,7 +1,15 @@
-# Ignore all ppk files
+## SSH ##
 *.ppk
+
+## MAX POWER FILES
 /FTP/*
 logs/
 MaxPowerTracker/.vs/*
+MaxPowerTracker/MaxPower/__pycache__/*
+
+## SITE ## 
 .vscode
 .well-known
+
+## USER DEFINED FILES ##
+VCODE_DualPowerGeneration.code-workspace
