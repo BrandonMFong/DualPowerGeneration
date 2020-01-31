@@ -43,6 +43,8 @@ pushd $FTP_dir
                 do
                         # Query string
                         # This accesses the db correctly but it now says that client does not exist in the directory
+                        echo "Date time variable";
+                        echo $DateTime;
                         querystring="set @Solar_ID = (select Solar_ID from Client as cl join Device_Client as dc";
                         querystring+=" on cl.ID = dc.Client_ID join Device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID);";
                         querystring+=" set @Wind_ID = (select Wind_ID from Client as cl join Device_Client as dc";
