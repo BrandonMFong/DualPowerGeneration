@@ -6,7 +6,7 @@ echo "The path to DualPowerGeneration gitrepo:"
 rem -9 strips the \Scripts\ from the string
 set GitRepoPath=%GitRepoPath:~0,-9% 
 rem TODO how the heck do you concatenate!
-set FTPPath=%GitRepoPath% & "\FTP"
+set FTPPath=%GitRepoPath:~0, -1%\FTP
 echo %GitRepoPath%
 echo %FTPPath%
 
@@ -27,7 +27,7 @@ if %WINSCP_RESULT% equ 0 (
 
   pushd %FTPPath%
     if exist \archive\ (
-      mkdir archive;
+     rem mkdir archive;
       echo Created archive directory
     )
     rem move *.* \archive\;
