@@ -17,7 +17,7 @@ def init():
     File = 0;
     Log = 0;
     delay = 1; 
-    Max_Lines = 10;
+    Max_Lines = 3;
 
 # Counts to Seconds
 def timer():
