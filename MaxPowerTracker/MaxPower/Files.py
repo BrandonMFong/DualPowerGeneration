@@ -17,6 +17,7 @@ from System import Client
 import datetime
 import os
 import System
+import shutil
 
 class File_Handler:
     def Init_File(): # function to create a file
@@ -111,3 +112,13 @@ class Log_Handler:
         print("\nMaintenance check in \\logs\\MaxPower.  Delete files if space is needed");
         # TODO zip folders or delete to save space
 
+class Archive_Handler:
+    # https://thispointer.com/python-how-to-create-a-zip-archive-from-multiple-files-or-directory/
+    #https://stackoverflow.com/questions/8858008/how-to-move-a-file-in-python
+    # This is to ensure space on the device does not get backed up
+    # I can either archive or delete
+
+    def MoveToArchive():
+        # Count files in directory
+        # Move files accordingly
+        # Then either zip or delete if space gets taken up

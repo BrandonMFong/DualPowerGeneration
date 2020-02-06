@@ -26,16 +26,6 @@ set WINSCP_RESULT=%ERRORLEVEL%
 if %WINSCP_RESULT% equ 0 (
   rem successful ftp
   echo Let's get itttttttt
-  rem does not push to the directory 
-  pushd %FTPPath%
-    echo %CD%
-    if exist \archive\ (
-      mkdir archive;
-      echo Created archive directory
-    )
-    rem move *.* \archive\;
-    rem echo Moved files to archive
-  popd
 ) else (
   rem failed ftp
   echo Bruh 
