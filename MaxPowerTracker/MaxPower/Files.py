@@ -14,31 +14,39 @@
 
 ### LIBRARIES ###
 from System import Client
+from zipfile import ZipFile
 import datetime
 import os
 import System
+import shutil
 
+FTPDir = "../../FTP"; # defines where the file will be imported
+LogForMaxPowerDir = "../../logs/MaxPower"; # defines where the file will be imported
+FTPArchiveDir = "../../FTP/archive"; # defines where the file will be imported
+LOGArchiveDir = "../../logs/MaxPower/archive";
+
+
+def MakeDir(makepath):
+    if(not (os.path.isdir(makepath))): # if that directory doesn't exist, create it
+            try:
+                os.mkdir(makepath) # mkdir cmd 
+            except OSError:
+                print("\nCreation of the directory %s failed" % makepath); # Unsuccessful
+            else:
+                print("\nSuccessfully created the directory %s " % makepath); # Successful
+    else:
+        print("\nDirectory %s already exits.\n" % makepath);
+
+# Meant to write into files that are ready for FTP
 class File_Handler:
     def Init_File(): # function to create a file
 
         Date_and_Time = datetime.datetime.now(); # gets current date and time
+        MakeDir(FTPDir);
 
-        # This path below may change depending on where the script is in the raspberry pi
-        # This ignored in git repo
-        makepath = "../../FTP" # defines where the file will be imported
-
-        if(not (os.path.isdir(makepath))): # if that directory doesn't exist, create it
-            try:
-                os.mkdir(makepath) #mkdir cmd 
-            except OSError:
-                print("Creation of the directory %s failed" % makepath) # Unsuccessful
-            else:
-                print("Successfully created the directory %s " % makepath) # Successful
-        else:
-            print("FTP already exits.");
         # Creates the file to be injected by our power tracker
         # This will be sent through FTP via script to our remote server
-        filename = makepath + "/maxpower_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + ".csv"; 
+        filename = FTPDir + "/maxpower_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + ".csv"; 
         try:
             System.File = open(filename,"w+"); # this file is global
         except OSError:
@@ -54,10 +62,13 @@ class File_Handler:
             System.File.write("{}, {}, {}, {}\n" .format(Client.ID,
                 Date_and_Time.strftime("%Y-%m-%d %H:%M:%S"), wind_data, solar_data));
         except OSError:
-            print("Writing of file failed\n");
+            print("\nWriting of file failed\n");
             return 1;
+        except AttributeError as ex:
+            print("in file");
+            print(ex);
         else:
-            print("Writing successful\n");
+            print("\nWriting successful\n");
             return 0;
 
     def Close_File():
@@ -70,38 +81,29 @@ class Log_Handler:
     def Init_File(): # function to create a file
 
         Date_and_Time = datetime.datetime.now(); # gets current date and time
+        MakeDir(LogForMaxPowerDir);
 
-        # This path below may change depending on where the script is in the raspberry pi
-        # This ignored in git repo
-        makepath = "../../logs/MaxPower" # defines where the file will be imported
-
-        if(not (os.path.isdir(makepath))): # if that directory doesn't exist, create it
-            try:
-                os.mkdir(makepath) #mkdir cmd 
-            except OSError:
-                print("Creation of the directory %s failed" % makepath) # Unsuccessful
-            else:
-                print("Successfully created the directory %s " % makepath) # Successful
-        else:
-            print("logs already exits.");
         # Creates the file to be injected by our power tracker
         # This will be sent through FTP via script to our remote server
-        filename = makepath +  "/MaxPowerLog_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + ".log"; 
+        filename = LogForMaxPowerDir +  "/MaxPowerLog_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + ".log"; 
         try:
             System.Log = open(filename,"w+"); # this file is global
         except OSError:
-            print("Creation of file %s failed." % filename);
+            print("\nCreation of file %s failed." % filename);
             return 1;
         else:
-            print("Successfully created file: %s" % filename);
+            print("\nSuccessfully created file: %s" % filename);
             return 0;
 
     def Write_Log(string):
         try:
             System.Log.write(string);
         except OSError:
-            print("Writing log failed\n");
+            print("\nWriting log failed\n");
             return 1;
+        except AttributeError as ex:
+            print("in log");
+            print(ex);
         else:
             return 0;
 
@@ -109,5 +111,60 @@ class Log_Handler:
         System.Log.close();
         System.Log = 0; # clear variable
         print("\nMaintenance check in \\logs\\MaxPower.  Delete files if space is needed");
-        # TODO zip folders or delete to save space
+        
 
+# Moves files into an archive folder and zips it up when it is past a certain number of files
+class Archive_Handler:
+    def ArchiveFiles():
+
+        MakeDir(FTPArchiveDir);
+        MakeDir(LOGArchiveDir);
+
+        # In FTP Folder
+        CSVFiles = os.listdir(FTPDir);
+        for f in CSVFiles:
+            if f.endswith(".csv"):
+                FilePath = FTPDir + "/" + f;
+                shutil.move(FilePath, FTPArchiveDir);
+                print("\nMoved %s to archive folder\n" % f);
+
+        # In logs\MaxPower Folder
+        LOGFiles = os.listdir(LogForMaxPowerDir);
+        for f in LOGFiles:
+            if f.endswith(".log"):
+                FilePath = LogForMaxPowerDir + "/" + f;
+                shutil.move(FilePath, LOGArchiveDir);
+                print("\nMoved %s to archive folder\n" % f);
+
+        # Checks archive folder to zip
+        # Note you need 7z to unzip the zip file on windows
+        # TODO test linux environment
+
+        # In FTP archive Folder
+        FTPArchivedFiles = os.listdir(FTPArchiveDir);
+        if (FTPArchivedFiles.__len__()) > 10:
+            print("\nBeginning to zip files in %s\n" % FTPArchiveDir)
+            filename = FTPArchiveDir +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ".zip"; 
+            zipper = ZipFile(filename, 'w');
+            for f in FTPArchivedFiles:
+                if f.endswith(".csv"):
+                    FilePath = FTPArchiveDir + "/" + f;
+                    zipper.write(FilePath);
+                    os.remove(FilePath);
+            zipper.close();
+            print("\nZipped files in %s\n" % FTPArchiveDir);
+            
+        # In logs\MaxPower archive Folder
+        LOGArchivedFiles = os.listdir(LOGArchiveDir);
+        if (LOGArchivedFiles.__len__()) > 10:
+            print("\nBeginning to zip files in %s\n" % LOGArchiveDir)
+            filename = LOGArchiveDir +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ".zip"; 
+            zipper = ZipFile(filename, 'w');
+            for f in LOGArchivedFiles:
+                if f.endswith(".csv"):
+                    FilePath = LOGArchiveDir + "/" + f;
+                    zipper.write(FilePath);
+                    os.remove(FilePath);
+            zipper.close();
+            print("\nZipped files in %s\n" % LOGArchiveDir);
+        

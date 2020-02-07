@@ -1,14 +1,16 @@
 @echo off
-
+echo.
 rem This allows the script to run on any machine in any directory
 set GitRepoPath=%~dp0
-echo "The path to DualPowerGeneration gitrepo:"
 rem -9 strips the \Scripts\ from the string
 set GitRepoPath=%GitRepoPath:~0,-9% 
-rem TODO how the heck do you concatenate!
-set FTPPath=%GitRepoPath% & "\FTP"
+set FTPPath=%GitRepoPath:~0, -1%\FTP
+echo "The path to DualPowerGeneration gitrepo:"
 echo %GitRepoPath%
+echo.
+echo "The path to local FTP output folder:"
 echo %FTPPath%
+echo.
 
 
 rem The following is a command inputted for the winscp to send everything from our FTP folder to the server
@@ -19,24 +21,16 @@ rem The following is a command inputted for the winscp to send everything from o
     "cd /home/dualpower/public_ftp/incoming" ^
     "put FTP" ^
     "exit"
-
+rem TODO 'put' only .csv files in the current directory
 set WINSCP_RESULT=%ERRORLEVEL%
 if %WINSCP_RESULT% equ 0 (
   rem successful ftp
   echo Let's get itttttttt
-
-  pushd %FTPPath%
-    if exist \archive\ (
-      mkdir archive;
-      echo Created archive directory
-    )
-    rem move *.* \archive\;
-    rem echo Moved files to archive
-  popd
 ) else (
   rem failed ftp
   echo Bruh 
   dir 
 )
 
+echo.
 exit /b %WINSCP_RESULT%

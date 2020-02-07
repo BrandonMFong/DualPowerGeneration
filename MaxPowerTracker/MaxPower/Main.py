@@ -7,7 +7,7 @@
 # In this section, we need to get IO from tachometer
 # TODO figure out how to interface with GPIO RPI with pyhton
 from FTP import FTP
-from Files import File_Handler, Log_Handler
+from Files import File_Handler, Log_Handler, Archive_Handler
 from random import random 
 from MaxPower_Classes import Max_Power_Wind, Max_Power_Solar 
 import MaxPower_Classes
@@ -78,8 +78,12 @@ while True:
         Log_Handler.Write_Log(os.path.basename(__file__) + "\n Total lines in file: {} \n" .format(i+1));
         i = i + 1;
 
-    File_Handler.Close_File; # Closes and saves file
-    Log_Handler.Close_File; # Closes and saves file
+    # Closes and saves file
+    File_Handler.Close_File();
+    Log_Handler.Close_File();
+
+    # Move Files to FTP/archive folder
+    Archive_Handler.ArchiveFiles();
     
     Sender.send_using_batch(); # Runs script to send via ftp
 
