@@ -78,8 +78,9 @@ while True:
         Log_Handler.Write_Log(os.path.basename(__file__) + "\n Total lines in file: {} \n" .format(i+1));
         i = i + 1;
 
-    File_Handler.Close_File; # Closes and saves file
-    Log_Handler.Close_File; # Closes and saves file
+    # Closes and saves file
+    File_Handler.Close_File;
+    Log_Handler.Close_File;
     
     Sender.send_using_batch(); # Runs script to send via ftp
 

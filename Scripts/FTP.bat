@@ -21,7 +21,7 @@ rem The following is a command inputted for the winscp to send everything from o
     "cd /home/dualpower/public_ftp/incoming" ^
     "put FTP" ^
     "exit"
-
+rem TODO 'put' only .csv files in the current directory
 set WINSCP_RESULT=%ERRORLEVEL%
 if %WINSCP_RESULT% equ 0 (
   rem successful ftp

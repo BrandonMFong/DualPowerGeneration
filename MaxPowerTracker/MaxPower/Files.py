@@ -19,6 +19,17 @@ import os
 import System
 import shutil
 
+def MakeDir(makepath):
+    if(not (os.path.isdir(makepath))): # if that directory doesn't exist, create it
+            try:
+                os.mkdir(makepath) # mkdir cmd 
+            except OSError:
+                print("\nCreation of the directory %s failed" % makepath); # Unsuccessful
+            else:
+                print("\nSuccessfully created the directory %s " % makepath); # Successful
+    else:
+        print("\nDirectory %s already exits.\n" % makepath);
+
 class File_Handler:
     def Init_File(): # function to create a file
 
@@ -28,15 +39,8 @@ class File_Handler:
         # This ignored in git repo
         makepath = "../../FTP" # defines where the file will be imported
 
-        if(not (os.path.isdir(makepath))): # if that directory doesn't exist, create it
-            try:
-                os.mkdir(makepath) #mkdir cmd 
-            except OSError:
-                print("Creation of the directory %s failed" % makepath) # Unsuccessful
-            else:
-                print("Successfully created the directory %s " % makepath) # Successful
-        else:
-            print("FTP already exits.");
+        MakeDir(makepath);
+
         # Creates the file to be injected by our power tracker
         # This will be sent through FTP via script to our remote server
         filename = makepath + "/maxpower_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + ".csv"; 
@@ -55,10 +59,10 @@ class File_Handler:
             System.File.write("{}, {}, {}, {}\n" .format(Client.ID,
                 Date_and_Time.strftime("%Y-%m-%d %H:%M:%S"), wind_data, solar_data));
         except OSError:
-            print("Writing of file failed\n");
+            print("\nWriting of file failed\n");
             return 1;
         else:
-            print("Writing successful\n");
+            print("\nWriting successful\n");
             return 0;
 
     def Close_File():
@@ -74,34 +78,27 @@ class Log_Handler:
 
         # This path below may change depending on where the script is in the raspberry pi
         # This ignored in git repo
-        makepath = "../../logs/MaxPower" # defines where the file will be imported
+        makepath = "../../logs/MaxPower"; # defines where the file will be imported
 
-        if(not (os.path.isdir(makepath))): # if that directory doesn't exist, create it
-            try:
-                os.mkdir(makepath) #mkdir cmd 
-            except OSError:
-                print("Creation of the directory %s failed" % makepath) # Unsuccessful
-            else:
-                print("Successfully created the directory %s " % makepath) # Successful
-        else:
-            print("logs already exits.");
+        MakeDir(makepath);
+
         # Creates the file to be injected by our power tracker
         # This will be sent through FTP via script to our remote server
         filename = makepath +  "/MaxPowerLog_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + ".log"; 
         try:
             System.Log = open(filename,"w+"); # this file is global
         except OSError:
-            print("Creation of file %s failed." % filename);
+            print("\nCreation of file %s failed." % filename);
             return 1;
         else:
-            print("Successfully created file: %s" % filename);
+            print("\nSuccessfully created file: %s" % filename);
             return 0;
 
     def Write_Log(string):
         try:
             System.Log.write(string);
         except OSError:
-            print("Writing log failed\n");
+            print("\nWriting log failed\n");
             return 1;
         else:
             return 0;
@@ -114,11 +111,21 @@ class Log_Handler:
 
 class Archive_Handler:
     # https://thispointer.com/python-how-to-create-a-zip-archive-from-multiple-files-or-directory/
-    #https://stackoverflow.com/questions/8858008/how-to-move-a-file-in-python
+    # https://stackoverflow.com/questions/8858008/how-to-move-a-file-in-python
+    # https://stackoverflow.com/questions/2632205/how-to-count-the-number-of-files-in-a-directory-using-python
     # This is to ensure space on the device does not get backed up
     # I can either archive or delete
 
-    def MoveToArchive():
+    def ArchiveFiles():
         # Count files in directory
         # Move files accordingly
         # Then either zip or delete if space gets taken up
+
+        # Testing if archive directory exists
+        makepath = "../../FTP/archive"; # defines where the file will be imported
+        AllCSVFiles = makepath + "/*.csv";
+        
+        MakeDir(makepath);
+        # Move *.csv files
+        shutil.move()
+
