@@ -14,10 +14,17 @@
 
 ### LIBRARIES ###
 from System import Client
+from zipfile import ZipFile
 import datetime
 import os
 import System
 import shutil
+
+FTPDir = "../../FTP"; # defines where the file will be imported
+LogForMaxPowerDir = "../../logs/MaxPower"; # defines where the file will be imported
+FTPArchiveDir = "../../FTP/archive"; # defines where the file will be imported
+LOGArchiveDir = "../../logs/MaxPower/archive";
+
 
 def MakeDir(makepath):
     if(not (os.path.isdir(makepath))): # if that directory doesn't exist, create it
@@ -34,11 +41,6 @@ class File_Handler:
     def Init_File(): # function to create a file
 
         Date_and_Time = datetime.datetime.now(); # gets current date and time
-
-        # This path below may change depending on where the script is in the raspberry pi
-        # This ignored in git repo
-        FTPDir = "../../FTP" # defines where the file will be imported
-
         MakeDir(FTPDir);
 
         # Creates the file to be injected by our power tracker
@@ -77,11 +79,6 @@ class Log_Handler:
     def Init_File(): # function to create a file
 
         Date_and_Time = datetime.datetime.now(); # gets current date and time
-
-        # This path below may change depending on where the script is in the raspberry pi
-        # This ignored in git repo
-        LogForMaxPowerDir = "../../logs/MaxPower"; # defines where the file will be imported
-
         MakeDir(LogForMaxPowerDir);
 
         # Creates the file to be injected by our power tracker
@@ -117,20 +114,29 @@ class Archive_Handler:
     # https://thispointer.com/python-how-to-create-a-zip-archive-from-multiple-files-or-directory/
     # https://stackoverflow.com/questions/8858008/how-to-move-a-file-in-python
     # https://stackoverflow.com/questions/2632205/how-to-count-the-number-of-files-in-a-directory-using-python
+    # https://stackoverflow.com/questions/42068699/moving-files-with-shutil-move
     # This is to ensure space on the device does not get backed up
     # I can either archive or delete
 
     def ArchiveFiles():
-        # Count files in directory
-        # Move files accordingly
-        # Then either zip or delete if space gets taken up
 
-        # Testing if archive directory exists
-        FTPArchiveDir = "../../FTP/archive"; # defines where the file will be imported
-        AllCSVFilesInFTPDir = "../../FTP/*.csv";
-        
-        MakeDir(makepath);
+        MakeDir(FTPArchiveDir);
+        MakeDir(LOGArchiveDir);
 
-        # Move *.csv files
-        shutil.move(AllCSVFilesInFTPDir, FTPArchiveDir);
+        # In FTP Folder
+        CSVFiles = os.listdir(FTPDir);
+        for f in CSVFiles:
+            if f.endswith(".csv"):
+                FilePath = FTPDir + "/" + f;
+                shutil.move(FilePath, FTPArchiveDir);
+
+        # In logs\MaxPower Folder
+        LOGFiles = os.listdir(LogForMaxPowerDir);
+        for f in LOGFiles:
+            if f.endswith(".log"):
+                FilePath = LogForMaxPowerDir + "/" + f;
+                shutil.move(FilePath, LOGArchiveDir);
+
+                
+
 

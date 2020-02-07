@@ -79,11 +79,11 @@ while True:
         i = i + 1;
 
     # Closes and saves file
-    File_Handler.Close_File;
-    Log_Handler.Close_File;
+    File_Handler.Close_File();
+    Log_Handler.Close_File();
 
     # Move Files to FTP/archive folder
-    Archive_Handler.ArchiveFiles;
+    Archive_Handler.ArchiveFiles();
     
     Sender.send_using_batch(); # Runs script to send via ftp
 
