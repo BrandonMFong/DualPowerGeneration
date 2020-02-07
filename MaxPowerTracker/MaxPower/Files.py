@@ -37,6 +37,7 @@ def MakeDir(makepath):
     else:
         print("\nDirectory %s already exits.\n" % makepath);
 
+# Meant to write into files that are ready for FTP
 class File_Handler:
     def Init_File(): # function to create a file
 
@@ -64,6 +65,7 @@ class File_Handler:
             print("\nWriting of file failed\n");
             return 1;
         except AttributeError as ex:
+            print("in file");
             print(ex);
         else:
             print("\nWriting successful\n");
@@ -100,6 +102,7 @@ class Log_Handler:
             print("\nWriting log failed\n");
             return 1;
         except AttributeError as ex:
+            print("in log");
             print(ex);
         else:
             return 0;
@@ -110,14 +113,8 @@ class Log_Handler:
         print("\nMaintenance check in \\logs\\MaxPower.  Delete files if space is needed");
         
 
+# Moves files into an archive folder and zips it up when it is past a certain number of files
 class Archive_Handler:
-    # https://thispointer.com/python-how-to-create-a-zip-archive-from-multiple-files-or-directory/
-    # https://stackoverflow.com/questions/8858008/how-to-move-a-file-in-python
-    # https://stackoverflow.com/questions/2632205/how-to-count-the-number-of-files-in-a-directory-using-python
-    # https://stackoverflow.com/questions/42068699/moving-files-with-shutil-move
-    # This is to ensure space on the device does not get backed up
-    # I can either archive or delete
-
     def ArchiveFiles():
 
         MakeDir(FTPArchiveDir);
@@ -129,6 +126,7 @@ class Archive_Handler:
             if f.endswith(".csv"):
                 FilePath = FTPDir + "/" + f;
                 shutil.move(FilePath, FTPArchiveDir);
+                print("\nMoved %s to archive folder\n" % f);
 
         # In logs\MaxPower Folder
         LOGFiles = os.listdir(LogForMaxPowerDir);
@@ -136,7 +134,37 @@ class Archive_Handler:
             if f.endswith(".log"):
                 FilePath = LogForMaxPowerDir + "/" + f;
                 shutil.move(FilePath, LOGArchiveDir);
+                print("\nMoved %s to archive folder\n" % f);
 
-                
+        # Checks archive folder to zip
+        # Note you need 7z to unzip the zip file on windows
+        # TODO test linux environment
 
-
+        # In FTP archive Folder
+        FTPArchivedFiles = os.listdir(FTPArchiveDir);
+        if (FTPArchivedFiles.__len__()) > 10:
+            print("\nBeginning to zip files in %s\n" % FTPArchiveDir)
+            filename = FTPArchiveDir +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ".zip"; 
+            zipper = ZipFile(filename, 'w');
+            for f in FTPArchivedFiles:
+                if f.endswith(".csv"):
+                    FilePath = FTPArchiveDir + "/" + f;
+                    zipper.write(FilePath);
+                    os.remove(FilePath);
+            zipper.close();
+            print("\nZipped files in %s\n" % FTPArchiveDir);
+            
+        # In logs\MaxPower archive Folder
+        LOGArchivedFiles = os.listdir(LOGArchiveDir);
+        if (LOGArchivedFiles.__len__()) > 10:
+            print("\nBeginning to zip files in %s\n" % LOGArchiveDir)
+            filename = LOGArchiveDir +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ".zip"; 
+            zipper = ZipFile(filename, 'w');
+            for f in LOGArchivedFiles:
+                if f.endswith(".csv"):
+                    FilePath = LOGArchiveDir + "/" + f;
+                    zipper.write(FilePath);
+                    os.remove(FilePath);
+            zipper.close();
+            print("\nZipped files in %s\n" % LOGArchiveDir);
+        
