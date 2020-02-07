@@ -37,13 +37,13 @@ class File_Handler:
 
         # This path below may change depending on where the script is in the raspberry pi
         # This ignored in git repo
-        makepath = "../../FTP" # defines where the file will be imported
+        FTPDir = "../../FTP" # defines where the file will be imported
 
-        MakeDir(makepath);
+        MakeDir(FTPDir);
 
         # Creates the file to be injected by our power tracker
         # This will be sent through FTP via script to our remote server
-        filename = makepath + "/maxpower_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + ".csv"; 
+        filename = FTPDir + "/maxpower_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + ".csv"; 
         try:
             System.File = open(filename,"w+"); # this file is global
         except OSError:
@@ -61,6 +61,8 @@ class File_Handler:
         except OSError:
             print("\nWriting of file failed\n");
             return 1;
+        except AttributeError as ex:
+            print(ex);
         else:
             print("\nWriting successful\n");
             return 0;
@@ -78,13 +80,13 @@ class Log_Handler:
 
         # This path below may change depending on where the script is in the raspberry pi
         # This ignored in git repo
-        makepath = "../../logs/MaxPower"; # defines where the file will be imported
+        LogForMaxPowerDir = "../../logs/MaxPower"; # defines where the file will be imported
 
-        MakeDir(makepath);
+        MakeDir(LogForMaxPowerDir);
 
         # Creates the file to be injected by our power tracker
         # This will be sent through FTP via script to our remote server
-        filename = makepath +  "/MaxPowerLog_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + ".log"; 
+        filename = LogForMaxPowerDir +  "/MaxPowerLog_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + ".log"; 
         try:
             System.Log = open(filename,"w+"); # this file is global
         except OSError:
@@ -100,6 +102,8 @@ class Log_Handler:
         except OSError:
             print("\nWriting log failed\n");
             return 1;
+        except AttributeError as ex:
+            print(ex);
         else:
             return 0;
 
@@ -107,7 +111,7 @@ class Log_Handler:
         System.Log.close();
         System.Log = 0; # clear variable
         print("\nMaintenance check in \\logs\\MaxPower.  Delete files if space is needed");
-        # TODO zip folders or delete to save space
+        
 
 class Archive_Handler:
     # https://thispointer.com/python-how-to-create-a-zip-archive-from-multiple-files-or-directory/
@@ -122,10 +126,11 @@ class Archive_Handler:
         # Then either zip or delete if space gets taken up
 
         # Testing if archive directory exists
-        makepath = "../../FTP/archive"; # defines where the file will be imported
-        AllCSVFiles = makepath + "/*.csv";
+        FTPArchiveDir = "../../FTP/archive"; # defines where the file will be imported
+        AllCSVFilesInFTPDir = "../../FTP/*.csv";
         
         MakeDir(makepath);
+
         # Move *.csv files
-        shutil.move()
+        shutil.move(AllCSVFilesInFTPDir, FTPArchiveDir);
 
