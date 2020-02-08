@@ -14,7 +14,7 @@
 # https://www.cyberciti.biz/faq/unix-linux-bash-read-comma-separated-cvsfile/
 
 set -e
-
+# awk '/delay/ {print}' MaxPower.xml
 ### VARIABLES ### 
 # credentials
 username="dualpower_BrandonMFong"
@@ -22,7 +22,8 @@ password="dualpower27182"
 database="dualpower_DataCenter"
 Archive_dir="archive/"
 #FTP_dir="B:/SOURCES/Repos/DualPowerGeneration/FTP"; # Testing locally
-FTP_dir="/home/dualpower/public_ftp/incoming/FTP"; # On server
+#FTP_dir="/home/dualpower/public_ftp/incoming/FTP"; # On server
+FTP_dir=$(awk -F '[<>]' '/delay/{print $3}' MaxPower.xml)
 DelayVar=5; # Delays for 5 seconds
 
 ### MAIN ###
