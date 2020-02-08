@@ -4,20 +4,24 @@
 #####################################################
 
 ### LIBRARIES ###
+from xml.dom import minidom
+from XML import xmlreader
 import time
+
+#xmlreader = minidom.parse('../../Config/EarthWindFire/MaxPower.xml');
 
 def init():
     # Delcare
-    global Seconds, File, delay, Max_Lines, Log;
+    global Seconds, File, delay, MaxLines, Log;
 
     # Initialize
-    # This will create Max_Lines, 1 line every Seconds passes
-    # Max_Lines * Seconds will pass
-    Seconds = 3; 
+    # This will create MaxLines, 1 line every Seconds passes
+    # MaxLines * Seconds will pass
+    Seconds = xmlreader.int('SecondsToCountForEachLine');
     File = 0;
     Log = 0;
-    delay = 1; 
-    Max_Lines = 3;
+    delay = xmlreader.int('delay');
+    MaxLines = xmlreader.int('MaxLinesForEachCSVFile');
 
 # Counts to Seconds
 def timer():
@@ -31,4 +35,4 @@ def timer():
     timer_flag = True;
 
 class Client:
-    ID = 1000; # Hard coding, TODO figure out a way to figure out client by device.  OS ip address? 
+    ID = xmlreader.int('ID'); # Hard coding, TODO figure out a way to figure out client by device.  OS ip address? 

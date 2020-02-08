@@ -42,6 +42,9 @@
     <Compile Include="FTP.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="XML.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="System.py">
       <SubType>Code</SubType>
     </Compile>

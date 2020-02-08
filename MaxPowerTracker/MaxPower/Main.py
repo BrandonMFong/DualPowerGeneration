@@ -37,7 +37,7 @@ while True:
     
     i = 0;
     # Main loop
-    while i < System.Max_Lines:
+    while i < System.MaxLines:
         ### TIMER ### 
         THREAD_Timer = threading.Thread(target=System.timer);
         
@@ -85,7 +85,7 @@ while True:
     # Move Files to FTP/archive folder
     Archive_Handler.ArchiveFiles();
     
-    Sender.send_using_batch(); # Runs script to send via ftp
+    Sender.send(); # Runs script to send via ftp
 
     
 
