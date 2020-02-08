@@ -4,16 +4,10 @@
 # Engineers: Lorans Hirmez, Brandon Fong            #
 #####################################################
 
-<<<<<<< HEAD
-
-### LIBRARIES ###
-from xml.dom import minidom
-=======
 ### LIBRARIES ###
 from xml.dom import minidom
 import xml.etree.ElementTree as ET # https://docs.python.org/3.3/library/xml.etree.elementtree.html
 
->>>>>>> dev/Max_Power_Tracker/Feature/BF-ConfigFiles
 CLIENT = 'EarthWindFire';
 XMLPath = '../../Config/' + CLIENT + '/MaxPower.xml';
 reader = minidom.parse(XMLPath);
