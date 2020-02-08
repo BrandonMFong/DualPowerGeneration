@@ -11,7 +11,7 @@
     <!-- System.py -->
     <System>
         <SecondsToCountForEachLine>3</SecondsToCountForEachLine>
-        <delay>1</delay>
+            <delay>1</delay>
         <MaxLinesForEachCSVFile>3</MaxLinesForEachCSVFile>
         <ClientID>1000</ClientID>
     </System>
