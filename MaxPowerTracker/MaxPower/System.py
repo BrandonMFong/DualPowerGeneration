@@ -4,8 +4,13 @@
 #####################################################
 
 ### LIBRARIES ###
+<<<<<<< HEAD
 from xml.dom import minidom
 from XML import xmlreader
+=======
+from XML import xmlreader
+import os
+>>>>>>> dev/Max_Power_Tracker/Feature/BF-ConfigFiles
 import time
 
 #xmlreader = minidom.parse('../../Config/EarthWindFire/MaxPower.xml');
@@ -35,4 +40,8 @@ def timer():
     timer_flag = True;
 
 class Client:
+<<<<<<< HEAD
     ID = xmlreader.int('ID'); # Hard coding, TODO figure out a way to figure out client by device.  OS ip address? 
+=======
+    ID = xmlreader.int('ClientID'); # Hard coding, TODO figure out a way to figure out client by device.  OS ip address? 
+>>>>>>> dev/Max_Power_Tracker/Feature/BF-ConfigFiles

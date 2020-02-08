@@ -15,15 +15,19 @@
 ### LIBRARIES ###
 from System import Client
 from zipfile import ZipFile
+from XML import xmlreader
 import datetime
 import os
 import System
 import shutil
 
-FTPDir = "../../FTP"; # defines where the file will be imported
-LogForMaxPowerDir = "../../logs/MaxPower"; # defines where the file will be imported
-FTPArchiveDir = "../../FTP/archive"; # defines where the file will be imported
-LOGArchiveDir = "../../logs/MaxPower/archive";
+FTPDir = xmlreader.string('DirectoryForOutboundFTPFiles'); # defines where the file will be imported
+LogForMaxPowerDir = xmlreader.string('DirectoryForMaxPowerLogFiles'); # defines where the file will be imported
+FTPArchiveDir = xmlreader.string('ArchiveForOutboundFTPFiles'); # defines where the file will be imported
+LOGArchiveDir = xmlreader.string('ArchiveForMaxPowerLogFiles');
+FTPFileType = xmlreader.string('FileTypeForFTP');
+LOGFileType = xmlreader.string('FileTypeForLogs');
+ZipExtension = xmlreader.string('FileTypeForZippedFolder');
 
 
 def MakeDir(makepath):
@@ -46,7 +50,7 @@ class File_Handler:
 
         # Creates the file to be injected by our power tracker
         # This will be sent through FTP via script to our remote server
-        filename = FTPDir + "/maxpower_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + ".csv"; 
+        filename = FTPDir + "/maxpower_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + FTPFileType; 
         try:
             System.File = open(filename,"w+"); # this file is global
         except OSError:
@@ -85,7 +89,7 @@ class Log_Handler:
 
         # Creates the file to be injected by our power tracker
         # This will be sent through FTP via script to our remote server
-        filename = LogForMaxPowerDir +  "/MaxPowerLog_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + ".log"; 
+        filename = LogForMaxPowerDir +  "/MaxPowerLog_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + LOGFileType;
         try:
             System.Log = open(filename,"w+"); # this file is global
         except OSError:
@@ -121,9 +125,9 @@ class Archive_Handler:
         MakeDir(LOGArchiveDir);
 
         # In FTP Folder
-        CSVFiles = os.listdir(FTPDir);
-        for f in CSVFiles:
-            if f.endswith(".csv"):
+        FTPFiles = os.listdir(FTPDir);
+        for f in FTPFiles:
+            if f.endswith(FTPFileType):
                 FilePath = FTPDir + "/" + f;
                 shutil.move(FilePath, FTPArchiveDir);
                 print("\nMoved %s to archive folder\n" % f);
@@ -131,7 +135,7 @@ class Archive_Handler:
         # In logs\MaxPower Folder
         LOGFiles = os.listdir(LogForMaxPowerDir);
         for f in LOGFiles:
-            if f.endswith(".log"):
+            if f.endswith(LOGFileType):
                 FilePath = LogForMaxPowerDir + "/" + f;
                 shutil.move(FilePath, LOGArchiveDir);
                 print("\nMoved %s to archive folder\n" % f);
@@ -144,10 +148,10 @@ class Archive_Handler:
         FTPArchivedFiles = os.listdir(FTPArchiveDir);
         if (FTPArchivedFiles.__len__()) > 10:
             print("\nBeginning to zip files in %s\n" % FTPArchiveDir)
-            filename = FTPArchiveDir +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ".zip"; 
+            filename = FTPArchiveDir +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ZipExtension; 
             zipper = ZipFile(filename, 'w');
             for f in FTPArchivedFiles:
-                if f.endswith(".csv"):
+                if f.endswith(FTPFileType):
                     FilePath = FTPArchiveDir + "/" + f;
                     zipper.write(FilePath);
                     os.remove(FilePath);
@@ -158,10 +162,10 @@ class Archive_Handler:
         LOGArchivedFiles = os.listdir(LOGArchiveDir);
         if (LOGArchivedFiles.__len__()) > 10:
             print("\nBeginning to zip files in %s\n" % LOGArchiveDir)
-            filename = LOGArchiveDir +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ".zip"; 
+            filename = LOGArchiveDir +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ZipExtension; 
             zipper = ZipFile(filename, 'w');
             for f in LOGArchivedFiles:
-                if f.endswith(".csv"):
+                if f.endswith(LOGFileType):
                     FilePath = LOGArchiveDir + "/" + f;
                     zipper.write(FilePath);
                     os.remove(FilePath);

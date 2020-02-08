@@ -1,16 +1,52 @@
+<<<<<<< HEAD
+=======
+<!-- 
+#####################################################
+# Property by Your Engineering Solutions (Y.E.S.)   #
+# Engineers: Lorans Hirmez, Brandon Fong            #
+#####################################################
+-->
+
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
+
+>>>>>>> dev/Max_Power_Tracker/Feature/BF-ConfigFiles
 <MaxPower>
     <!-- System.py -->
     <System>
         <SecondsToCountForEachLine>3</SecondsToCountForEachLine>
         <delay>1</delay>
         <MaxLinesForEachCSVFile>3</MaxLinesForEachCSVFile>
+<<<<<<< HEAD
         <Client>
             <ID>1000</ID>
         </Client>
+=======
+        <ClientID>1000</ClientID>
+>>>>>>> dev/Max_Power_Tracker/Feature/BF-ConfigFiles
     </System>
 
     <!-- FTP.py -->
     <FTP>
         <WhichProcedureToUseForFTP>batch</WhichProcedureToUseForFTP>
     </FTP>
+<<<<<<< HEAD
+=======
+
+    <!-- Files.py -->
+    <Files>
+        <DirectoryForOutboundFTPFiles>../../FTP</DirectoryForOutboundFTPFiles>
+        <ArchiveForOutboundFTPFiles>../../FTP/archive</ArchiveForOutboundFTPFiles>
+        <DirectoryForMaxPowerLogFiles>../../logs/MaxPower</DirectoryForMaxPowerLogFiles>
+        <ArchiveForMaxPowerLogFiles>../../logs/MaxPower/archive</ArchiveForMaxPowerLogFiles>
+        <FileTypeForFTP>.csv</FileTypeForFTP>
+        <FileTypeForLogs>.log</FileTypeForLogs>
+        <FileTypeForZippedFolder>.7z</FileTypeForZippedFolder>
+    </Files>
+
+    <!-- MaxPower_Classes.py -->
+    <MaxPower_Classes>
+        <RadiusForWindTurbine>50</RadiusForWindTurbine>
+        <AngleForBlades>120</AngleForBlades>
+    </MaxPower_Classes>
+>>>>>>> dev/Max_Power_Tracker/Feature/BF-ConfigFiles
 </MaxPower>
