@@ -13,6 +13,8 @@
 # https://hoststud.com/resources/how-to-execute-mysql-queries-from-command-line-bash-shell.136/
 # https://www.cyberciti.biz/faq/unix-linux-bash-read-comma-separated-cvsfile/
 
+set -e
+
 ### VARIABLES ### 
 # credentials
 username="dualpower_BrandonMFong"
@@ -25,6 +27,12 @@ DelayVar=5; # Delays for 5 seconds
 
 ### MAIN ###
 pushd $FTP_dir
+        if [ $(pwd) != $FTP_dir ];
+        then 
+                echo "Failure to pushd to location $FTP_dir.  Exitting script."
+                exit;
+        fi
+
         while true 
         do 
                 if [ $(find . -maxdepth 1 -type f|wc -l) -gt 0 ]; # keeps reading files in dir until there are not more files in dir
