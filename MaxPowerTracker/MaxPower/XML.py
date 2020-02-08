@@ -4,9 +4,10 @@
 # Engineers: Lorans Hirmez, Brandon Fong            #
 #####################################################
 
-
 ### LIBRARIES ###
 from xml.dom import minidom
+import xml.etree.ElementTree as ET # https://docs.python.org/3.3/library/xml.etree.elementtree.html
+
 CLIENT = 'EarthWindFire';
 XMLPath = '../../Config/' + CLIENT + '/MaxPower.xml';
 reader = minidom.parse(XMLPath);

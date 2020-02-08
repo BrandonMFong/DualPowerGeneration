@@ -12,6 +12,7 @@ import subprocess, sys, os
 
 global file_basename;
 file_basename = '..\\..\\Scripts\\FTP';
+
 class FTP:
     @staticmethod
     def send():

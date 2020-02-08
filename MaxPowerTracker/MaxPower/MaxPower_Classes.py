@@ -6,6 +6,7 @@
 ### LIBRARIES ###
 from Files import Log_Handler
 from random import random
+from XML import xmlreader
 import math
 import System
 import time
@@ -101,12 +102,12 @@ def init():
     Average_TORQUE_Wind = 0;
     Average_POWER_WIND = 0;
     Average_POWER_SOLAR = 0;
-    radius_of_the_blades = 50; # Can be changed
-    angle_of_the_blades = 120; # Three blades right?
-    force_of_the_blades = random(); # TODO figure this out, we need to dynamically calculate this
     total_rpm = 0;
     solar_current = 0;
     solar_voltage = 0;
     total_solar_pwr = 0;
+    radius_of_the_blades = xmlreader.int('RadiusForWindTurbine'); # Can be changed
+    angle_of_the_blades = xmlreader.int('AngleForBlades'); # Three blades right?
+    force_of_the_blades = random(); # TODO figure this out, we need to dynamically calculate this
 
 
