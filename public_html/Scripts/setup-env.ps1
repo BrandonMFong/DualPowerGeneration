@@ -92,11 +92,16 @@ Push-Location $PSScriptRoot;
         # recurse through the repo
         # filters only directory type
         # adds directory path to an arraylist
-        Get-ChildItem $git_repo_dir -r | Where-Object{$_.Attributes -eq "Directory"}|ForEach-Object{$directory.Add($_.fullName)};
+        Get-ChildItem $git_repo_dir -r | 
+            Where-Object{$_.Attributes -eq "Directory"}|
+                ForEach-Object{$directory.Add($_.fullName)};
         
         # This get's the trailing directoory name of the file path
         # Using this to compare for the copy function
-        Get-ChildItem $git_repo_dir -r | Where-Object{$_.Attributes -eq "Directory"} | ForEach-Object{$base_directory.Add($_.BaseName)}
+        Get-ChildItem $git_repo_dir -r | 
+            Where-Object{$_.Attributes -eq "Directory"} | 
+                ForEach-Object{$base_directory.Add($_.BaseName)}
+                
         $directory.Add($git_repo_dir);
         $base_directory.Add($repo_name);
         
