@@ -4,11 +4,9 @@
 #####################################################
 
 ### LIBRARIES ###
-from xml.dom import minidom
 from XML import xmlreader
+import os
 import time
-
-#xmlreader = minidom.parse('../../Config/EarthWindFire/MaxPower.xml');
 
 def init():
     # Delcare
@@ -35,4 +33,4 @@ def timer():
     timer_flag = True;
 
 class Client:
-    ID = xmlreader.int('ID'); # Hard coding, TODO figure out a way to figure out client by device.  OS ip address? 
+    ID = xmlreader.int('ClientID'); # Hard coding, TODO figure out a way to figure out client by device.  OS ip address? 
