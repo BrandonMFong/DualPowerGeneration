@@ -23,7 +23,7 @@ database="dualpower_DataCenter"
 Archive_dir="archive/"
 #FTP_dir="B:/SOURCES/Repos/DualPowerGeneration/FTP"; # Testing locally
 #FTP_dir="/home/dualpower/public_ftp/incoming/FTP"; # On server
-FTP_dir=$(awk -F '[<>]' '/FTPFolder/{print $3}' ../Config/EartWindFire/Scripts.xml)
+FTP_dir=$(awk -F '[<>]' '/FTPFolder/{print $3}' ../Config/EarthWindFire/Scripts.xml)
 DelayVar=5; # Delays for 5 seconds
 
 ### MAIN ###
