@@ -1,0 +1,12 @@
+<!-- 
+#####################################################
+# Property by Your Engineering Solutions (Y.E.S.)   #
+# Engineers: Lorans Hirmez, Brandon Fong            #
+#####################################################
+-->
+
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
+
+<Scripts>
+    <FTPFolderOnServer>/home/dualpower/public_ftp/incoming/FTP</FTPFolderOnServer>
+</Scripts
