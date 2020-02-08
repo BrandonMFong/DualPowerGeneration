@@ -1,0 +1,16 @@
+<MaxPower>
+    <!-- System.py -->
+    <System>
+        <SecondsToCountForEachLine>3</SecondsToCountForEachLine>
+        <delay>1</delay>
+        <MaxLinesForEachCSVFile>3</MaxLinesForEachCSVFile>
+        <Client>
+            <ID>1000</ID>
+        </Client>
+    </System>
+
+    <!-- FTP.py -->
+    <FTP>
+        <WhichProcedureToUseForFTP>batch</WhichProcedureToUseForFTP>
+    </FTP>
+</MaxPower>
