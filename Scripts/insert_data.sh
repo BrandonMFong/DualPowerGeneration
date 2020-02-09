@@ -21,7 +21,7 @@ username=$(awk -F '[<>]' '/UsernameForDatabase/{print $3}' ../Config/EarthWindFi
 password=$(awk -F '[<>]' '/PasswordForDatabase/{print $3}' ../Config/EarthWindFire/Scripts.xml)
 database=$(awk -F '[<>]' '/DatabaseToInjectFTPDataInto/{print $3}' ../Config/EarthWindFire/Scripts.xml)
 Archive_dir="archive/"
-FTP_dir=$(awk -F '[<>]' '/FTPFolder/{print $3}' ../Config/EarthWindFire/Scripts.xml)
+FTP_dir=$(awk -F '[<>]' '/FTP_Folder/{print $3}' ../Config/EarthWindFire/Scripts.xml)
 DelayVar=$(awk -F '[<>]' '/SecondsToWaitToReadFolder/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
 
 ### MAIN ###
