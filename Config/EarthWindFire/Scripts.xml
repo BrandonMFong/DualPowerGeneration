@@ -8,8 +8,17 @@
 <!-- <?xml version="1.0" encoding="UTF-8"?> -->
 
 <Scripts>
-    <!-- /home/dualpower/public_ftp/incoming/FTP - RohanCP -->
-    <!-- B:/SOURCES/Repos/DualPowerGeneration/FTP - Brandon's Machine -->
-    <!-- /home/fong_m_brandon97/public_ftp/incoming/FTP - Google Cloud (Brandon's)-->
-    <FTPFolder>/home/fong_m_brandon97/public_ftp/incoming/FTP</FTPFolder>
+    <insert_data>
+        <!-- /home/dualpower/public_ftp/incoming/FTP - RohanCP -->
+        <!-- B:/SOURCES/Repos/DualPowerGeneration/FTP - Brandon's Machine -->
+        <!-- /home/fong_m_brandon97/public_ftp/incoming/FTP - Google Cloud (Brandon's)-->
+        <FTPFolder>/home/fong_m_brandon97/public_ftp/incoming/FTP</FTPFolder>
+
+        <SecondsToWaitToReadFTPFolder>5</SecondsToWaitToReadFTPFolder>
+
+        <!-- Database Credentials -->
+        <DatabaseToInjectFTPDataInto>dualpower_DataCenter</DatabaseToInjectFTPDataInto>
+        <UsernameForDatabase>dualpower_BrandonMFong</UsernameForDatabase>
+        <PasswordForDatabase>dualpower27182</PasswordForDatabase>
+    </insert_data>
 </Scripts
