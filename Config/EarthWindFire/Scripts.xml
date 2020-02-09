@@ -10,14 +10,15 @@
 <Scripts>
 
     <!-- When bash parses the xml using awk command, it considers every tag that has the same string -->
-    <!-- i.e. FTPFolder and SecondsToWaitToReadFTPFolder are the same -->
+    <!-- i.e. FTPFolder and SecondsToWaitToReadFTPFolder are the same.  Also reads comments. damn -->
+    <!-- Every word here must be unique -->
     <insert_data>
         <!-- /home/dualpower/public_ftp/incoming/FTP - RohanCP -->
         <!-- B:/SOURCES/Repos/DualPowerGeneration/FTP - Brandon's Machine -->
         <!-- /home/fong_m_brandon97/public_ftp/incoming/FTP - Google Cloud (Brandon's)-->
         <!-- <FTPFolder>/home/fong_m_brandon97/public_ftp/incoming/FTP</FTPFolder> -->
         <!-- Using ~ because the MakeIncomingFTPFolder.sh already makes ftp against ~ --> 
-        <FTPFolder>~/public_ftp/incoming/FTP</FTPFolder>
+        <FTP_Folder>~/public_ftp/incoming/FTP</FTP_Folder>
 
         <SecondsToWaitToReadFolder>5</SecondsToWaitToReadFolder>
 
