@@ -15,62 +15,75 @@
 
 /** Loads the WordPress Environment and Template */
 //require( dirname( __FILE__ ) . '/wp-blog-header.php' );
+
 	global $currpage;
 	include 'environment.php';
 
 	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname_datacenter);
-	// Check connection
-	if ($conn->connect_error) 
+	function InitSQLConnection()
 	{
-		die("Connection failed: " . $conn->connect_error);
-	}
-			
-	$sql = 
-	"
-	select 	c.Organization_Name,
-			s.*,
-			w.*
-		from Client c
-			join Device_Client dc
-				on c.ID = dc.Client_ID
-			join Device d 
-				on d.ID = dc.Device_ID
-			join Solar s
-				on s.ID = d.Solar_ID
-			join Wind w 
-				on w.ID = d.Wind_ID
-
-	";
-	$result = $conn->query($sql);
-
-	if ($result->num_rows > 0) 
-	{
-		// output data of each row
-		while($row = $result->fetch_assoc()) 
+		global $currpage;
+		include 'environment.php';
+		$conn = new mysqli($servername, $username, $password, $dbname_datacenter);
+		// Check connection
+		if ($conn->connect_error) 
 		{
-			echo $row["Organization_Name"];
-			echo "|" ;
-			echo $row["ID"] ;
-			echo "|" ;
-			echo $row["Time"] ;
-			echo "|" ;
-			echo $row["Power"] ;
-			echo "|" ;
-			echo $row["ID"] ; // the tables have the same names, how do I distinguish between the two?
-			echo "|" ;
-			echo $row["Time"] ;
-			echo "|" ;
-			echo $row["Power"] ;
-			echo "|<br>";
+			die("Connection failed: " . $conn->connect_error);
 		}
-	} 
-	else 
+		return $conn;
+	}
+	function GetAllData($querystring, $Data)
 	{
-		echo "0 results";
+		global $currpage;
+		include 'environment.php';
+		$conn = InitSQLConnection();
+		$result = $conn->query($querystring);
+
+		if ($result->num_rows > 0) 
+		{
+			echo "<br>This is the " . $Data . " data<br>";
+			while($row = $result->fetch_assoc()) 
+			{
+				echo $row["Organization_Name"];
+				echo "|" ;
+				echo $row["ID"] ;
+				echo "|" ;
+				echo $row["Time"] ;
+				echo "|" ;
+				echo $row["Power"] ;
+				echo "|<br>";
+			}
+		}
+		else {echo "0 results for " . $Data;}
+		$conn->close();
+	}
+	function GetMaxData($querystring, $Data)
+	{
+		global $currpage;
+		include 'environment.php';
+		$conn = InitSQLConnection();
+		$result = $conn->query($querystring);
+		
+		if ($result->num_rows > 0) 
+		{
+			$row = $result->fetch_assoc();
+			echo "<br>This is the " . $Data . " max data<br>";
+			echo $row["Organization_Name"] . " " . $row["Max"];
+			echo "<br>";
+		} 
+		else {echo "0 results for " . $Data;}
+		$conn->close();
 	}
 
-	$conn->close();
+	$SelectSolar = fopen("../SQL/SELECT_Solar.sql", "r") or die("Unable to read file.");
+	$SelectMaxSolar = fopen("../SQL/SELECT_MaxSolar.sql", "r") or die("Unable to read file.");
+	$SelectWind = fopen("../SQL/SELECT_Wind.sql", "r") or die("Unable to read file.");
+	$SelectMaxWind = fopen("../SQL/SELECT_MaxWind.sql", "r") or die("Unable to read file.");
+
+	GetAllData(fread($SelectSolar, filesize("../SQL/SELECT_Solar.sql")), 'Solar');
+	GetMaxData(fread($SelectMaxSolar, filesize("../SQL/SELECT_MaxSolar.sql")), 'Solar');
+	GetAllData(fread($SelectWind, filesize("../SQL/SELECT_Wind.sql")), 'Solar');
+	GetMaxData(fread($SelectMaxWind, filesize("../SQL/SELECT_MaxWind.sql")), 'Wind');
 ?>
 
 
