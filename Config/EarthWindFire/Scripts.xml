@@ -8,8 +8,8 @@
 <!-- <?xml version="1.0" encoding="UTF-8"?> -->
 
 <Scripts>
-    
-    <!-- When bash reads this using awk command, it considers every tag that has the same string -->
+
+    <!-- When bash parses the xml using awk command, it considers every tag that has the same string -->
     <!-- i.e. FTPFolder and SecondsToWaitToReadFTPFolder are the same -->
     <insert_data>
         <!-- /home/dualpower/public_ftp/incoming/FTP - RohanCP -->
