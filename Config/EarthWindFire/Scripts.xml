@@ -8,7 +8,6 @@
 <!-- <?xml version="1.0" encoding="UTF-8"?> -->
 
 <Scripts>
-
     <!-- When bash parses the xml using awk command, it considers every tag that has the same string -->
     <!-- i.e. FTPFolder and SecondsToWaitToReadFTPFolder are the same.  Also reads comments. damn -->
     <!-- Every word here must be unique -->
