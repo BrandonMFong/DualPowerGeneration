@@ -8,6 +8,7 @@
 <!-- <?xml version="1.0" encoding="UTF-8"?> -->
 
 <Scripts>
+<<<<<<< HEAD
 
     <!-- When bash parses the xml using awk command, it considers every tag that has the same string -->
     <!-- i.e. FTPFolder and SecondsToWaitToReadFTPFolder are the same.  Also reads comments. damn -->
@@ -29,4 +30,10 @@
     </insert_data>
 
     
+=======
+    <!-- /home/dualpower/public_ftp/incoming/FTP - RohanCP -->
+    <!-- B:/SOURCES/Repos/DualPowerGeneration/FTP - Brandon's Machine -->
+    <!-- /home/fong_m_brandon97/public_ftp/incoming/FTP - Google Cloud (Brandon's)-->
+    <FTPFolder>/home/fong_m_brandon97/public_ftp/incoming/FTP</FTPFolder>
+>>>>>>> testing google cloud path
 </Scripts
