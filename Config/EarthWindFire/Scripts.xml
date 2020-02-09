@@ -15,7 +15,9 @@
         <!-- /home/dualpower/public_ftp/incoming/FTP - RohanCP -->
         <!-- B:/SOURCES/Repos/DualPowerGeneration/FTP - Brandon's Machine -->
         <!-- /home/fong_m_brandon97/public_ftp/incoming/FTP - Google Cloud (Brandon's)-->
-        <FTPFolder>/home/fong_m_brandon97/public_ftp/incoming/FTP</FTPFolder>
+        <!-- <FTPFolder>/home/fong_m_brandon97/public_ftp/incoming/FTP</FTPFolder> -->
+        <!-- Using ~ because the MakeIncomingFTPFolder.sh already makes ftp against ~ --> 
+        <FTPFolder>~/public_ftp/incoming/FTP</FTPFolder>
 
         <SecondsToWaitToReadFolder>5</SecondsToWaitToReadFolder>
 
