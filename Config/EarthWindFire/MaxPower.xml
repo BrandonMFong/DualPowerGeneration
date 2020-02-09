@@ -22,6 +22,9 @@
         <Hostaddress>146.244.101.140</Hostaddress>
         <Username>dualpower</Username>
         <Password>ToInfiniti!</Password>
+
+        <!-- TODO implement -->
+        <DestinationServer></DestinationServer><!-- Parameter for python ftp method-->
     </FTP>
 
     <!-- Files.py -->

@@ -4,12 +4,13 @@
 # Engineers: Lorans Hirmez, Brandon Fong            #
 #####################################################
 
-### LIBRARIES ###
+### LIBRARIES ### 
 from subprocess import call 
 from Files import Log_Handler
 from XML import xmlreader
 from ftplib import FTP
 import subprocess, sys, os
+import ftplib
 
 global file_basename;
 file_basename = '..\\..\\Scripts\\FTP';
@@ -63,6 +64,5 @@ class FTP:
 
             Path = xmlreader.string('Username') + '@' + xmlreader.string('Hostaddress')
             subprocess.run(["scp", "foo.bar", "joe@srvr.net:/path/to/foo.bar"])
-
         else:
             print("FTP procedure not defined.  Please check configuration on MaxPower.xml");
