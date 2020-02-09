@@ -10,6 +10,6 @@
 <Scripts>
     <!-- /home/dualpower/public_ftp/incoming/FTP - RohanCP -->
     <!-- B:/SOURCES/Repos/DualPowerGeneration/FTP - Brandon's Machine -->
-    <!-- TODO find out ftp on Google Cloud if we implement it -->
-    <FTPFolder>/home/dualpower/public_ftp/incoming/FTP</FTPFolder>
+    <!-- /home/fong_m_brandon97/public_ftp/incoming/FTP - Google Cloud (Brandon's)-->
+    <FTPFolder>/home/fong_m_brandon97/public_ftp/incoming/FTP</FTPFolder>
 </Scripts
