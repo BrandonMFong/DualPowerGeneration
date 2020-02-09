@@ -17,14 +17,12 @@ set -e
 # awk '/delay/ {print}' MaxPower.xml
 ### VARIABLES ### 
 # credentials
-username="dualpower_BrandonMFong"
-password="dualpower27182"
-database="dualpower_DataCenter"
+username=$(awk -F '[<>]' '/UsernameForDatabase/{print $3}' ../Config/EarthWindFire/Scripts.xml)
+password=$(awk -F '[<>]' '/PasswordForDatabase/{print $3}' ../Config/EarthWindFire/Scripts.xml)
+database=$(awk -F '[<>]' '/DatabaseToInjectFTPDataInto/{print $3}' ../Config/EarthWindFire/Scripts.xml)
 Archive_dir="archive/"
-#FTP_dir="B:/SOURCES/Repos/DualPowerGeneration/FTP"; # Testing locally
-#FTP_dir="/home/dualpower/public_ftp/incoming/FTP"; # On server
 FTP_dir=$(awk -F '[<>]' '/FTPFolder/{print $3}' ../Config/EarthWindFire/Scripts.xml)
-DelayVar=5; # Delays for 5 seconds
+DelayVar=$(awk -F '[<>]' '/SecondsToWaitToReadFTPFolder/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
 
 ### MAIN ###
 pushd $FTP_dir
