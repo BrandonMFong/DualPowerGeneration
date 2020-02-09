@@ -19,6 +19,9 @@
     <!-- FTP.py -->
     <FTP>
         <WhichProcedureToUseForFTP>batch</WhichProcedureToUseForFTP>
+
+        <!-- TODO implement -->
+        <DestinationServer></DestinationServer><!-- Parameter for python ftp method-->
     </FTP>
 
     <!-- Files.py -->
