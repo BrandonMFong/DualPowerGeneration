@@ -18,5 +18,8 @@ MaxPowerTracker/MaxPower/__pycache__/*
 ## USER DEFINED FILES ##
 VCODE_DualPowerGeneration.code-workspace
 
-# MANUEVER SYSTEM
+## MANUEVER SYSTEM ##
 ManeuverSystem/DualPowerGeneration/Debug/* 
+
+## SQL ##
+SQL_Queries/BackUps/archive/*

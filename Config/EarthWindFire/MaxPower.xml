@@ -12,7 +12,7 @@
     <System>
         <SecondsToCountForEachLine>3</SecondsToCountForEachLine>
         <delay>1</delay>
-        <MaxLinesForEachCSVFile>3</MaxLinesForEachCSVFile>
+        <MaxLinesForEachCSVFile>2</MaxLinesForEachCSVFile>
         <ClientID>1000</ClientID>
     </System>
 
