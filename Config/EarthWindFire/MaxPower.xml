@@ -19,11 +19,15 @@
     <!-- FTP.py -->
     <FTP>
         <WhichProcedureToUseForFTP>batch</WhichProcedureToUseForFTP>
+        <Hostaddress>146.244.101.140</Hostaddress>
+        <Username>dualpower</Username>
+        <Password>ToInfiniti!</Password>
+
     </FTP>
 
     <!-- Files.py -->
     <Files>
-        <DirectoryForOutboundFTPFiles>../../FTP</DirectoryForOutboundFTPFiles>
+        <DirectoryForOutboundFTPFiles>../../FTP/Outbound</DirectoryForOutboundFTPFiles>
         <ArchiveForOutboundFTPFiles>../../FTP/archive</ArchiveForOutboundFTPFiles>
         <DirectoryForMaxPowerLogFiles>../../logs/MaxPower</DirectoryForMaxPowerLogFiles>
         <ArchiveForMaxPowerLogFiles>../../logs/MaxPower/archive</ArchiveForMaxPowerLogFiles>

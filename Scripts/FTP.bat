@@ -19,7 +19,7 @@ rem The following is a command inputted for the winscp to send everything from o
     "open sftp://dualpower@146.244.101.140/ -hostkey=""ssh-ed25519 256 4o8fu3NLGOw4DARK0HJLAm5iu6LYt9o0sRFvu+eNF2M="" -privatekey=""B:\COLLEGE\19_20\Fall_19\CompE_496A\SSH\BrandonMFong.ppk"" -passphrase=""819295224bfWANG/""" ^
     "lcd %GitRepoPath%" ^
     "cd /home/dualpower/public_ftp/incoming" ^
-    "put FTP" ^
+    "put FTP/Outbound" ^
     "exit"
 rem TODO 'put' only .csv files in the current directory
 set WINSCP_RESULT=%ERRORLEVEL%
