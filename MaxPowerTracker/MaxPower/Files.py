@@ -21,9 +21,9 @@ import os
 import System
 import shutil
 
-FTPDir = xmlreader.string('DirectoryForOutboundFTPFiles'); # defines where the file will be imported
+FTPDir = xmlreader.string('DirectoryForOutboundFTPFiles'); # defines where to look to send files out
 LogForMaxPowerDir = xmlreader.string('DirectoryForMaxPowerLogFiles'); # defines where the file will be imported
-FTPArchiveDir = xmlreader.string('ArchiveForOutboundFTPFiles'); # defines where the file will be imported
+FTPArchiveDir = xmlreader.string('ArchiveForOutboundFTPFiles'); # defines where to put files after they are done
 LOGArchiveDir = xmlreader.string('ArchiveForMaxPowerLogFiles');
 FTPFileType = xmlreader.string('FileTypeForFTP');
 LOGFileType = xmlreader.string('FileTypeForLogs');
