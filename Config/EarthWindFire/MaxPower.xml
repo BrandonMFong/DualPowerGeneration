@@ -37,4 +37,6 @@
         <RadiusForWindTurbine>50</RadiusForWindTurbine>
         <AngleForBlades>120</AngleForBlades>
     </MaxPower_Classes>
+
+    <!-- TODO sleep mode frequency -->
 </MaxPower>
