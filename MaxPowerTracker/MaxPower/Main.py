@@ -6,6 +6,7 @@
 ### LIBRARIES ###
 # In this section, we need to get IO from tachometer
 # TODO figure out how to interface with GPIO RPI with pyhton
+# TODO organize how you reference config
 from FTP import FTP
 from Files import File_Handler, Log_Handler, Archive_Handler
 from random import random 
