@@ -29,6 +29,7 @@ FTPFileType = xmlreader.string('FileTypeForFTP');
 LOGFileType = xmlreader.string('FileTypeForLogs');
 ZipExtension = xmlreader.string('FileTypeForZippedFolder');
 
+global filename;
 
 def MakeDir(makepath):
     if(not (os.path.isdir(makepath))): # if that directory doesn't exist, create it

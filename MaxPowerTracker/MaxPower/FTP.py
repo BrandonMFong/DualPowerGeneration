@@ -54,13 +54,15 @@ class FTP:
                 Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + ex + "\n\n File not sent through cmd\n");
         
         # PYTHON
-        # refer https://stackoverflow.com/questions/5663787/upload-folders-from-local-system-to-ftp-using-python-script
-        elif type == 'Python'
-            session = ftplib.FTP('server.address.com','USERNAME','PASSWORD');
-            file = open('kitten.jpg','rb');                  # file to send
-            session.storbinary('STOR kitten.jpg', file);     # send the file
-            file.close();                                    # close file and FTP
-            session.quit();
+        # refer https://stackoverflow.com/questions/68335/how-to-copy-a-file-to-a-remote-server-in-python-using-scp-or-ssh
+        elif type == 'Python':
+            # Establish connection
+            PythonFTPHandler = FTP(xmlreader.string('Hostaddress'), 
+                                   xmlreader.string('Username'), 
+                                   xmlreader.string('Password')); # Reading from config
+
+            Path = xmlreader.string('Username') + '@' + xmlreader.string('Hostaddress')
+            subprocess.run(["scp", "foo.bar", "joe@srvr.net:/path/to/foo.bar"])
 
         else:
             print("FTP procedure not defined.  Please check configuration on MaxPower.xml");
