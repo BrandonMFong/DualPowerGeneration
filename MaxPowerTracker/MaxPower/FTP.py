@@ -53,7 +53,6 @@ class FTP:
                 print(ex);
                 print("File not sent through ftp");
                 Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + ex + "\n\n File not sent through cmd\n");
-        
         # PYTHON
         # refer https://stackoverflow.com/questions/68335/how-to-copy-a-file-to-a-remote-server-in-python-using-scp-or-ssh
         elif type == 'Python':
