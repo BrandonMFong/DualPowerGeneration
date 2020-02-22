@@ -4,7 +4,7 @@
 
 ## SSH ##
 *.ppk
-FTP.*
+Scripts/FTP.*
 
 ## MAX POWER FILES
 /FTP/*
