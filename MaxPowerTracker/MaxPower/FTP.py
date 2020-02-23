@@ -9,6 +9,7 @@ from subprocess import call
 from Files import Log_Handler
 from XML import xmlreader
 from ftplib import FTP
+import pysftp
 import subprocess, sys, os
 
 global file_basename;
@@ -57,12 +58,9 @@ class FTP:
         # refer https://stackoverflow.com/questions/68335/how-to-copy-a-file-to-a-remote-server-in-python-using-scp-or-ssh
         elif type == 'Python':
             # Establish connection
-            PythonFTPHandler = FTP(xmlreader.string('Hostaddress'), 
-                                   xmlreader.string('Username'), 
-                                   xmlreader.string('Password')); # Reading from config
-
-            Path = xmlreader.string('Username') + '@' + xmlreader.string('Hostaddress')
-            subprocess.run(["scp", "foo.bar", "joe@srvr.net:/path/to/foo.bar"])
+            with pysftp.Connection('hostname', username='me', password='secret') as sftp:
+                with sftp.cd('/allcode'):           # temporarily chdir to allcode
+                    sftp.put('/pycode/filename')  	# upload file to allcode/pycode on remote
 
         else:
             print("FTP procedure not defined.  Please check configuration on MaxPower.xml");
