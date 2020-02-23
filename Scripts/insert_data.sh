@@ -13,18 +13,25 @@
 # https://hoststud.com/resources/how-to-execute-mysql-queries-from-command-line-bash-shell.136/
 # https://www.cyberciti.biz/faq/unix-linux-bash-read-comma-separated-cvsfile/
 
+set -e
+# awk '/delay/ {print}' MaxPower.xml
 ### VARIABLES ### 
 # credentials
-username="dualpower_BrandonMFong"
-password="dualpower27182"
-database="dualpower_DataCenter"
+username=$(awk -F '[<>]' '/UsernameForDatabase/{print $3}' ../Config/EarthWindFire/Scripts.xml)
+password=$(awk -F '[<>]' '/PasswordForDatabase/{print $3}' ../Config/EarthWindFire/Scripts.xml)
+database=$(awk -F '[<>]' '/DatabaseToInjectFTPDataInto/{print $3}' ../Config/EarthWindFire/Scripts.xml)
 Archive_dir="archive/"
-#FTP_dir="B:/SOURCES/Repos/DualPowerGeneration/FTP"; # Testing locally
-FTP_dir="/home/dualpower/public_ftp/incoming/FTP"; # On server
-DelayVar=5; # Delays for 5 seconds
+FTP_dir=$(awk -F '[<>]' '/FTP_Folder/{print $3}' ../Config/EarthWindFire/Scripts.xml)
+DelayVar=$(awk -F '[<>]' '/SecondsToWaitToReadFolder/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
 
 ### MAIN ###
 pushd $FTP_dir
+        if [ $(pwd) != $FTP_dir ];
+        then 
+                echo "Failure to pushd to location $FTP_dir.  Exitting script."
+                exit;
+        fi
+
         while true 
         do 
                 if [ $(find . -maxdepth 1 -type f|wc -l) -gt 0 ]; # keeps reading files in dir until there are not more files in dir

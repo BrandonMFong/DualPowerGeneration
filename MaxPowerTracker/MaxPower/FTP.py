@@ -4,7 +4,7 @@
 # Engineers: Lorans Hirmez, Brandon Fong            #
 #####################################################
 
-### LIBRARIES ###
+### LIBRARIES ### 
 from subprocess import call 
 #from Files import Log_Handler
 from XML import xmlreader
@@ -12,6 +12,7 @@ from ftplib import FTP
 import Files
 import pysftp
 import subprocess, sys, os
+import ftplib
 
 global file_basename;
 file_basename = '..\\..\\Scripts\\FTP';
@@ -60,7 +61,6 @@ class FTP:
                 print(ex);
                 print("File not sent through ftp");
                 Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + ex + "\n\n File not sent through cmd\n");
-        
         # PYTHON
         # refer https://stackoverflow.com/questions/68335/how-to-copy-a-file-to-a-remote-server-in-python-using-scp-or-ssh
         elif type == 'python':
