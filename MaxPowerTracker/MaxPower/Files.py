@@ -29,7 +29,6 @@ FTPFileType = xmlreader.string('FileTypeForFTP');
 LOGFileType = xmlreader.string('FileTypeForLogs');
 ZipExtension = xmlreader.string('FileTypeForZippedFolder');
 
-global filename;
 
 def MakeDir(makepath):
     if(not (os.path.isdir(makepath))): # if that directory doesn't exist, create it
@@ -51,14 +50,17 @@ class File_Handler:
 
         # Creates the file to be injected by our power tracker
         # This will be sent through FTP via script to our remote server
-        filename = FTPDir + "/maxpower_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + FTPFileType; 
+        global filename;
+        global fullpath;
+        filename = "/maxpower_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + FTPFileType;
+        fullpath = FTPDir + filename; 
         try:
-            System.File = open(filename,"w+"); # this file is global
+            System.File = open(fullpath,"w+"); # this file is global
         except OSError:
-            print("Creation of file %s failed." % filename);
+            print("Creation of file %s failed." % fullpath);
             return 1;
         else:
-            print("Successfully created file: %s" % filename);
+            print("Successfully created file: %s" % fullpath);
             return 0;
 
     def Inject_Data(wind_data, solar_data):
@@ -90,14 +92,14 @@ class Log_Handler:
 
         # Creates the file to be injected by our power tracker
         # This will be sent through FTP via script to our remote server
-        filename = LogForMaxPowerDir +  "/MaxPowerLog_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + LOGFileType;
+        Logfilename = LogForMaxPowerDir +  "/MaxPowerLog_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + LOGFileType;
         try:
-            System.Log = open(filename,"w+"); # this file is global
+            System.Log = open(Logfilename,"w+"); # this file is global
         except OSError:
-            print("\nCreation of file %s failed." % filename);
+            print("\nCreation of file %s failed." % Logfilename);
             return 1;
         else:
-            print("\nSuccessfully created file: %s" % filename);
+            print("\nSuccessfully created file: %s" % Logfilename);
             return 0;
 
     def Write_Log(string):

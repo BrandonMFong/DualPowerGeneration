@@ -82,11 +82,9 @@ while True:
     # Closes and saves file
     File_Handler.Close_File();
     Log_Handler.Close_File();
+    
+    Sender.send(); # Runs script to send via ftp
 
     # Move Files to FTP/archive folder
     Archive_Handler.ArchiveFiles();
     
-    Sender.send(); # Runs script to send via ftp
-
-    
-
