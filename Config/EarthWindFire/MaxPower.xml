@@ -18,21 +18,29 @@
 
     <!-- FTP.py -->
     <FTP>
-        <WhichProcedureToUseForFTP>batch</WhichProcedureToUseForFTP>
+        <WhichProcedureToUseForFTP>python</WhichProcedureToUseForFTP><!-- Options: batch, commandline, powershell, or python-->
         <Hostaddress>146.244.101.140</Hostaddress>
         <Username>dualpower</Username>
         <Password>ToInfiniti!</Password>
+        <OutboardDir>..\..\FTP\Outbound</OutboardDir>
     </FTP>
 
     <!-- Files.py -->
     <Files>
+        <!-- Directories -->
+        <!-- Local -->
         <DirectoryForOutboundFTPFiles>../../FTP/Outbound</DirectoryForOutboundFTPFiles>
         <ArchiveForOutboundFTPFiles>../../FTP/archive</ArchiveForOutboundFTPFiles>
         <DirectoryForMaxPowerLogFiles>../../logs/MaxPower</DirectoryForMaxPowerLogFiles>
         <ArchiveForMaxPowerLogFiles>../../logs/MaxPower/archive</ArchiveForMaxPowerLogFiles>
+
+        <!-- Remote -->
+        <DestinationDirectory>/home/dualpower/public_ftp/incoming/FTP</DestinationDirectory>
         <FileTypeForFTP>.csv</FileTypeForFTP>
         <FileTypeForLogs>.log</FileTypeForLogs>
         <FileTypeForZippedFolder>.7z</FileTypeForZippedFolder>
+
+        <PrivateKey>../../FTP/BrandonMFong.ppk</PrivateKey>
     </Files>
 
     <!-- MaxPower_Classes.py -->
