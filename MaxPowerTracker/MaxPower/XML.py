@@ -8,7 +8,7 @@
 from xml.dom import minidom
 import xml.etree.ElementTree as ET # https://docs.python.org/3.3/library/xml.etree.elementtree.html
 
-CLIENT = 'EarthWindFire';
+CLIENT = 'EarthWindFire'; # TODO make this configurable
 XMLPath = '../../Config/' + CLIENT + '/MaxPower.xml';
 reader = minidom.parse(XMLPath);
 
