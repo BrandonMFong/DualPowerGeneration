@@ -6,7 +6,6 @@
 ### LIBRARIES ###
 # In this section, we need to get IO from tachometer
 # TODO figure out how to interface with GPIO RPI with pyhton
-# TODO organize how you reference config
 from FTP import FTP
 from Files import File_Handler, Log_Handler, Archive_Handler
 from random import random 
@@ -16,6 +15,7 @@ import System
 import threading 
 import IO
 import os
+import ThreadFunctions
 #from EmulatorGUI import GPIO # simulates GPIO functions on rpi  
 
 # Init
@@ -39,25 +39,8 @@ while True:
     i = 0;
     # Main loop
     while i < System.MaxLines:
-        ### TIMER ### 
-        THREAD_Timer = threading.Thread(target=System.timer);
-        
-        ### WIND ###
-        THREAD_Max_Power_Wind_Get_TORQUE = threading.Thread(target=Max_Power_Wind.Get_Torque);
 
-        ### SOLAR ###
-        THREAD_Max_Power_Solar_Get_SOLAR_POWER = threading.Thread(target=Max_Power_Solar.Get_Solar_Power);
-
-        # Starts threading the functions
-        THREAD_Timer.start();
-        THREAD_Max_Power_Wind_Get_TORQUE.start();
-        THREAD_Max_Power_Solar_Get_SOLAR_POWER.start();
-
-        # This waits until the above threading is finished
-        IO.Keyboard_IO.RPM_Listener(); # join thread, TODO 
-        THREAD_Timer.join();
-        THREAD_Max_Power_Wind_Get_TORQUE.join();
-        THREAD_Max_Power_Solar_Get_SOLAR_POWER.join();
+        ThreadFunctions.do();
 
         # Sub calculations for Wind Power
         print("\nAverage RPM: ", MaxPower_Classes.Average_RPM_Wind);print("\n"); 
