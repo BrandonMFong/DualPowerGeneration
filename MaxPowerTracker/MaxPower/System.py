@@ -33,5 +33,6 @@ def timer():
     timer_flag = True;
 
 class Client:
-    ID = xmlreader.int('ClientID'); # Hard coding, TODO figure out a way to figure out client by device.  OS ip address? 
+    getID = xmlreader();
+    ID = getID.int('ClientID'); 
 
