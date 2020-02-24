@@ -13,7 +13,7 @@ import time
 import IO
 import os
 
-
+MaxPower_ClassesXML = xmlreader();
 ### CLASSES ###
 class Max_Power_Wind:
     def Avg_Pwr(Torque, RPM):# This gets called from main.py
@@ -124,8 +124,8 @@ def init():
     solar_current = 0;
     solar_voltage = 0;
     total_solar_pwr = 0;
-    radius_of_the_blades = xmlreader.int('RadiusForWindTurbine'); # Can be changed
-    angle_of_the_blades = xmlreader.int('AngleForBlades'); # Three blades right?
+    radius_of_the_blades = MaxPower_ClassesXML.int('RadiusForWindTurbine'); # Can be changed
+    angle_of_the_blades = MaxPower_ClassesXML.int('AngleForBlades'); # Three blades right?
     force_of_the_blades = random(); # TODO figure this out, we need to dynamically calculate this
 
 
