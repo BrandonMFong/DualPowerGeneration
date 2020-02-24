@@ -21,13 +21,14 @@ import os
 import System
 import shutil
 
-FTPDir = xmlreader.string('DirectoryForOutboundFTPFiles'); # defines where to look to send files out
-LogForMaxPowerDir = xmlreader.string('DirectoryForMaxPowerLogFiles'); # defines where the file will be imported
-FTPArchiveDir = xmlreader.string('ArchiveForOutboundFTPFiles'); # defines where to put files after they are done
-LOGArchiveDir = xmlreader.string('ArchiveForMaxPowerLogFiles');
-FTPFileType = xmlreader.string('FileTypeForFTP');
-LOGFileType = xmlreader.string('FileTypeForLogs');
-ZipExtension = xmlreader.string('FileTypeForZippedFolder');
+FilesXML = xmlreader();
+FTPDir = FilesXML.string('DirectoryForOutboundFTPFiles'); # defines where to look to send files out
+LogForMaxPowerDir = FilesXML.string('DirectoryForMaxPowerLogFiles'); # defines where the file will be imported
+FTPArchiveDir = FilesXML.string('ArchiveForOutboundFTPFiles'); # defines where to put files after they are done
+LOGArchiveDir = FilesXML.string('ArchiveForMaxPowerLogFiles');
+FTPFileType = FilesXML.string('FileTypeForFTP');
+LOGFileType = FilesXML.string('FileTypeForLogs');
+ZipExtension = FilesXML.string('FileTypeForZippedFolder');
 
 
 def MakeDir(makepath):

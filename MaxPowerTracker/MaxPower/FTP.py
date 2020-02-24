@@ -16,18 +16,19 @@ import ftplib
 
 global file_basename;
 file_basename = '..\\..\\Scripts\\FTP';
-LocalFTPDir = xmlreader.string('OutboardDir'); # defines where to look to send files out
-DestinationDir = xmlreader.string('DestinationDirectory');
-Hostname = xmlreader.string('Hostaddress');
-Username = xmlreader.string('Username');
-Password = xmlreader.string('Password');
-PrivateKey = xmlreader.string('PrivateKey')
+FTPXML = xmlreader();
+
+LocalFTPDir = FTPXML.string('OutboardDir'); # defines where to look to send files out
+DestinationDir = FTPXML.string('DestinationDirectory');
+Hostname = FTPXML.string('Hostaddress');
+Username = FTPXML.string('Username');
+Password = FTPXML.string('Password');
+PrivateKey = FTPXML.string('PrivateKey')
+type = FTPXML.string('WhichProcedureToUseForFTP');
 
 class FTP:
     @staticmethod
     def send():
-        type = xmlreader.string('WhichProcedureToUseForFTP');
-
         # POWERSHELL
         if type == 'powershell':
             try:
