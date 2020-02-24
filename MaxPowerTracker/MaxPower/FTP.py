@@ -18,7 +18,7 @@ global file_basename;
 file_basename = '..\\..\\Scripts\\FTP';
 FTPXML = xmlreader();
 
-LocalFTPDir = FTPXML.string('OutboardDir'); # defines where to look to send files out
+LocalFTPDir = FTPXML.string('OutboandDir'); # defines where to look to send files out
 DestinationDir = FTPXML.string('DestinationDirectory');
 Hostname = FTPXML.string('Hostaddress');
 Username = FTPXML.string('Username');
