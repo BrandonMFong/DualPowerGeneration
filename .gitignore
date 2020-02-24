@@ -11,6 +11,7 @@ Scripts/FTP.*
 logs/
 MaxPowerTracker/.vs/*
 MaxPowerTracker/MaxPower/__pycache__/*
+/MaxPowerTracker/MaxPower/*.pyc
 
 ## SITE ## 
 .vscode
