@@ -7,47 +7,46 @@
 
 <!-- <?xml version="1.0" encoding="UTF-8"?> -->
 
-<MaxPower>
+<MaxPower 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="..\..\Schema\MaxPower.xsd">
+
     <!-- System.py -->
     <System>
         <SecondsToCountForEachLine>3</SecondsToCountForEachLine>
-        <delay>1</delay>
+        <delay>1</delay><!-- this is just for simiulation -->
         <MaxLinesForEachCSVFile>2</MaxLinesForEachCSVFile>
         <ClientID>1000</ClientID>
     </System>
 
     <!-- FTP.py -->
     <FTP>
-        <WhichProcedureToUseForFTP>python</WhichProcedureToUseForFTP><!-- Options: batch, commandline, powershell, or python-->
+        <WhichProcedureToUseForFTP>python</WhichProcedureToUseForFTP>
         <Hostaddress>146.244.101.140</Hostaddress>
         <Username>dualpower</Username>
         <Password>ToInfiniti!</Password>
-        <OutboardDir>..\..\FTP\Outbound</OutboardDir>
+        <OutboandDir>..\..\FTP\Outbound</OutboandDir>
     </FTP>
 
     <!-- Files.py -->
     <Files>
-        <!-- Directories -->
         <!-- Local -->
         <DirectoryForOutboundFTPFiles>../../FTP/Outbound</DirectoryForOutboundFTPFiles>
         <ArchiveForOutboundFTPFiles>../../FTP/archive</ArchiveForOutboundFTPFiles>
         <DirectoryForMaxPowerLogFiles>../../logs/MaxPower</DirectoryForMaxPowerLogFiles>
         <ArchiveForMaxPowerLogFiles>../../logs/MaxPower/archive</ArchiveForMaxPowerLogFiles>
-
         <!-- Remote -->
         <DestinationDirectory>/home/dualpower/public_ftp/incoming/FTP</DestinationDirectory>
         <FileTypeForFTP>.csv</FileTypeForFTP>
         <FileTypeForLogs>.log</FileTypeForLogs>
         <FileTypeForZippedFolder>.7z</FileTypeForZippedFolder>
-
         <PrivateKey>../../FTP/BrandonMFong.ppk</PrivateKey>
-    </Files>
+    </Files>  
 
     <!-- MaxPower_Classes.py -->
     <MaxPower_Classes>
         <RadiusForWindTurbine>50</RadiusForWindTurbine>
         <AngleForBlades>120</AngleForBlades>
     </MaxPower_Classes>
-
     <!-- TODO sleep mode frequency -->
 </MaxPower>

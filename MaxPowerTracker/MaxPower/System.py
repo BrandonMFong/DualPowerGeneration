@@ -18,7 +18,7 @@ def init():
     Seconds = xmlreader.int('SecondsToCountForEachLine');
     File = 0;
     Log = 0;
-    delay = xmlreader.int('delay');
+    delay = xmlreader.int('delay'); # using in torque and solar
     MaxLines = xmlreader.int('MaxLinesForEachCSVFile');
 
 # Counts to Seconds
