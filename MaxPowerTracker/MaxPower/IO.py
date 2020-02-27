@@ -6,6 +6,7 @@
 ### LIBRARIES ###
 # TODO use the following library to simulate the rotation of the blades to calculate rpm 
 # from pynput.keyboard import Key, Listener # https://pythonhosted.org/pynput/keyboard.html
+import RPi.GPIO as GPIO
 import pynput
 import MaxPower_Classes
 import System
@@ -34,3 +35,6 @@ class Random_IO:
 
     def SOLAR_VOLT_listener():
         return random();
+
+class ReadInfrared:
+    def 
