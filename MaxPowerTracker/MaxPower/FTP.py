@@ -16,7 +16,6 @@ import ftplib
 
 global file_basename;
 file_basename = '..\\..\\Scripts\\FTP';
-<<<<<<< Updated upstream
 FTPXML = xmlreader();
 
 LocalFTPDir = FTPXML.string('OutboandDir'); # defines where to look to send files out
@@ -26,14 +25,6 @@ Username = FTPXML.string('Username');
 Password = FTPXML.string('Password');
 PrivateKey = FTPXML.string('PrivateKey')
 type = FTPXML.string('WhichProcedureToUseForFTP');
-=======
-LocalFTPDir = xmlreader.string('OutboundDir'); # defines where to look to send files out
-DestinationDir = xmlreader.string('DestinationDirectory');
-Hostname = xmlreader.string('Hostaddress');
-Username = xmlreader.string('Username');
-Password = xmlreader.string('Password');
-PrivateKey = xmlreader.string('PrivateKey')
->>>>>>> Stashed changes
 
 class FTP:
     @staticmethod
