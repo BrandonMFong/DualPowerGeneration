@@ -45,9 +45,10 @@ class RPI_Handler:
         GPIO.setup(xmlreader.int('InfraredInputPin'), GPIO.IN);
 
     def ReadInfrared(): # read function
-        if GPIO.input(xmlreader.int('InfraredInputPin')): #if pin is high increment
-            #similar to the keyboard listener
-            if System.timer_flag: # when timer is up
-                MaxPower_Classes.total_rpm = 0;
-                return exit();
-            MaxPower_Classes.Max_Power_Wind.Get_RPM(); # calls this function to increment
+        while True: # while loop to constantly read the gpio pin of the rpi
+            if GPIO.input(xmlreader.int('InfraredInputPin')): #if pin is high increment
+                #similar to the keyboard listener
+                if System.timer_flag: # when timer is up
+                    MaxPower_Classes.total_rpm = 0;
+                    return exit();
+                MaxPower_Classes.Max_Power_Wind.Get_RPM(); # calls this function to increment
