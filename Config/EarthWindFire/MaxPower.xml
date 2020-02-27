@@ -54,4 +54,9 @@
         <AngleForBlades>120</AngleForBlades>
     </MaxPower_Classes>
     <!-- TODO sleep mode frequency -->
+
+    <!-- IO.py -->
+    <IO>
+        <InfraredInputPin>3</InfraredInputPin>
+    </IO>
 </MaxPower>
