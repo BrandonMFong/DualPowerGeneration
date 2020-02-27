@@ -11,8 +11,10 @@ import pynput
 import MaxPower_Classes
 import System
 import threading
+from XML import xmlreader
 from random import random
 
+xmlreader = xmlreader();
 # Below is just for simulation purposes
 class Keyboard_IO:
 
@@ -36,5 +38,16 @@ class Random_IO:
     def SOLAR_VOLT_listener():
         return random();
 
-class ReadInfrared:
-    def 
+#https://learn.sparkfun.com/tutorials/raspberry-gpio/python-rpigpio-api
+#https://www.raspberrypi.org/documentation/usage/gpio/
+class RPI_Handler:
+    def init():
+        GPIO.setup(xmlreader.int('InfraredInputPin'), GPIO.IN);
+
+    def ReadInfrared(): # read function
+        if GPIO.input(xmlreader.int('InfraredInputPin')): #if pin is high increment
+            #similar to the keyboard listener
+            if System.timer_flag: # when timer is up
+                MaxPower_Classes.total_rpm = 0;
+                return exit();
+            MaxPower_Classes.Max_Power_Wind.Get_RPM(); # calls this function to increment
