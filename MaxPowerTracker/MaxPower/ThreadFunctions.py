@@ -33,7 +33,7 @@ def do():
     THREAD_Max_Power_Solar_Get_SOLAR_POWER.start();
 
     # This waits until the above threading is finished
-    IO.Keyboard_IO.RPM_Listener(); # join thread, TODO 
+    #IO.Keyboard_IO.RPM_Listener(); # TODO configure if possible
     THREAD_Timer.join();
     THREAD_Max_Power_Wind_Get_TORQUE.join();
     THREAD_Max_Power_Solar_Get_SOLAR_POWER.join();
