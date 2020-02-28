@@ -40,8 +40,12 @@ class Random_IO:
 
 #https://learn.sparkfun.com/tutorials/raspberry-gpio/python-rpigpio-api
 #https://www.raspberrypi.org/documentation/usage/gpio/
+# Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+# Error reading SSH protocol banner[Errno 104] Connection reset by peer
+
 class RPI_Handler:
     def init():
+        GPIO.setmode(GPIO.BOARD)  
         GPIO.setup(xmlreader.int('InfraredInputPin'), GPIO.IN);
 
     def ReadInfrared(): # read function
