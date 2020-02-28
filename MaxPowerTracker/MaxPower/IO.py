@@ -6,7 +6,7 @@
 ### LIBRARIES ###
 # TODO use the following library to simulate the rotation of the blades to calculate rpm 
 # from pynput.keyboard import Key, Listener # https://pythonhosted.org/pynput/keyboard.html
-from RPi import GPIO 
+import RPi.GPIO as GPIO
 #import pynput
 import MaxPower_Classes
 import System
@@ -42,11 +42,11 @@ class Random_IO:
 #https://www.raspberrypi.org/documentation/usage/gpio/
 class RPI_Handler:
     def init():
-        RPi.GPIO.setup(xmlreader.int('InfraredInputPin'), RPi.GPIO.IN);
+        GPIO.setup(xmlreader.int('InfraredInputPin'), GPIO.IN);
 
     def ReadInfrared(): # read function
         while True: # while loop to constantly read the RPi.GPIO pin of the rpi
-            if RPi.GPIO.input(xmlreader.int('InfraredInputPin')): #if pin is high increment
+            if GPIO.input(xmlreader.int('InfraredInputPin')): #if pin is high increment
                 #similar to the keyboard listener
                 if System.timer_flag: # when timer is up
                     MaxPower_Classes.total_rpm = 0;
