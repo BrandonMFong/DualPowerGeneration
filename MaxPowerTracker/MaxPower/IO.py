@@ -10,9 +10,11 @@ import RPi.GPIO as GPIO
 #import pynput
 import MaxPower_Classes
 import System
+import time
 import threading
 from XML import xmlreader
 from random import random
+
 
 xmlreader = xmlreader();
 # Below is just for simulation purposes
@@ -59,4 +61,4 @@ class RPI_Handler:
                     MaxPower_Classes.total_rpm = 0;
                     return exit();
                 MaxPower_Classes.Max_Power_Wind.Get_RPM(); # calls this function to increment
-            sleep(0.1);
+            time.sleep(0.1);
