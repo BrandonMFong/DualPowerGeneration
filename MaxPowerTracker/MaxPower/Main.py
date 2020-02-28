@@ -57,4 +57,7 @@ while True:
         Archive_Handler.ArchiveFiles();
     except KeyboardInterrupt:
         IO.RPI_Handler.CleanupRPi();
+        File_Handler.Close_File();
+        Log_Handler.Close_File();
+        break; # Exit code
         
