@@ -47,6 +47,9 @@ class RPI_Handler:
     def init():
         GPIO.setmode(GPIO.BOARD)  
         GPIO.setup(xmlreader.int('InfraredInputPin'), GPIO.IN);
+    
+    def CleanupRPi():
+        GPIO.cleanup(); 
 
     def ReadInfrared(): # read function
         while True: # while loop to constantly read the RPi.GPIO pin of the rpi
@@ -56,3 +59,4 @@ class RPI_Handler:
                     MaxPower_Classes.total_rpm = 0;
                     return exit();
                 MaxPower_Classes.Max_Power_Wind.Get_RPM(); # calls this function to increment
+            sleep(0.1);
