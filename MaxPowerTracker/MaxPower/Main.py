@@ -59,5 +59,6 @@ while True:
         IO.RPI_Handler.CleanupRPi();
         File_Handler.Close_File();
         Log_Handler.Close_File();
+        print("Terminating code...");
         break; # Exit code
         
