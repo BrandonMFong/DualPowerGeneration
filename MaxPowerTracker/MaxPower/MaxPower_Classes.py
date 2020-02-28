@@ -14,6 +14,8 @@ import IO
 import os
 
 MaxPower_ClassesXML = xmlreader();
+
+
 ### CLASSES ###
 class Max_Power_Wind:
     def Avg_Pwr(Torque, RPM):# This gets called from main.py

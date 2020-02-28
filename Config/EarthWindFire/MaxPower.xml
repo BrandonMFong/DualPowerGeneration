@@ -27,10 +27,10 @@
         <Password>ToInfiniti!</Password>
         <OutboundDir>..\..\FTP\Outbound</OutboundDir>
 
-        <Hostaddress>35.232.174.194</Hostaddress>
+        <!-- <Hostaddress>35.232.174.194</Hostaddress>
         <Username>dualpower</Username>
         <Password>ToInfiniti!</Password>
-        <OutboundDir>..\..\FTP\Outbound</OutboundDir>
+        <OutboundDir>..\..\FTP\Outbound</OutboundDir> -->
     </FTP>
 
     <!-- Files.py -->
