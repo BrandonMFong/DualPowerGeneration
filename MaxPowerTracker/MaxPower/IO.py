@@ -46,8 +46,8 @@ class Random_IO:
 # Error reading SSH protocol banner[Errno 104] Connection reset by peer
 
 class RPI_Handler:
-    global InfraredInputPin;
     def init():
+        global InfraredInputPin;
         InfraredInputPin = xmlreader.int('InfraredInputPin');
         GPIO.setmode(GPIO.BOARD);
         GPIO.setup(InfraredInputPin, GPIO.IN);
