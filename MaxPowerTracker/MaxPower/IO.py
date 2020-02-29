@@ -17,6 +17,7 @@ from random import random
 
 
 xmlreader = xmlreader();
+global InfraredInputPin;
 # Below is just for simulation purposes
 #class Keyboard_IO:
 
@@ -47,7 +48,6 @@ class Random_IO:
 
 class RPI_Handler:
     def init():
-        global InfraredInputPin;
         InfraredInputPin = xmlreader.int('InfraredInputPin');
         GPIO.setmode(GPIO.BOARD);
         GPIO.setup(InfraredInputPin, GPIO.IN);
