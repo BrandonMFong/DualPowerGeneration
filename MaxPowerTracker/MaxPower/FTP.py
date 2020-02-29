@@ -17,7 +17,7 @@ file_basename = '..\\..\\Scripts\\FTP';
 FTPXML = xmlreader();
 
 LocalFTPDir = FTPXML.string('OutboundDir'); # defines where to look to send files out
-DestinationDir = FTPXML.string('DestinationDirectory');
+DestinationDir = FTPXML.string('Destination');
 Hostname = FTPXML.string('Hostaddress');
 Username = FTPXML.string('Username');
 Password = FTPXML.string('Password');
@@ -76,7 +76,7 @@ class FTP:
                 Log_Handler.Write_Log(os.path.basename(__file__) + "\n Sent file\n");
             except Exception as ex:
                 print(ex);
-                print("File not sent through ftp");
+                print("File not sent through ftp.  Check if folder exists on remote server.");
                 Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + str(ex) + "\n\n File not sent through cmd\n");
         else:
             print("FTP procedure not defined.  Please check configuration on MaxPower.xml");
