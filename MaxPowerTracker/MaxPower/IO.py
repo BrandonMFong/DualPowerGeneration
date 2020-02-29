@@ -42,7 +42,6 @@ class Random_IO:
 
 #https://learn.sparkfun.com/tutorials/raspberry-gpio/python-rpigpio-api
 #https://www.raspberrypi.org/documentation/usage/gpio/
-# Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
 # Error reading SSH protocol banner[Errno 104] Connection reset by peer
 
 class RPI_Handler:
@@ -76,6 +75,7 @@ class RPI_Handler:
                 MaxPower_Classes.Max_Power_Wind.Get_RPM(); # calls this function to increment
             time.sleep(0.1);
     
+    # This has a terrible latency
     def AckBitTurnOnLED(self):
         GPIO.output(AckBitForInfraredRead, 1);
         time.sleep(0.1);
