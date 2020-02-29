@@ -47,20 +47,31 @@ class Random_IO:
 
 class RPI_Handler:
     def init():
-        global InfraredInputPin;
-        InfraredInputPin = xmlreader.int('InfraredInputPin');
+        # Input GPIO pins
+        global InfraredInput;
+        InfraredInput = xmlreader.int('InfraredInputPin');
         GPIO.setmode(GPIO.BOARD);
-        GPIO.setup(InfraredInputPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN);
+        GPIO.setup(InfraredInput, GPIO.IN, pull_up_down=GPIO.PUD_DOWN);
+
+        # Output GPIO pins
+        global AckBitForInfraredRead
+        AckBitForInfraredRead = xmlreader.int('AckBitForInfraredReadPin');
+        GPIO.setmode(GPIO.BOARD);
+        GPIO.setup(AckBitForInfraredRead, GPIO.Output, initial=GPIO.LOW);
+        GPIO.add_event_callback(AckBitForInfraredRead, AckBitTurnOnLED);
     
     def CleanupRPi():
         GPIO.cleanup(); 
 
     def ReadInfrared(): # read function
         while True: # while loop to constantly read the RPi.GPIO pin of the rpi
-            if GPIO.input(InfraredInputPin): #if pin is high increment
+            if GPIO.input(InfraredInput): #if pin is high increment
                 #similar to the keyboard listener
                 if System.timer_flag: # when timer is up
                     MaxPower_Classes.total_rpm = 0;
                     return exit();
                 MaxPower_Classes.Max_Power_Wind.Get_RPM(); # calls this function to increment
             time.sleep(0.1);
+    
+    def AckBitTurnOnLED():
+        GPIO.output(AckBitForInfraredRead, GPIO.input(InfraredInput))
