@@ -47,7 +47,7 @@ class Random_IO:
 
 class RPI_Handler:
     def init():
-        GPIO.setmode(GPIO.BOARD)  
+        GPIO.setmode(GPIO.BOARD);
         GPIO.setup(xmlreader.int('InfraredInputPin'), GPIO.IN);
     
     def CleanupRPi():
