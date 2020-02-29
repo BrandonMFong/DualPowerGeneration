@@ -57,7 +57,7 @@ class RPI_Handler:
         global AckBitForInfraredRead
         AckBitForInfraredRead = xmlreader.int('AckBitForInfraredReadPin');
         GPIO.setmode(GPIO.BOARD);
-        GPIO.setup(AckBitForInfraredRead, GPIO.Output, initial=GPIO.LOW);
+        GPIO.setup(AckBitForInfraredRead, GPIO.OUT, initial=GPIO.LOW);
         GPIO.add_event_callback(AckBitForInfraredRead, AckBitTurnOnLED);
     
     def CleanupRPi():
