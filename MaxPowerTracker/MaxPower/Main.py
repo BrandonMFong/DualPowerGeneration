@@ -23,7 +23,7 @@ System.init();
 MaxPower_Classes.init();
 i = 0;
 Sender = FTP();
-IO.RPI_Handler.init(self);
+IO.RPI_Handler.init(IO.RPI_Handler);
 
 # Main loop
 while True:
