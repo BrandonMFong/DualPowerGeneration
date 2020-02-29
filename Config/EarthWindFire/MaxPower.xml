@@ -57,7 +57,7 @@
 
     <!-- IO.py -->
     <IO>
-        <InfraredInputPin>5</InfraredInputPin>
-        <AckBitForInfraredReadPin>3</AckBitForInfraredReadPin>
+        <InfraredInputPin>8</InfraredInputPin>
+        <AckBitForInfraredReadPin>10</AckBitForInfraredReadPin>
     </IO>
 </MaxPower>
