@@ -74,5 +74,5 @@ class RPI_Handler:
                 MaxPower_Classes.Max_Power_Wind.Get_RPM(); # calls this function to increment
             time.sleep(0.1);
     
-    def AckBitTurnOnLED():
+    def AckBitTurnOnLED(self):
         GPIO.output(AckBitForInfraredRead, GPIO.input(InfraredInput))
