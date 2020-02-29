@@ -77,4 +77,6 @@ class RPI_Handler:
             time.sleep(0.1);
     
     def AckBitTurnOnLED(self):
-        GPIO.output(AckBitForInfraredRead, 1)
+        GPIO.output(AckBitForInfraredRead, 1);
+        time.sleep(0.1);
+        GPIO.output(AckBitForInfraredRead, 0);
