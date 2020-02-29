@@ -58,6 +58,8 @@ class RPI_Handler:
         AckBitForInfraredRead = xmlreader.int('AckBitForInfraredReadPin');
         GPIO.setmode(GPIO.BOARD);
         GPIO.setup(AckBitForInfraredRead, GPIO.OUT, initial=GPIO.LOW);
+
+        # Adding event
         GPIO.add_event_detect(InfraredInput, GPIO.RISING);  
         GPIO.add_event_callback(InfraredInput, self.AckBitTurnOnLED);
     
@@ -66,7 +68,7 @@ class RPI_Handler:
 
     def ReadInfrared(): # read function
         while True: # while loop to constantly read the RPi.GPIO pin of the rpi
-            if GPIO.input(InfraredInput): #if pin is high increment
+            if GPIO.input(InfraredInput): #if pin is high then increment
                 #similar to the keyboard listener
                 if System.timer_flag: # when timer is up
                     MaxPower_Classes.total_rpm = 0;
@@ -75,4 +77,4 @@ class RPI_Handler:
             time.sleep(0.1);
     
     def AckBitTurnOnLED(self):
-        GPIO.output(AckBitForInfraredRead, GPIO.input(InfraredInput))
+        GPIO.output(AckBitForInfraredRead, 1)
