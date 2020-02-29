@@ -50,7 +50,7 @@ class RPI_Handler:
         global InfraredInputPin;
         InfraredInputPin = xmlreader.int('InfraredInputPin');
         GPIO.setmode(GPIO.BOARD);
-        GPIO.setup(InfraredInputPin, GPIO.IN);
+        GPIO.setup(InfraredInputPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN);
     
     def CleanupRPi():
         GPIO.cleanup(); 
