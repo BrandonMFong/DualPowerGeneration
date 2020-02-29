@@ -57,6 +57,6 @@
 
     <!-- IO.py -->
     <IO>
-        <InfraredInputPin>3</InfraredInputPin>
+        <InfraredInputPin>5</InfraredInputPin>
     </IO>
 </MaxPower>
