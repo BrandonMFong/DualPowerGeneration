@@ -77,6 +77,6 @@ class FTP:
             except Exception as ex:
                 print(ex);
                 print("File not sent through ftp");
-                Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + ex + "\n\n File not sent through cmd\n");
+                Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + ex.tostring() + "\n\n File not sent through cmd\n");
         else:
             print("FTP procedure not defined.  Please check configuration on MaxPower.xml");
