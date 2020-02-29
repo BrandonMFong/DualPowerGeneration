@@ -47,6 +47,7 @@ class Random_IO:
 
 class RPI_Handler:
     def init():
+        global InfraredInputPin;
         InfraredInputPin = xmlreader.int('InfraredInputPin');
         GPIO.setmode(GPIO.BOARD);
         GPIO.setup(InfraredInputPin, GPIO.IN);
