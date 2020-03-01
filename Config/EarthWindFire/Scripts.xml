@@ -17,7 +17,7 @@
         <!-- /home/fong_m_brandon97/public_ftp/incoming/FTP - Google Cloud (Brandon's)-->
         <!-- <FTPFolder>/home/fong_m_brandon97/public_ftp/incoming/FTP</FTPFolder> -->
         <!-- Using ~ because the MakeIncomingFTPFolder.sh already makes ftp against ~ --> 
-        <FTP_Folder>/home/fong_m_brandon97/public_ftp/incoming/FTP</FTP_Folder>
+        <FTP_Folder>/home/dual/public_ftp/incoming/FTP</FTP_Folder>
 
         <SecondsToWaitToReadFolder>5</SecondsToWaitToReadFolder>
 
