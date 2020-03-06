@@ -10,10 +10,10 @@
 #define BAUDRATE ((F_CPU)/(BAUD*16UL)-1)
 
 //Photoresistors 0 -> 3
-#define R0 0    //Left
-#define R1 1	//Top
-#define R2 2	//Right
-#define R3 3	//Bottom
+#define R0 0    //Top
+#define R1 1	//Bottom
+#define R2 2	//Left
+#define R3 3	//Right
 
 #include <avr/io.h>
 #include <util/delay.h>
@@ -25,7 +25,7 @@ void uart_Init();
 void uart_Transmit(char data[]);
 
 //To convert values from ADC to string for the UART
-void convertToString(uint16_t value, char word[]);
+void convertToString(int16_t value, char word[]);
 char getChar(int  digit);
 
 void adc_Init();
@@ -34,21 +34,25 @@ void dac_Init();
 
 
 //Moving functions
-void beginReading(); //Read voltage values from the 4 voltage dividers
-void moveLinearActuator(uint16_t v1, uint16_t v2);
+void startManeuvering(); //Read voltage values from the 4 voltage dividers
+void moveLinearActuator();
 void moveTheOtherMotorWhoseNameIDontKnow(uint16_t v1, uint16_t v2);
 
 
-char value[6];
+char value[7];
 
 int main(void)
 {
 	//Init
 	
 	DDRB |= (1 << DDRB5);  //Set portB 5 as output LED
-	DDRB &= ~(1<<DDRB7);   //Set portB 7 as input
-	DDRC &= ~(1<<DDRC0);
+	DDRD |= (1 << DDD2) | (1 << DDD3);
 	
+	DDRB &= ~(1<<DDRB7);   //Set portB 7 as input
+	DDRC &= ~((1<<DDRC0) | (1 << DDRC1));
+	
+	PORTD |= (1 << PORTD3) | (1 << PORTD2);
+
 	uart_Init();
 	adc_Init();
 	
@@ -58,32 +62,53 @@ int main(void)
 		{
 			while(!(PINB & (1<<PINB7)));
 			
-			PINB |= (1<<PINB5); //toggle LED
+			startManeuvering();
+			
 		}
 	}
 }
 
-void beginReading(){
-	//Photoresistor channels
-	uint16_t v0;
-	uint16_t v1;
-	uint16_t v2;
-	uint16_t v3;
+void startManeuvering(){
 	
-	v0 = adc_read(R0);
-	v1 = adc_read(R1);
-	v2 = adc_read(R2);
-	v3 = adc_read(R3);
+	PINB |= (1<<PINB5); //toggle LED
 	
-	moveLinearActuator(v0, v2);
+	moveLinearActuator();
 	//moveTheOtherMotorWhoseNameIDontKnow(v1,v3);
 	
+	PINB |= (1<<PINB5); //toggle LED
 	//We done ;)
 }
 
-void moveLinearActuator(uint16_t v1, uint16_t v2){
+void moveLinearActuator(){
 	
-	//Work in progress
+	int16_t v0;
+	int16_t v1;
+	int16_t difference;
+	
+	v0 = adc_read(R0);
+	convertToString(v0, value);
+	uart_Transmit(value);
+	
+	v1 = adc_read(R1);
+	convertToString(v1, value);
+	uart_Transmit(value);
+	
+	difference = v0 - v1;
+	
+	convertToString(difference, value);
+	uart_Transmit(value);
+	
+	if(difference > 50) PORTD &= ~(1 << PORTD3);
+	else if(difference < -50) PORTD &= ~(1 << PORTD2);
+	
+	while(difference < -50 || difference > 50){
+		v0 = adc_read(R0);
+		v1 = adc_read(R1);
+		difference = v0 - v1;
+	}
+	
+	//PORTD &= ~((1 << PORTD2) | (1 << PORTD3));
+	PORTD |= (1 << PORTD3) | (1 << PORTD2);
 }
 
 void dac_Init()
@@ -122,6 +147,8 @@ void uart_Transmit(char data[]){
 	
 	while(!(UCSR0A & (1<<UDRE0))); 
 	UDR0 = ' ';
+	
+	for(int i = 0; i < 6; i++) value[i] = ' ';
 }
 
 void uart_Init(){
@@ -131,11 +158,13 @@ void uart_Init(){
 	UCSR0C |= (1<<UCSZ00) | (1<<UCSZ01); //8 bit data format
 }
 
-void convertToString(uint16_t value, char word[])
+void convertToString(int16_t voltage, char word[])
 {
-	double number = value;
+	double number = voltage;
 	int divisionCount = 0;
 	int digit;
+	
+	if(number < 0) number *= -1;
 	
 	while(number >= 1){
 		 number = number / 10;
