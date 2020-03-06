@@ -85,30 +85,30 @@ void moveLinearActuator(){
 	int16_t v1;
 	int16_t difference;
 	
-	v0 = adc_read(R0);
-	convertToString(v0, value);
-	uart_Transmit(value);
+	v0 = adc_read(R0);              //Read voltage value v0
 	
-	v1 = adc_read(R1);
+	convertToString(v0, value);     //Used to convert the value into
+	uart_Transmit(value);			//a string and to display it
+	
+	v1 = adc_read(R1);				//Read voltage value v1
 	convertToString(v1, value);
 	uart_Transmit(value);
 	
-	difference = v0 - v1;
+	difference = v0 - v1;           //Take difference
 	
 	convertToString(difference, value);
 	uart_Transmit(value);
 	
-	if(difference > 50) PORTD &= ~(1 << PORTD3);
-	else if(difference < -50) PORTD &= ~(1 << PORTD2);
+	if(difference > 50) PORTD &= ~(1 << PORTD3);       //Send signal to start retracting
+	else if(difference < -50) PORTD &= ~(1 << PORTD2); //Send signal to start expanding
 	
-	while(difference < -50 || difference > 50){
+	while(difference < -50 || difference > 50){//True while the difference is outside the [-50, 50] range
 		v0 = adc_read(R0);
-		v1 = adc_read(R1);
+		v1 = adc_read(R1);			//Continue reading voltage values and take difference
 		difference = v0 - v1;
 	}
 	
-	//PORTD &= ~((1 << PORTD2) | (1 << PORTD3));
-	PORTD |= (1 << PORTD3) | (1 << PORTD2);
+	PORTD |= (1 << PORTD3) | (1 << PORTD2);  //Cut the power of the linear actuator
 }
 
 void dac_Init()
