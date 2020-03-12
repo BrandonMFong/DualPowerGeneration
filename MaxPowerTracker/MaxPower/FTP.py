@@ -6,28 +6,27 @@
 
 ### LIBRARIES ### 
 from subprocess import call 
-#from Files import Log_Handler
+from Files import Log_Handler
 from XML import xmlreader
-from ftplib import FTP
 import Files
 import pysftp
 import subprocess, sys, os
-import ftplib
 
 global file_basename;
 file_basename = '..\\..\\Scripts\\FTP';
-LocalFTPDir = xmlreader.string('OutboardDir'); # defines where to look to send files out
-DestinationDir = xmlreader.string('DestinationDirectory');
-Hostname = xmlreader.string('Hostaddress');
-Username = xmlreader.string('Username');
-Password = xmlreader.string('Password');
-PrivateKey = xmlreader.string('PrivateKey')
+FTPXML = xmlreader();
+
+LocalFTPDir = FTPXML.string('OutboundDir'); # defines where to look to send files out
+DestinationDir = FTPXML.string('Destination');
+Hostname = FTPXML.string('Hostaddress');
+Username = FTPXML.string('Username');
+Password = FTPXML.string('Password');
+PrivateKey = FTPXML.string('PrivateKey')
+type = FTPXML.string('WhichProcedureToUseForFTP');
 
 class FTP:
     @staticmethod
     def send():
-        type = xmlreader.string('WhichProcedureToUseForFTP');
-
         # POWERSHELL
         if type == 'powershell':
             try:
@@ -61,6 +60,7 @@ class FTP:
                 print(ex);
                 print("File not sent through ftp");
                 Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + ex + "\n\n File not sent through cmd\n");
+        
         # PYTHON
         # refer https://stackoverflow.com/questions/68335/how-to-copy-a-file-to-a-remote-server-in-python-using-scp-or-ssh
         elif type == 'python':
@@ -72,7 +72,11 @@ class FTP:
                 with pysftp.Connection(host=Hostname, username=Username, password=Password, cnopts=cnopts, private_key=PrivateKey) as sftp: # temporarily chdir to allcode
                     dest = DestinationDir + Files.filename.replace("\\", "/");
                     sftp.put(Files.fullpath, dest);  	# upload file to allcode/pycode on remote
+                
+                Log_Handler.Write_Log(os.path.basename(__file__) + "\n Sent file\n");
             except Exception as ex:
                 print(ex);
+                print("File not sent through ftp.  Check if folder exists on remote server.");
+                Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + str(ex) + "\n\n File not sent through cmd\n");
         else:
             print("FTP procedure not defined.  Please check configuration on MaxPower.xml");

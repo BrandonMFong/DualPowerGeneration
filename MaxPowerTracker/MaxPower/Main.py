@@ -23,34 +23,42 @@ System.init();
 MaxPower_Classes.init();
 i = 0;
 Sender = FTP();
+IO.RPI_Handler.init(IO.RPI_Handler);
 
 # Main loop
 while True:
-    # This creates a file in a directory inside our git repo named DualPowerGeneration\FTP
-    # NOTE: For debugging please check if the file is created
-    if File_Handler.Init_File(): print("Error making file \n");
-    else: print("Success created file \n");
+    try:
+        # This creates a file in a directory inside our git repo named DualPowerGeneration\FTP
+        # NOTE: For debugging please check if the file is created
+        if File_Handler.Init_File(): print("Error making file \n");
+        else: print("Success created file \n");
 
-    # This creates the log file at DualPowerGeneration\logs
-    if Log_Handler.Init_File(): print("Error making log \n");
-    else: print("Success making log \n");
+        # This creates the log file at DualPowerGeneration\logs
+        if Log_Handler.Init_File(): print("Error making log \n");
+        else: print("Success making log \n");
 
-    print("Entering loop\n");
-    
-    i = 0;
-    while i < System.MaxLines:
+        print("Entering loop\n");
+        
+        i = 0;
+        while i < System.MaxLines:
 
-        ThreadFunctions.do();
+            ThreadFunctions.do();
 
-        MaxPower_Classes.do(i);
-        i = i + 1;
+            MaxPower_Classes.do(i);
+            i = i + 1;
 
-    # Closes and saves file
-    File_Handler.Close_File();
-    Log_Handler.Close_File();
-    
-    Sender.send(); # Runs script to send via ftp
+        # Closes and saves file
+        File_Handler.Close_File();
+        Log_Handler.Close_File();
+        
+        Sender.send(); # Runs script to send via ftp
 
-    # Move Files to FTP/archive folder
-    Archive_Handler.ArchiveFiles();
-    
+        # Move Files to FTP/archive folder
+        Archive_Handler.ArchiveFiles();
+    except KeyboardInterrupt:
+        IO.RPI_Handler.CleanupRPi();
+        File_Handler.Close_File();
+        Log_Handler.Close_File();
+        print("Terminating code...");
+        break; # Exit code
+        

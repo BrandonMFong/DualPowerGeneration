@@ -8,6 +8,8 @@ from XML import xmlreader
 import os
 import time
 
+
+SystemXML = xmlreader();
 def init():
     # Delcare
     global Seconds, File, delay, MaxLines, Log;
@@ -15,11 +17,11 @@ def init():
     # Initialize
     # This will create MaxLines, 1 line every Seconds passes
     # MaxLines * Seconds will pass
-    Seconds = xmlreader.int('SecondsToCountForEachLine');
+    Seconds = SystemXML.int('SecondsToCountForEachLine');
     File = 0;
     Log = 0;
-    delay = xmlreader.int('delay'); # using in torque and solar
-    MaxLines = xmlreader.int('MaxLinesForEachCSVFile');
+    delay = SystemXML.int('delay'); # using in torque and solar
+    MaxLines = SystemXML.int('MaxLinesForEachCSVFile');
 
 # Counts to Seconds
 def timer():
@@ -33,5 +35,5 @@ def timer():
     timer_flag = True;
 
 class Client:
-    ID = xmlreader.int('ClientID'); # Hard coding, TODO figure out a way to figure out client by device.  OS ip address? 
+    ID = SystemXML.int('ClientID'); 
 

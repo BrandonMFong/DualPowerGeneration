@@ -13,11 +13,11 @@ XMLPath = '../../Config/' + CLIENT + '/MaxPower.xml';
 reader = minidom.parse(XMLPath);
 
 class xmlreader:
-    def int(value):
+    def int(self, value):
         return int((reader.getElementsByTagName(value))[0].firstChild.data);
 
-    def string(value):
+    def string(self, value):
         return str((reader.getElementsByTagName(value))[0].firstChild.data);
 
-    def double(value):
+    def double(self, value):
         return double((reader.getElementsByTagName(value))[0].firstChild.data);
