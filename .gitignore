@@ -6,14 +6,14 @@
 *.ppk
 Scripts/FTP.*
 
-## MAX POWER FILES
+## MAX POWER FILES ##
 /FTP/*
 logs/
 MaxPowerTracker/.vs/*
 MaxPowerTracker/MaxPower/__pycache__/*
 MaxPowerTracker/MaxPower/__pycache__/*.pyc
 /MaxPowerTracker/MaxPower/*.pyc
-
+MaxPowerTracker/py/*
 ## SITE ## 
 .vscode
 .well-known
