@@ -60,7 +60,16 @@
 
     <!-- IO.py -->
     <IO>
+        <!--Infrared pins-->
         <InfraredInputPin>8</InfraredInputPin>
         <AckBitForInfraredReadPin>10</AckBitForInfraredReadPin>
+
+        <!--ADC Ports-->
+        <ActivatePorts>
+            <Port0>true</Port0>
+            <Port1>false</Port1>
+            <Port2>false</Port2>
+            <Port3>false</Port3>
+        </ActivatePorts>
     </IO>
 </MaxPower>
