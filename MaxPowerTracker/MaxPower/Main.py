@@ -4,19 +4,15 @@
 #####################################################
 
 ### LIBRARIES ###
-# In this section, we need to get IO from tachometer
-# TODO figure out how to interface with GPIO RPI with pyhton
 from FTP import FTP
 from Files import File_Handler, Log_Handler, Archive_Handler
 from random import random 
-#from MaxPower_Classes import Max_Power_Wind, Max_Power_Solar 
 import MaxPower_Classes
 import System 
 import threading 
 import IO
 import os
 import ThreadFunctions
-#from EmulatorGUI import GPIO # simulates GPIO functions on rpi  
 
 # Init
 System.init();
