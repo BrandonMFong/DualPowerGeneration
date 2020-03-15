@@ -60,7 +60,7 @@ class RPI_Handler:
         # Output GPIO pins
         global AckBitForInfraredRead
         AckBitForInfraredRead = xmlreader.int('AckBitForInfraredReadPin');
-        GPIO.setmode(GPIO.BOARD);
+        # GPIO.setmode(GPIO.BOARD);
         GPIO.setup(AckBitForInfraredRead, GPIO.OUT, initial=GPIO.LOW);
 
         # Adding event
