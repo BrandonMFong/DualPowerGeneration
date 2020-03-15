@@ -18,6 +18,7 @@ System.init();
 MaxPower_Classes.init();
 
 # I do not want this thread to call any IO functions
+# I think I have to though because ReadInfrared is an async event
 def do():
     ### TIMER ### 
     THREAD_Timer = threading.Thread(target=System.timer);
