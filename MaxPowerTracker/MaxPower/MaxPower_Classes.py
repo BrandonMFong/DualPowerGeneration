@@ -15,7 +15,7 @@ import os
 
 MaxPower_ClassesXML = xmlreader();
 RPi = RPI_Handler();
-#RPi.init();
+RPi.init();
 
 ## WIND ##
 class Max_Power_Wind:

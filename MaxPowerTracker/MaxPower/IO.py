@@ -54,7 +54,7 @@ class RPI_Handler:
         # Input GPIO pins
         global InfraredInput;
         InfraredInput = xmlreader.int('InfraredInputPin');
-        GPIO.setmode(GPIO.BOARD);
+        # GPIO.setmode(GPIO.BOARD);
         GPIO.setup(InfraredInput, GPIO.IN, pull_up_down=GPIO.PUD_DOWN);
 
         # Output GPIO pins

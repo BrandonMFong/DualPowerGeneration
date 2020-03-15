@@ -12,3 +12,13 @@ ValueError: A different mode has already been set!
 Notes:
   - I feel like IO.RPi_Handler.init() has been called already and has already set the GPIO to GPIO.BOARD
   - Try to find somewhere in the code that has this
+  - Removing the init() in MaxPower_Classes didn't work
+    - Now it is erroring on IO reference (see below)
+
+
+Traceback (most recent call last):
+  File "Main.py", line 22, in <module>
+    IO.RPI_Handler.init(IO.RPI_Handler);
+  File "/home/brandonmfong/SOURCES/Repo/DualPowerGeneration/MaxPowerTracker/MaxPower/IO.py", line 57, in init
+    GPIO.setmode(GPIO.BOARD);
+ValueError: A different mode has already been set!
