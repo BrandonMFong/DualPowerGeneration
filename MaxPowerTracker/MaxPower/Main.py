@@ -14,11 +14,11 @@ import IO
 import os
 import ThreadFunctions
 
+Sender = FTP();
+
 # Init
 System.init();
 MaxPower_Classes.init();
-i = 0;
-Sender = FTP();
 IO.RPI_Handler.init(IO.RPI_Handler);
 
 # Main loop
@@ -51,6 +51,7 @@ while True:
 
         # Move Files to FTP/archive folder
         Archive_Handler.ArchiveFiles();
+        
     except KeyboardInterrupt:
         IO.RPI_Handler.CleanupRPi();
         File_Handler.Close_File();
