@@ -14,8 +14,6 @@ import time
 import os
 
 MaxPower_ClassesXML = xmlreader();
-# RPi = RPI_Handler();
-# RPi.init();
 
 ## WIND ##
 class Max_Power_Wind:
@@ -70,6 +68,8 @@ class Max_Power_Solar:
         Log_Handler.Write_Log(os.path.basename(__file__) + "Avg Pwr Solar calculated\n");
 
     def Get_Solar_Power():
+        # RPi = RPI_Handler();
+        # RPi.init();
         global total_solar_pwr;
         solar_current = 0;
         solar_voltage = 0;
