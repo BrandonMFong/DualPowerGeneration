@@ -4,25 +4,21 @@
 #####################################################
 
 ### LIBRARIES ###
-# In this section, we need to get IO from tachometer
-# TODO figure out how to interface with GPIO RPI with pyhton
 from FTP import FTP
 from Files import File_Handler, Log_Handler, Archive_Handler
 from random import random 
-#from MaxPower_Classes import Max_Power_Wind, Max_Power_Solar 
 import MaxPower_Classes
 import System 
 import threading 
 import IO
 import os
 import ThreadFunctions
-#from EmulatorGUI import GPIO # simulates GPIO functions on rpi  
+
+Sender = FTP();
 
 # Init
 System.init();
 MaxPower_Classes.init();
-i = 0;
-Sender = FTP();
 IO.RPI_Handler.init(IO.RPI_Handler);
 
 # Main loop
@@ -55,6 +51,7 @@ while True:
 
         # Move Files to FTP/archive folder
         Archive_Handler.ArchiveFiles();
+        
     except KeyboardInterrupt:
         IO.RPI_Handler.CleanupRPi();
         File_Handler.Close_File();

@@ -22,17 +22,11 @@
     <!-- FTP.py -->
     <FTP>
         <WhichProcedureToUseForFTP>python</WhichProcedureToUseForFTP>
-        <!-- <Hostaddress>146.244.101.140</Hostaddress> -->
         <Hostaddress>192.168.0.49</Hostaddress>
         <Username>dual</Username>
         <Password>power</Password>
         <OutboundDir>..\..\FTP\Outbound</OutboundDir>
         <Destination>/home/dualpower/public_ftp/incoming/FTP</Destination>
-
-        <!-- <Hostaddress>35.232.174.194</Hostaddress>
-        <Username>dualpower</Username>
-        <Password>ToInfiniti!</Password>
-        <OutboundDir>..\..\FTP\Outbound</OutboundDir> -->
     </FTP>
 
     <!-- Files.py -->
@@ -44,7 +38,6 @@
         <ArchiveForMaxPowerLogFiles>../../logs/MaxPower/archive</ArchiveForMaxPowerLogFiles>
 
         <!-- Remote -->
-        <!-- <DestinationDirectory>/home/dualpower/public_ftp/incoming/FTP</DestinationDirectory> -->
         <FileTypeForFTP>.csv</FileTypeForFTP>
         <FileTypeForLogs>.log</FileTypeForLogs>
         <FileTypeForZippedFolder>.7z</FileTypeForZippedFolder>
@@ -60,7 +53,16 @@
 
     <!-- IO.py -->
     <IO>
+        <!--Infrared pins-->
         <InfraredInputPin>8</InfraredInputPin>
         <AckBitForInfraredReadPin>10</AckBitForInfraredReadPin>
+
+        <!--ADC Ports-->
+        <ActivatePorts>
+            <Port0>true</Port0>
+            <Port1>false</Port1>
+            <Port2>false</Port2>
+            <Port3>false</Port3>
+        </ActivatePorts>
     </IO>
 </MaxPower>
