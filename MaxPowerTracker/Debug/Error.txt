@@ -22,3 +22,18 @@ Traceback (most recent call last):
   File "/home/brandonmfong/SOURCES/Repo/DualPowerGeneration/MaxPowerTracker/MaxPower/IO.py", line 57, in init
     GPIO.setmode(GPIO.BOARD);
 ValueError: A different mode has already been set!
+
+Traceback (most recent call last):
+  File "Main.py", line 22, in <module>
+    IO.RPI_Handler.init(IO.RPI_Handler);
+  File "/home/brandonmfong/SOURCES/Repo/DualPowerGeneration/MaxPowerTracker/MaxPower/IO.py", line 67, in init
+    GPIO.add_event_detect(InfraredInput, GPIO.RISING);
+RuntimeError: Conflicting edge detection already enabled for this GPIO channel
+
+Notes:
+    - Not entirely sure what this error is about
+    - From the looks of it, it is not excepting my config on GPIO.RISING
+
+
+- I may know what is happening.  The imports/modules in IO
+- I know I had to import some files when running adafruit's test
