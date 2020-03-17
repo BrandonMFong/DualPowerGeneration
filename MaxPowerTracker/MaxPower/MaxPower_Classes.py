@@ -14,7 +14,7 @@ import time
 import os
 
 MaxPower_ClassesXML = xmlreader();
-RPi = RPI_Handler();
+# RPi = RPI_Handler();
 # RPi.init();
 
 ## WIND ##
@@ -77,7 +77,7 @@ class Max_Power_Solar:
         while True:
             if System.timer_flag: break;
             time.sleep(System.delay);
-            solar_voltage = RPi.ReadIO(0);
+            solar_voltage = IO.RPI_Handler.ReadIO(0);
 
             solar_current = IO.Random_IO.SOLAR_CURR_listener();
             total_solar_pwr = (solar_current*solar_voltage) + total_solar_pwr;
