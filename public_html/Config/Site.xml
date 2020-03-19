@@ -1,0 +1,10 @@
+<Site>
+<!-- https://tryphp.w3schools.com/showphp.php?filename=demo_func_simplexml_getchildren -->
+    <DataCenter>
+        <CSSBootstrap>../css/bootstrap.min.css</CSSBootstrap>
+        <CSSBusinessCasual>../css/business-casual.css</CSSBusinessCasual>
+        <CSSFonts>../font-awesome/css/font-awesome.min.css</CSSFonts>
+        <JSBoostrap>../js/bootstrap.min.js</JSBoostrap>
+        <JSJQuery>../js/jquery.js<JSJQuery>
+    </DataCenter>
+</Site>
