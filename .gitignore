@@ -27,8 +27,5 @@ ManeuverSystem/DualPowerGeneration/Debug/*
 ## SQL ##
 SQL_Queries/BackUps/archive/*
 
-## RPi ##
-archive/NOOBS_v3_3_1.zip
-archive/NOOBS_v3_3_1
-archive/2020-02-13-raspbian-buster-full
-archive/ipaddr_rpi.txt
+## Archive  ##
+archive/*
