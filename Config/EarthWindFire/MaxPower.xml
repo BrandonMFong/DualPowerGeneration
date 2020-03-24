@@ -54,8 +54,8 @@
     <!-- IO.py -->
     <IO>
         <!--Infrared pins-->
-        <InfraredInputPin>8</InfraredInputPin>
-        <AckBitForInfraredReadPin>10</AckBitForInfraredReadPin>
+        <InfraredInputPin>21</InfraredInputPin>
+        <AckBitForInfraredReadPin>15</AckBitForInfraredReadPin>
 
         <!--ADC Ports-->
         <ActivatePorts>

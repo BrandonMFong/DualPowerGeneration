@@ -24,12 +24,11 @@ IO.RPI_Handler.init(IO.RPI_Handler);
 # Main loop
 while True:
     try:
-        # This creates a file in a directory inside our git repo named DualPowerGeneration\FTP
-        # NOTE: For debugging please check if the file is created
+        # .csv 
         if File_Handler.Init_File(): print("Error making file \n");
         else: print("Success created file \n");
 
-        # This creates the log file at DualPowerGeneration\logs
+        # .log
         if Log_Handler.Init_File(): print("Error making log \n");
         else: print("Success making log \n");
 
@@ -38,9 +37,9 @@ while True:
         i = 0;
         while i < System.MaxLines:
 
-            ThreadFunctions.do();
+            ThreadFunctions.do(); # Threads
 
-            MaxPower_Classes.do(i);
+            MaxPower_Classes.do(i); # Functions for max power
             i = i + 1;
 
         # Closes and saves file

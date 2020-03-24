@@ -16,7 +16,7 @@ global file_basename;
 file_basename = '..\\..\\Scripts\\FTP';
 FTPXML = xmlreader();
 
-LocalFTPDir = FTPXML.string('OutboundDir'); # defines where to look to send files out
+LocalFTPDir = FTPXML.string('OutboundDir');
 DestinationDir = FTPXML.string('Destination');
 Hostname = FTPXML.string('Hostaddress');
 Username = FTPXML.string('Username');
@@ -62,12 +62,11 @@ class FTP:
                 Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + ex + "\n\n File not sent through cmd\n");
         
         # PYTHON
-        # refer https://stackoverflow.com/questions/68335/how-to-copy-a-file-to-a-remote-server-in-python-using-scp-or-ssh
         elif type == 'python':
             try:
                 cnopts = pysftp.CnOpts();
-                #cnopts.hostkeys.load(PublicKey);
                 cnopts.hostkeys = None;
+                
                 # Establish connection
                 with pysftp.Connection(host=Hostname, username=Username, password=Password, cnopts=cnopts) as sftp: # temporarily chdir to allcode
                     dest = DestinationDir + Files.filename.replace("\\", "/");
