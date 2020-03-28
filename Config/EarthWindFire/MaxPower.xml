@@ -22,7 +22,7 @@
         <Username>dual</Username>
         <Password>power</Password>
         <OutboundDir>../../FTP/Outbound</OutboundDir>
-        <Destination>/home/dualpower/public_ftp/incoming/FTP</Destination>
+        <Destination>/home/dual/public_ftp/incoming/FTP</Destination>
     </FTP>
     <Files>
         <DirectoryForOutboundFTPFiles>../../FTP/Outbound</DirectoryForOutboundFTPFiles>
