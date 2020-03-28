@@ -76,6 +76,9 @@ class FTP:
             except Exception as ex:
                 print(ex);
                 print("File not sent through ftp.  Check if folder exists on remote server.");
+                print("\nThe error can be traced back with the following stack trace");
+                track = traceback.format_exc()
+                print(track)
                 Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + str(ex) + "\n\n File not sent through cmd\n");
         else:
             print("FTP procedure not defined.  Please check configuration on MaxPower.xml");
