@@ -21,7 +21,7 @@
         <Hostaddress>192.168.0.49</Hostaddress>
         <Username>dual</Username>
         <Password>power</Password>
-        <OutboundDir>..\..\FTP\Outbound</OutboundDir>
+        <OutboundDir>../../FTP/Outbound</OutboundDir>
         <Destination>/home/dualpower/public_ftp/incoming/FTP</Destination>
     </FTP>
     <Files>

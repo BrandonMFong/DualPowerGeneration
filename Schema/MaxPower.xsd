@@ -43,7 +43,7 @@
             <xs:element name="Password" minOccurs="1" type="xs:string"/>
             <xs:element name="OutboundDir" type="xs:string">
                 <xs:documentation>
-                    The full path for outbound files.  Use "\\".
+                    The full path for outbound files.  Use "/".
                 </xs:documentation>
             </xs:element>
             <xs:element name="Destination" minOccurs="1" type="xs:string">
