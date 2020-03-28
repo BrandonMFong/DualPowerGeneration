@@ -80,6 +80,6 @@ class FTP:
                 print("\nThe error can be traced back with the following stack trace");
                 track = traceback.format_exc()
                 print(track)
-                Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + str(ex) + "\n\n File not sent through cmd\n");
+                Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + str(ex) + "\n\n File not sent through cmd\n\n" + str(track));
         else:
             print("FTP procedure not defined.  Please check configuration on MaxPower.xml");
