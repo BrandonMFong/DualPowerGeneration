@@ -44,8 +44,6 @@ def MakeDir(makepath):
     else:
         print("\nDirectory %s already exits.\n" % makepath);
 
-def ls(Directory, ext)
-    return (f for f in os.listdir(Directory) if file.endswith(ext))
 
 # .csv files
 class File_Handler:
@@ -134,6 +132,8 @@ class Archive_Handler:
 
         MakeDir(FTPArchiveDir);
         MakeDir(LOGArchiveDir);
+        MakeDir(ZippedFTP);
+        MakeDir(ZippedLog);
 
         ## MOVES ##
 
