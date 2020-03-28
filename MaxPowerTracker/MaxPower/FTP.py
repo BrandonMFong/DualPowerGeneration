@@ -67,11 +67,6 @@ class FTP:
             try:
                 cnopts = pysftp.CnOpts();
                 cnopts.hostkeys = None;
-
-                print("\n\nTHIS IS THE FILE WE ARE SENDING:" + str(Files.fullpath));
-                print("\n\nLISTING CONTENTS IN DIRECTORY");
-                os.listdir(LocalFTPDir);
-                print("\n\n")
                 
                 # Establish connection
                 with pysftp.Connection(host=Hostname, username=Username, password=Password, cnopts=cnopts) as sftp: # temporarily chdir to allcode
