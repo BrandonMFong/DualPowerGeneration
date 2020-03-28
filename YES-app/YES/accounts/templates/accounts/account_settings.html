@@ -1,0 +1,10 @@
+{% extends "loggedin_layout.html" %} {% block title %} Settings {% endblock %}
+<!---->
+{% block content %}
+<div class="container">
+  <h3>Log out</h3>
+  <p>Are you sure you want to log out?</p>
+  <a class="btn btn-secondary" href="{% url 'logout' %}">Log out</a>
+</div>
+
+{% endblock %}
