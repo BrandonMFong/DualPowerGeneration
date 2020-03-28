@@ -89,6 +89,8 @@ class File_Handler:
         System.File = 0; # clear variable
         print("\n\nSEE IF FILE IS STILL HERE AFTER CLOSE\n\n");
         os.listdir(FTPDir);
+        print("\n\nArchive dir\n\n");
+        os.listdir(FTPArchiveDir);
 
 # .log files
 class Log_Handler:
