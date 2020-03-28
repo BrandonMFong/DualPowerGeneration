@@ -1,71 +1,138 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
-    <xs:element name="System">
-        <xs:element name="SecondsToCountForEachLine" type="xs:int"/>
-        <xs:element name="MaxLinesForEachCSVFile" type="xs:int"/>
-        <xs:element name="ClientID" type="xs:int"/>
+    <xs:element name="MaxPower">
+        <xs:annotation>
+            <xs:documentation>
+                This is the configuration blueprint.  The Maxpower scripts reads this xml file for operation
+            </xs:documentation>
+        </xs:annotation>
+        <xs:element name="System">
+            <xs:annotation>
+                <xs:documentation>
+                    System.py
+                </xs:documentation>
+            </xs:annotation>
+            <xs:element name="SecondsToCountForEachLine" type="xs:int"/>
+            <xs:element name="MaxLinesForEachCSVFile" type="xs:int"/>
+            <xs:element name="ClientID" type="xs:int"/>
+            <xs:element name="delay" type="xs:double">
+                <xs:annotation>
+                    <xs:documentation>
+                        using in torque and solar
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:element>
+        <xs:element name="FTP">
+            <xs:annotation>
+                <xs:documentation>
+                    FTP.py
+                </xs:documentation>
+            </xs:annotation>
+            <xs:element name="WhichProcedureToUseForFTP">
+                <xs:documentation>
+                    Options: 
+                        batch 
+                        commandline
+                        powershell
+                        python
+                </xs:documentation>
+            </xs:element>
+            <xs:element name="Hostaddress" minOccurs="1" type="xs:string"/>
+            <xs:element name="Username" minOccurs="1" type="xs:string"/>
+            <xs:element name="Password" minOccurs="1" type="xs:string"/>
+            <xs:element name="OutboundDir" type="xs:string">
+                <xs:documentation>
+                    The full path for outbound files.  Use "\\".
+                </xs:documentation>
+            </xs:element>
+            <xs:element name="Destination" minOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The destination on the receiving end
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:element>
+        <xs:element name="Files">
+            <xs:annotation>
+                <xs:documentation>
+                    Files.py
+                </xs:documentation>
+            </xs:annotation>
+            <xs:element name="DirectoryForOutboundFTPFiles" type="xs:string">
+                <xs:documentation>
+                    [FTP] Use "/".
+                </xs:documentation>
+            </xs:element>
+            <xs:element name="ArchiveForOutboundFTPFiles" type="xs:string">
+                <xs:documentation>
+                    [FTP] Use "/".
+                </xs:documentation>
+            </xs:element>
+            <xs:element name="DirectoryForMaxPowerLogFiles" type="xs:string">
+                <xs:documentation>
+                    [LOG] Use "/".
+                </xs:documentation>
+            </xs:element>
+            <xs:element name="ArchiveForMaxPowerLogFiles" type="xs:string">
+                <xs:documentation>
+                    [LOG] Use "/".
+                </xs:documentation>
+            </xs:element>
+            <xs:element name="FileTypeForFTP" type="xs:string"/>
+            <xs:element name="FileTypeForLogs" type="xs:string"/>
+            <xs:element name="FileTypeForZippedFolder" type="xs:string"/>
+            <xs:element name="PrivateKey" type="xs:string">
+                <xs:documentation>
+                    The full path for for the private key.  Use "/".  
+                    Used if necessary for FTP operations
+                </xs:documentation>
+            </xs:element>
+            <xs:element name="ZippedFTP" minOccurs="1" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        [FTP] Zipped folder desitination for FTP files
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ZippedLog" minOccurs="1" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        [LOG] Zipped folder desitination for log files
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:element>
+        <xs:element name="MaxPower_Classes">
+            <xs:annotation>
+                <xs:documentation>
+                    MaxPower_Classes.py
+                </xs:documentation>
+            </xs:annotation>
+            <xs:element name="RadiusForWindTurbine"/>
+            <xs:element name="AngleForBlades"/>
+        </xs:element>
+        <xs:element name="IO" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+                <xs:documentation>
+                    IO.py
+                </xs:documentation>
+            </xs:annotation>
+            <xs:element name="InfraredInputPin" minOccurs="1" maxOccurs="1" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>
+                        Use the GPIO.BCM indexing for pins
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AckBitForInfraredReadPin" minOccurs="1" maxOccurs="1" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>
+                        Use the GPIO.BCM indexing for pins
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:element>
     </xs:element>
-
-    <xs:element name="FTP">
-        <xs:element name="WhichProcedureToUseForFTP">
-            <xs:documentation>
-                Options: 
-                    batch 
-                    commandline
-                    powershell
-                    python
-            </xs:documentation>
-        </xs:element>
-        <xs:element name="Hostaddress" minOccurs="1" type="xs:string"/>
-        <xs:element name="Username" minOccurs="1" type="xs:string"/>
-        <xs:element name="Password" minOccurs="1" type="xs:string"/>
-        <xs:element name="OutboandDir" type="xs:string">
-            <xs:documentation>
-                The full path for outbound files.  Use "\\".
-            </xs:documentation>
-        </xs:element>
-    </xs:element>
-    
-    <xs:element name="Files">
-        <xs:element name="DirectoryForOutboundFTPFiles" type="xs:string">
-            <xs:documentation>
-                Use "/".
-            </xs:documentation>
-        </xs:element>
-        <xs:element name="ArchiveForOutboundFTPFiles" type="xs:string">
-            <xs:documentation>
-                Use "/".
-            </xs:documentation>
-        </xs:element>
-        <xs:element name="DirectoryForMaxPowerLogFiles" type="xs:string">
-            <xs:documentation>
-                Use "/".
-            </xs:documentation>
-        </xs:element>
-        <xs:element name="ArchiveForMaxPowerLogFiles" type="xs:string">
-            <xs:documentation>
-                Use "/".
-            </xs:documentation>
-        </xs:element>
-        <xs:element name="DestinationDirectory" type="xs:string">
-            <xs:documentation>
-                Use "/".
-            </xs:documentation>
-        </xs:element>
-        <xs:element name="FileTypeForFTP" type="xs:string"/>
-        <xs:element name="FileTypeForLogs" type="xs:string"/>
-        <xs:element name="FileTypeForZippedFolder" type="xs:string"/>
-        <xs:element name="PrivateKey" type="xs:string">
-            <xs:documentation>
-                The full path for for the private key.  Use "/".
-            </xs:documentation>
-        </xs:element>
-    </xs:element>
-    
-    <xs:element name="MaxPower_Classes">
-        <xs:element name="RadiusForWindTurbine"/>
-        <xs:element name="AngleForBlades"/>
-    </xs:element>
-
 </xs:schema>
