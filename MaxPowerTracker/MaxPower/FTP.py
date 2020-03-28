@@ -11,6 +11,7 @@ from XML import xmlreader
 import Files
 import pysftp
 import subprocess, sys, os
+import traceback
 
 global file_basename;
 file_basename = '..\\..\\Scripts\\FTP';
