@@ -6,14 +6,16 @@
 *.ppk
 Scripts/FTP.*
 
-## MAX POWER FILES ##
+## MAX POWER  ##
 /FTP/*
 logs/
 MaxPowerTracker/.vs/*
 MaxPowerTracker/MaxPower/__pycache__/*
 MaxPowerTracker/MaxPower/__pycache__/*.pyc
-/MaxPowerTracker/MaxPower/*.pyc
+MaxPowerTracker/MaxPower/*.pyc
+MaxPowerTracker/MaxPower/adafruit_ads1x15/__pycache__
 MaxPowerTracker/py/*
+
 ## SITE ## 
 .vscode
 .well-known
@@ -27,8 +29,5 @@ ManeuverSystem/DualPowerGeneration/Debug/*
 ## SQL ##
 SQL_Queries/BackUps/archive/*
 
-## RPi ##
-archive/NOOBS_v3_3_1.zip
-archive/NOOBS_v3_3_1
-archive/2020-02-13-raspbian-buster-full
-archive/ipaddr_rpi.txt
+## Archive  ##
+archive/*

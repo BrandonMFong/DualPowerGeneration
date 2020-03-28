@@ -11,12 +11,13 @@ from XML import xmlreader
 import Files
 import pysftp
 import subprocess, sys, os
+import traceback
 
 global file_basename;
 file_basename = '..\\..\\Scripts\\FTP';
 FTPXML = xmlreader();
 
-LocalFTPDir = FTPXML.string('OutboundDir'); # defines where to look to send files out
+LocalFTPDir = FTPXML.string('OutboundDir');
 DestinationDir = FTPXML.string('Destination');
 Hostname = FTPXML.string('Hostaddress');
 Username = FTPXML.string('Username');
@@ -62,12 +63,11 @@ class FTP:
                 Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + ex + "\n\n File not sent through cmd\n");
         
         # PYTHON
-        # refer https://stackoverflow.com/questions/68335/how-to-copy-a-file-to-a-remote-server-in-python-using-scp-or-ssh
         elif type == 'python':
             try:
                 cnopts = pysftp.CnOpts();
-                #cnopts.hostkeys.load(PublicKey);
                 cnopts.hostkeys = None;
+                
                 # Establish connection
                 with pysftp.Connection(host=Hostname, username=Username, password=Password, cnopts=cnopts) as sftp: # temporarily chdir to allcode
                     dest = DestinationDir + Files.filename.replace("\\", "/");
@@ -77,6 +77,9 @@ class FTP:
             except Exception as ex:
                 print(ex);
                 print("File not sent through ftp.  Check if folder exists on remote server.");
-                Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + str(ex) + "\n\n File not sent through cmd\n");
+                print("\nThe error can be traced back with the following stack trace");
+                track = traceback.format_exc()
+                print(track)
+                Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + str(ex) + "\n\n File not sent through cmd\n\n" + str(track));
         else:
             print("FTP procedure not defined.  Please check configuration on MaxPower.xml");

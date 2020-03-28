@@ -1,39 +1,8 @@
-Getting this error when running sudo python3 Main.py:
 
-Traceback (most recent call last):
-  File "Main.py", line 13, in <module>
-    import MaxPower_Classes
-  File "/home/brandonmfong/SOURCES/Repo/DualPowerGeneration/MaxPowerTracker/MaxPower/MaxPower_Classes.py", line 18, in <module>
-    RPi.init();
-  File "/home/brandonmfong/SOURCES/Repo/DualPowerGeneration/MaxPowerTracker/MaxPower/IO.py", line 57, in init
-    GPIO.setmode(GPIO.BOARD);
-ValueError: A different mode has already been set!
+/usr/local/lib/python3.7/dist-packages/pysftp/__init__.py:61: UserWarning: Failed to load HostKeys from /root/.ssh/known_hosts.  You will need to explicitly load HostKeys (cnopts.hostkeys.load(filename)) or disableHostKey checking (cnopts.hostkeys = None).
+  warnings.warn(wmsg, UserWarning)
+[Errno 2] No such file
+File not sent through ftp.  Check if folder exists on remote server.
 
 Notes:
-  - I feel like IO.RPi_Handler.init() has been called already and has already set the GPIO to GPIO.BOARD
-  - Try to find somewhere in the code that has this
-  - Removing the init() in MaxPower_Classes didn't work
-    - Now it is erroring on IO reference (see below)
-
-
-Traceback (most recent call last):
-  File "Main.py", line 22, in <module>
-    IO.RPI_Handler.init(IO.RPI_Handler);
-  File "/home/brandonmfong/SOURCES/Repo/DualPowerGeneration/MaxPowerTracker/MaxPower/IO.py", line 57, in init
-    GPIO.setmode(GPIO.BOARD);
-ValueError: A different mode has already been set!
-
-Traceback (most recent call last):
-  File "Main.py", line 22, in <module>
-    IO.RPI_Handler.init(IO.RPI_Handler);
-  File "/home/brandonmfong/SOURCES/Repo/DualPowerGeneration/MaxPowerTracker/MaxPower/IO.py", line 67, in init
-    GPIO.add_event_detect(InfraredInput, GPIO.RISING);
-RuntimeError: Conflicting edge detection already enabled for this GPIO channel
-
-Notes:
-    - Not entirely sure what this error is about
-    - From the looks of it, it is not excepting my config on GPIO.RISING
-
-
-- I may know what is happening.  The imports/modules in IO
-- I know I had to import some files when running adafruit's test
+  - I already did? {cnopts = pysftp.CnOpts(); cnopts.hostkeys = None;}

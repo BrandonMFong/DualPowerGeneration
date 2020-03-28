@@ -10,59 +10,39 @@
 <MaxPower 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="..\..\Schema\MaxPower.xsd">
-
-    <!-- System.py -->
     <System>
         <SecondsToCountForEachLine>3</SecondsToCountForEachLine>
         <delay>1</delay><!-- this is just for simiulation -->
         <MaxLinesForEachCSVFile>2</MaxLinesForEachCSVFile>
         <ClientID>1000</ClientID>
     </System>
-
-    <!-- FTP.py -->
     <FTP>
         <WhichProcedureToUseForFTP>python</WhichProcedureToUseForFTP>
         <Hostaddress>192.168.0.49</Hostaddress>
         <Username>dual</Username>
         <Password>power</Password>
-        <OutboundDir>..\..\FTP\Outbound</OutboundDir>
-        <Destination>/home/dualpower/public_ftp/incoming/FTP</Destination>
+        <OutboundDir>../../FTP/Outbound</OutboundDir>
+        <Destination>/home/dual/public_ftp/incoming/FTP</Destination>
     </FTP>
-
-    <!-- Files.py -->
     <Files>
-        <!-- Local -->
         <DirectoryForOutboundFTPFiles>../../FTP/Outbound</DirectoryForOutboundFTPFiles>
         <ArchiveForOutboundFTPFiles>../../FTP/archive</ArchiveForOutboundFTPFiles>
+        <ZippedFTP>../../FTP/archive/zipped</ZippedFTP>
         <DirectoryForMaxPowerLogFiles>../../logs/MaxPower</DirectoryForMaxPowerLogFiles>
         <ArchiveForMaxPowerLogFiles>../../logs/MaxPower/archive</ArchiveForMaxPowerLogFiles>
-
-        <!-- Remote -->
+        <ZippedLog>../../logs/MaxPower/archive/zipped</ZippedLog>
         <FileTypeForFTP>.csv</FileTypeForFTP>
         <FileTypeForLogs>.log</FileTypeForLogs>
         <FileTypeForZippedFolder>.7z</FileTypeForZippedFolder>
         <!-- <PrivateKey>../../FTP/BrandonMFong.ppk</PrivateKey> -->
     </Files>  
-
-    <!-- MaxPower_Classes.py -->
     <MaxPower_Classes>
         <RadiusForWindTurbine>50</RadiusForWindTurbine>
         <AngleForBlades>120</AngleForBlades>
     </MaxPower_Classes>
-    <!-- TODO sleep mode frequency -->
-
-    <!-- IO.py -->
     <IO>
         <!--Infrared pins-->
-        <InfraredInputPin>8</InfraredInputPin>
-        <AckBitForInfraredReadPin>10</AckBitForInfraredReadPin>
-
-        <!--ADC Ports-->
-        <ActivatePorts>
-            <Port0>true</Port0>
-            <Port1>false</Port1>
-            <Port2>false</Port2>
-            <Port3>false</Port3>
-        </ActivatePorts>
+        <InfraredInputPin>21</InfraredInputPin>
+        <AckBitForInfraredReadPin>15</AckBitForInfraredReadPin>
     </IO>
 </MaxPower>

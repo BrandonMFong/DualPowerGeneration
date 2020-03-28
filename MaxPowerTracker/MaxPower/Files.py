@@ -22,41 +22,45 @@ import System
 import shutil
 
 FilesXML = xmlreader();
-FTPDir = FilesXML.string('DirectoryForOutboundFTPFiles'); # defines where to look to send files out
-LogForMaxPowerDir = FilesXML.string('DirectoryForMaxPowerLogFiles'); # defines where the file will be imported
-FTPArchiveDir = FilesXML.string('ArchiveForOutboundFTPFiles'); # defines where to put files after they are done
+FTPDir = FilesXML.string('DirectoryForOutboundFTPFiles'); 
+LogForMaxPowerDir = FilesXML.string('DirectoryForMaxPowerLogFiles');
+FTPArchiveDir = FilesXML.string('ArchiveForOutboundFTPFiles');
 LOGArchiveDir = FilesXML.string('ArchiveForMaxPowerLogFiles');
 FTPFileType = FilesXML.string('FileTypeForFTP');
 LOGFileType = FilesXML.string('FileTypeForLogs');
 ZipExtension = FilesXML.string('FileTypeForZippedFolder');
+ZippedFTP = FilesXML.string('ZippedFTP');
+ZippedLog = FilesXML.string('ZippedLog');
 
-
+# Makes directory if it does not exist
 def MakeDir(makepath):
-    if(not (os.path.isdir(makepath))): # if that directory doesn't exist, create it
+    if(not (os.path.isdir(makepath))): 
             try:
-                os.mkdir(makepath) # mkdir cmd 
+                os.mkdir(makepath)
             except OSError:
-                print("\nCreation of the directory %s failed" % makepath); # Unsuccessful
+                print("\nCreation of the directory %s failed" % makepath);
             else:
-                print("\nSuccessfully created the directory %s " % makepath); # Successful
+                print("\nSuccessfully created the directory %s " % makepath);
     else:
         print("\nDirectory %s already exits.\n" % makepath);
 
-# Meant to write into files that are ready for FTP
-class File_Handler:
-    def Init_File(): # function to create a file
 
-        Date_and_Time = datetime.datetime.now(); # gets current date and time
+# .csv files
+class File_Handler:
+
+    # Creates .csv file
+    def Init_File():
+
+        Date_and_Time = datetime.datetime.now();
         MakeDir(FTPDir);
 
-        # Creates the file to be injected by our power tracker
-        # This will be sent through FTP via script to our remote server
         global filename;
         global fullpath;
         filename = "/maxpower_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + FTPFileType;
         fullpath = FTPDir + filename; 
         try:
-            System.File = open(fullpath,"w+"); # this file is global
+            # Puts file pointer to global var in System.py
+            System.File = open(fullpath,"w+"); 
         except OSError:
             print("Creation of file %s failed." % fullpath);
             return 1;
@@ -64,8 +68,9 @@ class File_Handler:
             print("Successfully created file: %s" % fullpath);
             return 0;
 
+    # Writes into file
     def Inject_Data(wind_data, solar_data):
-        Date_and_Time = datetime.datetime.now(); # gets current date and time
+        Date_and_Time = datetime.datetime.now();
         try:
             System.File.write("{}, {}, {}, {}\n" .format(Client.ID,
                 Date_and_Time.strftime("%Y-%m-%d %H:%M:%S"), wind_data, solar_data));
@@ -83,19 +88,19 @@ class File_Handler:
         System.File.close();
         System.File = 0; # clear variable
 
-# This is meant for debugging purposes
-# When you don't have the terminal up, you can view the logs to check the outputs
+# .log files
 class Log_Handler:
-    def Init_File(): # function to create a file
+    
+    # Creates .log file
+    def Init_File():
 
-        Date_and_Time = datetime.datetime.now(); # gets current date and time
+        Date_and_Time = datetime.datetime.now();
         MakeDir(LogForMaxPowerDir);
 
-        # Creates the file to be injected by our power tracker
-        # This will be sent through FTP via script to our remote server
         Logfilename = LogForMaxPowerDir +  "/MaxPowerLog_" + Date_and_Time.strftime("%m%d%Y_%H%M%S") + LOGFileType;
         try:
-            System.Log = open(Logfilename,"w+"); # this file is global
+            # Puts file pointer to global var in System.py
+            System.Log = open(Logfilename,"w+");
         except OSError:
             print("\nCreation of file %s failed." % Logfilename);
             return 1;
@@ -121,12 +126,16 @@ class Log_Handler:
         print("\nMaintenance check in \\logs\\MaxPower.  Delete files if space is needed");
         
 
-# Moves files into an archive folder and zips it up when it is past a certain number of files
+# Archive files
 class Archive_Handler:
     def ArchiveFiles():
 
         MakeDir(FTPArchiveDir);
         MakeDir(LOGArchiveDir);
+        MakeDir(ZippedFTP);
+        MakeDir(ZippedLog);
+
+        ## MOVES ##
 
         # In FTP Folder
         FTPFiles = os.listdir(FTPDir);
@@ -143,16 +152,14 @@ class Archive_Handler:
                 FilePath = LogForMaxPowerDir + "/" + f;
                 shutil.move(FilePath, LOGArchiveDir);
                 print("\nMoved %s to archive folder\n" % f);
-
-        # Checks archive folder to zip
-        # Note you need 7z to unzip the zip file on windows
-        # TODO test linux environment
+            
+        ## ZIPS ##
 
         # In FTP archive Folder
         FTPArchivedFiles = os.listdir(FTPArchiveDir);
         if (FTPArchivedFiles.__len__()) > 10:
             print("\nBeginning to zip files in %s\n" % FTPArchiveDir)
-            filename = FTPArchiveDir +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ZipExtension; 
+            filename = ZippedFTP +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ZipExtension; 
             zipper = ZipFile(filename, 'w');
             for f in FTPArchivedFiles:
                 if f.endswith(FTPFileType):
@@ -161,12 +168,12 @@ class Archive_Handler:
                     os.remove(FilePath);
             zipper.close();
             print("\nZipped files in %s\n" % FTPArchiveDir);
-            
+
         # In logs\MaxPower archive Folder
         LOGArchivedFiles = os.listdir(LOGArchiveDir);
         if (LOGArchivedFiles.__len__()) > 10:
             print("\nBeginning to zip files in %s\n" % LOGArchiveDir)
-            filename = LOGArchiveDir +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ZipExtension; 
+            filename = ZippedLog +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ZipExtension; 
             zipper = ZipFile(filename, 'w');
             for f in LOGArchivedFiles:
                 if f.endswith(LOGFileType):

@@ -7,7 +7,7 @@
 from Files import Log_Handler, File_Handler
 from random import random
 from XML import xmlreader
-from IO import RPI_Handler
+from IO import RPI_Handler, Random_IO
 import math
 import System
 import time
@@ -17,12 +17,12 @@ MaxPower_ClassesXML = xmlreader();
 
 ## WIND ##
 class Max_Power_Wind:
-    # Remember the infrared sensor method calls this function from the IO script
-    def Get_RPM():
+
+    def Get_RPM(): # IO.RPI_Handler.ReadInfrared() calls this
         # Getting RPM
         global total_rpm;
-        if System.timer_flag: Max_Power_Wind.Avg_RPM(total_rpm); # If the timer is up, calculate the avg rpm
-        else: # if a key was pressed, increment
+        if System.timer_flag: Max_Power_Wind.Avg_RPM(total_rpm);
+        else:
             total_rpm = total_rpm + 1;
             print("total_rpm = {}" .format(total_rpm));
             Log_Handler.Write_Log(os.path.basename(__file__) + "total_rpm = {}\n" .format(total_rpm));
@@ -30,13 +30,15 @@ class Max_Power_Wind:
         Max_Power_Wind.Avg_RPM(total_rpm);
 
     # Equation: Torque = Radius * Force * sin(Theta)
+    # We may need to configure this as a constant
+    # Get average torque before design day
     def Get_Torque():
         total_torque = 0;
         # Getting Torque
         while True: 
             if System.timer_flag: break;
             time.sleep(System.delay); # Will execute equation after one second passes
-            force_of_the_blades = IO.Random_IO.BLADE_FORCE_listener(); # simulating a analog read of the torque
+            force_of_the_blades = Random_IO.BLADE_FORCE_listener(); # simulating a analog read of the torque
             # Random is temporary, we will read real values
             num = radius_of_the_blades * force_of_the_blades * math.sin(angle_of_the_blades);
             total_torque = total_torque + num;
@@ -45,7 +47,7 @@ class Max_Power_Wind:
 
         Max_Power_Wind.Avg_Torque(total_torque);
 
-    def Avg_Pwr(Torque, RPM):# This gets called from main.py
+    def Avg_Pwr(Torque, RPM):
         global Average_POWER_WIND;
         Average_POWER_WIND = (Torque * RPM * math.pi)/30;
         Log_Handler.Write_Log(os.path.basename(__file__) + "Avg Pwr Wind calculated\n");
@@ -68,8 +70,6 @@ class Max_Power_Solar:
         Log_Handler.Write_Log(os.path.basename(__file__) + "Avg Pwr Solar calculated\n");
 
     def Get_Solar_Power():
-        # RPi = RPI_Handler();
-        # RPi.init();
         global total_solar_pwr;
         solar_current = 0;
         solar_voltage = 0;
@@ -77,9 +77,8 @@ class Max_Power_Solar:
         while True:
             if System.timer_flag: break;
             time.sleep(System.delay);
-            solar_voltage = IO.RPI_Handler.ReadIO(0);
-
-            solar_current = IO.Random_IO.SOLAR_CURR_listener();
+            solar_voltage = RPI_Handler.ReadIO(0);# TODO configure ports
+            solar_current = Random_IO.SOLAR_CURR_listener();
             total_solar_pwr = (solar_current*solar_voltage) + total_solar_pwr;
             Log_Handler.Write_Log(os.path.basename(__file__) + "solar curr, solar volt, and total solar power calculated\n");
 
