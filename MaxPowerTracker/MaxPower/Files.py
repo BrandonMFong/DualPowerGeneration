@@ -42,6 +42,9 @@ def MakeDir(makepath):
     else:
         print("\nDirectory %s already exits.\n" % makepath);
 
+def ls(Directory, ext)
+    return (f for f in os.listdir(Directory) if file.endswith(ext))
+
 # .csv files
 class File_Handler:
 
@@ -151,7 +154,8 @@ class Archive_Handler:
         ## ZIPS ##
 
         # In FTP archive Folder
-        FTPArchivedFiles = os.listdir(FTPArchiveDir);
+        # FTPArchivedFiles = os.listdir(FTPArchiveDir);
+        FTPArchivedFiles = ls(FTPArchiveDir,FTPFileType);
         if (FTPArchivedFiles.__len__()) > 10:
             print("\nBeginning to zip files in %s\n" % FTPArchiveDir)
             filename = FTPArchiveDir +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ZipExtension; 
@@ -165,7 +169,8 @@ class Archive_Handler:
             print("\nZipped files in %s\n" % FTPArchiveDir);
 
         # In logs\MaxPower archive Folder
-        LOGArchivedFiles = os.listdir(LOGArchiveDir);
+        # LOGArchivedFiles = os.listdir(LOGArchiveDir);
+        LOGArchivedFiles = ls(LOGArchiveDir,LOGFileType);
         if (LOGArchivedFiles.__len__()) > 10:
             print("\nBeginning to zip files in %s\n" % LOGArchiveDir)
             filename = LOGArchiveDir +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ZipExtension; 
