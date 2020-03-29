@@ -11,7 +11,7 @@
     <insert_data>
         <FTP_Folder>/home/dual/public_ftp/incoming/FTP</FTP_Folder>
         <SecondsToWaitToReadFolder>5</SecondsToWaitToReadFolder>
-        <DatabaseToInjectFTPDataInto>dualpower_DataCenter</DatabaseToInjectFTPDataInto>
+        <DatabaseToInjectFTPDataInto>dualpower_datacenter</DatabaseToInjectFTPDataInto>
         <UsernameForDatabase>dual</UsernameForDatabase>
         <PasswordForDatabase>power</PasswordForDatabase>
     </insert_data>
