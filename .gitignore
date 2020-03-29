@@ -14,9 +14,12 @@ MaxPowerTracker/MaxPower/__pycache__/*
 MaxPowerTracker/MaxPower/__pycache__/*.pyc
 /MaxPowerTracker/MaxPower/*.pyc
 MaxPowerTracker/py/*
+
 ## SITE ## 
 .vscode
 .well-known
+YES-app/py/*
+YES-app/YES/lib/*
 
 ## USER DEFINED FILES ##
 VCODE_DualPowerGeneration.code-workspace

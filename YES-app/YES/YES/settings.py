@@ -25,7 +25,7 @@ SECRET_KEY = 'i6&eqrs9+wc+ej2bfnf($iis@vzb7#)@a0bzzus4mfty(y*t36'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'kojami', '127.0.0.1']
 
 
 # Application definition
