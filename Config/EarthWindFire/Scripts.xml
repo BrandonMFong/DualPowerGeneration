@@ -12,7 +12,7 @@
         <FTP_Folder>/home/dual/public_ftp/incoming/FTP</FTP_Folder>
         <SecondsToWaitToReadFolder>5</SecondsToWaitToReadFolder>
         <DatabaseToInjectFTPDataInto>dualpower_DataCenter</DatabaseToInjectFTPDataInto>
-        <UsernameForDatabase>dualpower_BrandonMFong</UsernameForDatabase>
-        <PasswordForDatabase>dualpower27182</PasswordForDatabase>
+        <UsernameForDatabase>dual</UsernameForDatabase>
+        <PasswordForDatabase>power</PasswordForDatabase>
     </insert_data>
 </Scripts>
