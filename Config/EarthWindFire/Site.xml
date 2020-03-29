@@ -1,0 +1,17 @@
+<!-- 
+#####################################################
+# Property by Your Engineering Solutions (Y.E.S.)   #
+# Engineers: Abdullah Alrasheed, Brandon Fong       #
+#####################################################
+-->
+
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
+
+<Site 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="..\..\Schema\Site.xsd">
+    <UserForSettings>Dual</UserForSettings>
+    <AllowedHosts>kojami</AllowedHosts>
+    <TimeZone>PST8PDT</TimeZone>
+    <UseTZ>true</UseTZ>
+</Site>

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import TemplateView  # dont need yet
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -14,3 +15,4 @@ class AboutView(TemplateView):
 
 class LogInView(TemplateView):
     template_name = "login.html"
+

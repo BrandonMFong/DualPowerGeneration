@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -25,7 +24,7 @@ SECRET_KEY = 'i6&eqrs9+wc+ej2bfnf($iis@vzb7#)@a0bzzus4mfty(y*t36'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'kojami', '127.0.0.1']
 
 
 # Application definition
@@ -131,3 +130,4 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = '/units'
 
 AUTH_USER_MODEL = "accounts.User"
+
