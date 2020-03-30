@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-from XML import xmlreader
+from .XML import xmlreader
 import os
 SiteXML = xmlreader();
 UserForSettings = SiteXML.string("UserForSettings");
