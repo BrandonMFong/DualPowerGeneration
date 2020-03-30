@@ -21,3 +21,9 @@ class xmlreader:
 
     def double(self, value):
         return double((reader.getElementsByTagName(value))[0].firstChild.data);
+
+    def bool(self,value):
+        if (reader.getElementsByTagName(value))[0].firstChild.data == "true": 
+            return True;
+        else 
+            return False;

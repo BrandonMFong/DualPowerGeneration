@@ -13,5 +13,14 @@
                 </xs:documentation>
             </xs:annotation>
         </xs:element>
+        <xs:element name="AllowedHosts" minOccurs="1" maxOccurs="1" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    The names of hosts names that can submit a web request to 
+                </xs:documentation>
+            </xs:annotation>
+        </xs:element>
+        <xs:element name="TimeZone" minOccurs="1" maxOccurs="1" type="xs:string"/>
+        <xs:element name="UseTZ" minOccurs="1" maxOccurs="1" type="xs:bool"/>
     </xs:element>
 </xs:schema>

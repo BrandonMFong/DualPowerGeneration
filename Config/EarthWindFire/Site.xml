@@ -11,4 +11,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="..\..\Schema\Site.xsd">
     <UserForSettings>Dual</UserForSettings>
+    <AllowedHosts>'localhost', 'kojami', '127.0.0.1'</AllowedHosts>
+    <TimeZone>UTC</TimeZone>
+    <UseTZ>true</UseTZ>
 </Site>
