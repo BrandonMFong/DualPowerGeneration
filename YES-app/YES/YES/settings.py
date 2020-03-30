@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'YES.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        "HOST":'/var/run/mysqld',
+        "HOST":'/var/run/mysqld/mysqld.sock',
         'NAME': 'dualpower_datacenter',
         'USER':'dual',
         'PASSWORD':'power',
