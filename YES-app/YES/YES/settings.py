@@ -12,126 +12,378 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 from XML import xmlreader
 import os
+SiteXML = xmlreader();
+UserForSettings = SiteXML.string("UserForSettings");
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i6&eqrs9+wc+ej2bfnf($iis@vzb7#)@a0bzzus4mfty(y*t36'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['localhost', 'kojami', '127.0.0.1']
+## ABDULLAH everything in this if block of the if statement are your settings from commit:d097584
+## For your local site, just edit anything here
+## I will stay away from these settings and make adjustments in the elif block
+if (UserForSettings == "Abdullah"):
+    # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Application definition
+    # Quick-start development settings - unsuitable for production
+    # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    'units',
-    'accounts',
-]
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = 'i6&eqrs9+wc+ej2bfnf($iis@vzb7#)@a0bzzus4mfty(y*t36'
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
 
-ROOT_URLCONF = 'YES.urls'
+    ALLOWED_HOSTS = ['localhost', 'kojami', '127.0.0.1']
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
+
+    # Application definition
+
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'rest_framework',
+        'units',
+        'accounts',
+    ]
+
+    MIDDLEWARE = [
+        'django.middleware.security.SecurityMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    ]
+
+    ROOT_URLCONF = 'YES.urls'
+
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [os.path.join(BASE_DIR, 'templates')],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
         },
-    },
-]
+    ]
 
-WSGI_APPLICATION = 'YES.wsgi.application'
+    WSGI_APPLICATION = 'YES.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+    # Database
+    # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        "HOST":'/var/run/mysqld/mysqld.sock',
-        'NAME': 'dualpower_datacenter',
-        'USER':'dual',
-        'PASSWORD':'power',
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
 
 
-# Password validation
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
+    # Password validation
+    # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/3.0/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
+    AUTH_PASSWORD_VALIDATORS = [
+        {
+            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        },
+    ]
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
+    # Internationalization
+    # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-STATIC_URL = '/static/'
+    LANGUAGE_CODE = 'en-us'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
-]
+    TIME_ZONE = 'UTC'
 
-# Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/units'
+    USE_I18N = True
 
-AUTH_USER_MODEL = "accounts.User"
+    USE_L10N = True
+
+    USE_TZ = True
+
+
+    # Static files (CSS, JavaScript, Images)
+    # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+    STATIC_URL = '/static/'
+
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static"),
+        '/var/www/static/',
+    ]
+
+    # Redirect to home URL after login (Default redirects to /accounts/profile/)
+    LOGIN_REDIRECT_URL = '/units'
+
+    AUTH_USER_MODEL = "accounts.User"
+
+elif (UserForSettings == "Brandon") or (UserForSettings == "Dual"):
+    
+    # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+    # Quick-start development settings - unsuitable for production
+    # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = 'i6&eqrs9+wc+ej2bfnf($iis@vzb7#)@a0bzzus4mfty(y*t36'
+
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
+
+    ALLOWED_HOSTS = ['localhost', 'kojami', '127.0.0.1']
+
+
+    # Application definition
+
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'rest_framework',
+        'units',
+        'accounts',
+    ]
+
+    MIDDLEWARE = [
+        'django.middleware.security.SecurityMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    ]
+
+    ROOT_URLCONF = 'YES.urls'
+
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [os.path.join(BASE_DIR, 'templates')],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
+        },
+    ]
+
+    WSGI_APPLICATION = 'YES.wsgi.application'
+
+
+    # Database
+    # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            "HOST":'/var/run/mysqld/mysqld.sock',
+            'NAME': 'dualpower_datacenter',
+            'USER':'dual',
+            'PASSWORD':'power',
+        }
+    }
+
+
+    # Password validation
+    # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
+
+    AUTH_PASSWORD_VALIDATORS = [
+        {
+            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        },
+    ]
+
+
+    # Internationalization
+    # https://docs.djangoproject.com/en/3.0/topics/i18n/
+
+    LANGUAGE_CODE = 'en-us'
+
+    TIME_ZONE = 'UTC'
+
+    USE_I18N = True
+
+    USE_L10N = True
+
+    USE_TZ = True
+
+
+    # Static files (CSS, JavaScript, Images)
+    # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+    STATIC_URL = '/static/'
+
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static"),
+        '/var/www/static/',
+    ]
+
+    # Redirect to home URL after login (Default redirects to /accounts/profile/)
+    LOGIN_REDIRECT_URL = '/units'
+
+    AUTH_USER_MODEL = "accounts.User"
+
+
+
+else: 
+    
+    # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+    # Quick-start development settings - unsuitable for production
+    # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = 'i6&eqrs9+wc+ej2bfnf($iis@vzb7#)@a0bzzus4mfty(y*t36'
+
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
+
+    ALLOWED_HOSTS = ['localhost', 'kojami', '127.0.0.1']
+
+
+    # Application definition
+
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'rest_framework',
+        'units',
+        'accounts',
+    ]
+
+    MIDDLEWARE = [
+        'django.middleware.security.SecurityMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    ]
+
+    ROOT_URLCONF = 'YES.urls'
+
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [os.path.join(BASE_DIR, 'templates')],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
+        },
+    ]
+
+    WSGI_APPLICATION = 'YES.wsgi.application'
+
+
+    # Database
+    # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
+
+    # Password validation
+    # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
+
+    AUTH_PASSWORD_VALIDATORS = [
+        {
+            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        },
+    ]
+
+
+    # Internationalization
+    # https://docs.djangoproject.com/en/3.0/topics/i18n/
+
+    LANGUAGE_CODE = 'en-us'
+
+    TIME_ZONE = 'UTC'
+
+    USE_I18N = True
+
+    USE_L10N = True
+
+    USE_TZ = True
+
+
+    # Static files (CSS, JavaScript, Images)
+    # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+    STATIC_URL = '/static/'
+
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static"),
+        '/var/www/static/',
+    ]
+
+    # Redirect to home URL after login (Default redirects to /accounts/profile/)
+    LOGIN_REDIRECT_URL = '/units'
+
+    AUTH_USER_MODEL = "accounts.User"
