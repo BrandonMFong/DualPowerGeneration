@@ -155,7 +155,8 @@ elif (UserForSettings == "Brandon") or (UserForSettings == "Dual"):
 
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
-
+    
+   # Can only configure once at a time
     ALLOWED_HOSTS = [SiteXML.string("AllowedHosts")]
 
 
