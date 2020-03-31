@@ -19,6 +19,8 @@ MaxPowerTracker/py/*
 ## SITE ## 
 .vscode
 .well-known
+YES-app/py/*
+YES-app/YES/lib/*
 
 ## USER DEFINED FILES ##
 VCODE_DualPowerGeneration.code-workspace
