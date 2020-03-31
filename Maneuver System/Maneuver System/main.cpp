@@ -48,12 +48,15 @@ int main(void)
 	
 	DDRB |= (1 << DDRB5);  //Set portB 5 as output LED
 	
+	//Output pinD 2 and 3 for linear actuator and pinD 4 and 5 for stepper motor
 	DDRD |= (1 << DDD2) | (1 << DDD3) | (1 << DDD4)| (1 << DDD5);
 	
-	DDRB &= ~(1<<DDRB7);   //Set portB 7 as input
+	DDRB &= ~(1<<DDRB7);   //Set portB 7 as input (Button input)
 	
+	//PinC 0, 1, 2 and 3 as input for voltage values from photoresistors
 	DDRC &= ~((1<<DDRC0) | (1 << DDRC1) | (1 << DDRC2) | (1 << DDRC3));
 	
+	//Set pins D 2 and 3 to power off the linear actuator by default
 	PORTD |= (1 << PORTD3) | (1 << PORTD2);
 
 	uart_Init();
@@ -66,10 +69,22 @@ int main(void)
 			while(!(PINB & (1<<PINB7)));
 			
 			startManeuvering();
-			
 		}
 	}
 }
+
+void dac_Init()
+{
+	DDRB |= (1<<DDB0)|(1<<DDB1);
+}
+
+void adc_Init(){
+	//select Vcc and select ADC1 as input
+	ADMUX = (1<<REFS0);
+	
+	ADCSRA = (1<<ADEN) | (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0);
+}
+
 
 void startManeuvering(){
 	
@@ -102,7 +117,7 @@ void moveLinearActuator(){
 	convertToString(difference, value);
 	uart_Transmit(value);
 	
-	if(difference > 50) PORTD &= ~(1 << PORTD3);       //Send signal to start retracting
+	if(difference > 50) PORTD |= (1 << PORTD3);       //Send signal to start retracting
 	else if(difference < -50) PORTD &= ~(1 << PORTD2); //Send signal to start expanding
 	
 	while(difference < -50 || difference > 50){//True while the difference is outside the [-50, 50] range
@@ -114,13 +129,40 @@ void moveLinearActuator(){
 	PORTD |= (1 << PORTD3) | (1 << PORTD2);  //Cut the power of the linear actuator
 }
 
-void dac_Init()
-{
-	DDRB |= (1<<DDB0)|(1<<DDB1);
+void moveStepperMotor(){
+	int16_t v2;
+	int16_t v3;
+	int16_t difference;
+	
+	v2 = adc_read(R2);              //Read voltage value v2
+	
+	convertToString(v2, value);     //Used to convert the value into
+	uart_Transmit(value);			//a string and to display it
+	
+	v3 = adc_read(R3);				//Read voltage value v3
+	convertToString(v3, value);
+	uart_Transmit(value);
+	
+	difference = v2 - v3;           //Take difference
+	
+	convertToString(difference, value);
+	uart_Transmit(value);
+	
+	if(difference > 50) PORTD |= (1 << PORTD5);        //Rotate Clockwise
+	else if(difference < -50) PORTD &= ~(1 << PORTD5); //Rotate Counter-Clockwise
+	
+	while(difference < -50 || difference > 50){//True while the difference is outside the [-50, 50] range
+		v2 = adc_read(R2);
+		v3 = adc_read(R3);			           //Continue reading voltage values and take difference
+		difference = v2 - v3;
+		
+		//Generating square wave
+		PORTD |= (1 << PORTD5);
+		_delay_ms(frequency);
+		PORTD &= ~(1 << PORTD5);
+		_delay_ms(frequency);
+	}
 }
-
-
-
 
 uint16_t adc_read(uint8_t channel){
 	
@@ -133,13 +175,6 @@ uint16_t adc_read(uint8_t channel){
 	while(ADCSRA & (1<<ADSC));
 	
 	return ADC;
-}
-
-void adc_Init(){
-	//select Vcc and select ADC1 as input
-	ADMUX = (1<<REFS0); 
-	
-	ADCSRA = (1<<ADEN) | (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0);
 }
 
 void uart_Transmit(char data[]){
