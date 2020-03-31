@@ -22,7 +22,7 @@ DestinationDir = FTPXML.string('Destination');
 Hostname = FTPXML.string('Hostaddress');
 Username = FTPXML.string('Username');
 Password = FTPXML.string('Password');
-# PrivateKey = FTPXML.string('PrivateKey')
+PrivateKey = FTPXML.string('PrivateKey');
 type = FTPXML.string('WhichProcedureToUseForFTP');
 
 class FTP:
@@ -69,7 +69,7 @@ class FTP:
                 cnopts.hostkeys = None;
                 
                 # Establish connection
-                with pysftp.Connection(host=Hostname, username=Username, password=Password, cnopts=cnopts) as sftp: # temporarily chdir to allcode
+                with pysftp.Connection(host=Hostname, username=Username, password=Password, cnopts=cnopts, private_key=PrivateKey) as sftp: # temporarily chdir to allcode
                     dest = DestinationDir + Files.filename.replace("\\", "/");
                     sftp.put(Files.fullpath, dest);  	# upload file to allcode/pycode on remote
                 
