@@ -15,6 +15,8 @@
 #define R2 2	//Left
 #define R3 3	//Right
 
+#define frequency 10
+
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -36,8 +38,7 @@ void dac_Init();
 //Moving functions
 void startManeuvering(); //Read voltage values from the 4 voltage dividers
 void moveLinearActuator();
-void moveTheOtherMotorWhoseNameIDontKnow(uint16_t v1, uint16_t v2);
-
+void moveStepperMotor();
 
 char value[7];
 
@@ -46,10 +47,12 @@ int main(void)
 	//Init
 	
 	DDRB |= (1 << DDRB5);  //Set portB 5 as output LED
-	DDRD |= (1 << DDD2) | (1 << DDD3);
+	
+	DDRD |= (1 << DDD2) | (1 << DDD3) | (1 << DDD4)| (1 << DDD5);
 	
 	DDRB &= ~(1<<DDRB7);   //Set portB 7 as input
-	DDRC &= ~((1<<DDRC0) | (1 << DDRC1));
+	
+	DDRC &= ~((1<<DDRC0) | (1 << DDRC1) | (1 << DDRC2) | (1 << DDRC3));
 	
 	PORTD |= (1 << PORTD3) | (1 << PORTD2);
 
@@ -72,8 +75,8 @@ void startManeuvering(){
 	
 	PINB |= (1<<PINB5); //toggle LED
 	
-	moveLinearActuator();
-	//moveTheOtherMotorWhoseNameIDontKnow(v1,v3);
+	moveStepperMotor();
+	//moveLinearActuator();
 	
 	PINB |= (1<<PINB5); //toggle LED
 	//We done ;)
