@@ -23,6 +23,11 @@ database=$(awk -F '[<>]' '/DatabaseToInjectFTPDataInto/{print $3}' ../Config/Ear
 Archive_dir="archive/"
 FTP_dir=$(awk -F '[<>]' '/FTP_Folder/{print $3}' ../Config/EarthWindFire/Scripts.xml)
 DelayVar=$(awk -F '[<>]' '/SecondsToWaitToReadFolder/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
+cl=$(awk -F '[<>]' '/tablecl/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
+dc=$(awk -F '[<>]' '/tabledc/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
+dev=$(awk -F '[<>]' '/tabledev/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
+sol=$(awk -F '[<>]' '/tablesol/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
+win=$(awk -F '[<>]' '/tablewin/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
 
 ### MAIN ###
 pushd $FTP_dir
@@ -59,12 +64,12 @@ pushd $FTP_dir
                                 # This accesses the db correctly but it now says that client does not exist in the directory
                                 # echo "Date time variable";
                                 # echo $DateTime;
-                                querystring="set @Solar_ID = (select Solar_ID from client as cl join device_client as dc";
-                                querystring+=" on cl.ID = dc.Client_ID join device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID);";
-                                querystring+=" set @Wind_ID = (select Wind_ID from client as cl join device_client as dc";
-                                querystring+=" on cl.ID = dc.Client_ID join device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID);";
-                                querystring+=" insert into solar (ID,Time,Power) values (@Solar_ID, '$DateTime', $Max_Power_for_Solar);";
-                                querystring+=" insert into wind (ID,Time,Power) values (@Wind_ID, '$DateTime', $Max_Power_for_Wind);";
+                                querystring="set @Solar_ID = (select Solar_ID from $cl as cl join $dc as dc";
+                                querystring+=" on cl.ID = dc.Client_ID join $dev as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID);";
+                                querystring+=" set @Wind_ID = (select Wind_ID from $cl as cl join $dc as dc";
+                                querystring+=" on cl.ID = dc.Client_ID join $dev as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID);";
+                                querystring+=" insert into $sol (ID,Time,Power) values (@Solar_ID, '$DateTime', $Max_Power_for_Solar);";
+                                querystring+=" insert into $win (ID,Time,Power) values (@Wind_ID, '$DateTime', $Max_Power_for_Wind);";
                                 echo -n "${querystring}";
                         
                         # This should be a FIFO procedure for the files coming into the server

@@ -23,6 +23,7 @@
         <Password>power</Password>
         <OutboundDir>../../FTP/Outbound</OutboundDir>
         <Destination>/home/dual/public_ftp/incoming/FTP</Destination>
+        <PrivateKey>../../FTP/BrandonMFong.ppk</PrivateKey>
     </FTP>
     <Files>
         <DirectoryForOutboundFTPFiles>../../FTP/Outbound</DirectoryForOutboundFTPFiles>
@@ -34,7 +35,6 @@
         <FileTypeForFTP>.csv</FileTypeForFTP>
         <FileTypeForLogs>.log</FileTypeForLogs>
         <FileTypeForZippedFolder>.7z</FileTypeForZippedFolder>
-        <!-- <PrivateKey>../../FTP/BrandonMFong.ppk</PrivateKey> -->
     </Files>  
     <MaxPower_Classes>
         <RadiusForWindTurbine>50</RadiusForWindTurbine>

@@ -12,7 +12,12 @@
         <FTP_Folder>/home/dual/public_ftp/incoming/FTP</FTP_Folder>
         <SecondsToWaitToReadFolder>5</SecondsToWaitToReadFolder>
         <DatabaseToInjectFTPDataInto>dualpower_datacenter</DatabaseToInjectFTPDataInto>
-        <UsernameForDatabase>dual</UsernameForDatabase>
-        <PasswordForDatabase>power</PasswordForDatabase>
+        <UsernameForDatabase>dualpower_dual</UsernameForDatabase>
+        <PasswordForDatabase>dualpower27182</PasswordForDatabase>
+        <tablecl>Client</tablecl>
+        <tabledc>Device_Client</tabledc>
+        <tabledev>Device</tabledev>
+        <tablesol>Solar</tablesol>
+        <tablewin>Wind</tablewin>
     </insert_data>
 </Scripts>

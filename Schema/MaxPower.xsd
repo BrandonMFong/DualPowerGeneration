@@ -33,9 +33,9 @@
                 <xs:documentation>
                     Options: 
                         batch 
-                        commandline
-                        powershell
-                        python
+                        commandline 
+                        powershell 
+                        python 
                 </xs:documentation>
             </xs:element>
             <xs:element name="Hostaddress" minOccurs="1" type="xs:string"/>
@@ -83,7 +83,7 @@
             <xs:element name="FileTypeForFTP" type="xs:string"/>
             <xs:element name="FileTypeForLogs" type="xs:string"/>
             <xs:element name="FileTypeForZippedFolder" type="xs:string"/>
-            <xs:element name="PrivateKey" type="xs:string">
+            <xs:element name="PrivateKey" type="xs:string" maxOccurs="1">
                 <xs:documentation>
                     The full path for for the private key.  Use "/".  
                     Used if necessary for FTP operations
