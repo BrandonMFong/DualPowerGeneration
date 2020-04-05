@@ -12,6 +12,7 @@ import Files
 import pysftp
 import subprocess, sys, os
 import traceback
+import time
 
 global file_basename;
 file_basename = '..\\..\\Scripts\\FTP';
@@ -24,6 +25,7 @@ Username = FTPXML.string('Username');
 Password = FTPXML.string('Password');
 # PrivateKey = FTPXML.string('PrivateKey')
 type = FTPXML.string('WhichProcedureToUseForFTP');
+NoFTPSleep = FTPXML.string('NoFTPSleep');
 
 class FTP:
     @staticmethod
@@ -81,5 +83,11 @@ class FTP:
                 track = traceback.format_exc()
                 print(track)
                 Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + str(ex) + "\n\n File not sent through cmd\n\n" + str(track));
+        elif type == 'redirect':
+            # The issue is that I do not think I can send ftp files directly to cpanel from rpi
+            # Figuring this out but making this just in case
+            # Made ps1 script but not pushing since it has sensitive data
+            print("Configured to use redirect.");
+            time.sleep(NoFTPSleep);
         else:
-            print("FTP procedure not defined.  Please check configuration on MaxPower.xml");
+            print("FTP procedure not defined.  (Please check configuration on MaxPower.xml)");

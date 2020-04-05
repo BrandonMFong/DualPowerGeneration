@@ -33,9 +33,10 @@
                 <xs:documentation>
                     Options: 
                         batch 
-                        commandline
-                        powershell
-                        python
+                        commandline 
+                        powershell 
+                        python 
+                        redirect
                 </xs:documentation>
             </xs:element>
             <xs:element name="Hostaddress" minOccurs="1" type="xs:string"/>
@@ -50,6 +51,14 @@
                 <xs:annotation>
                     <xs:documentation>
                         The destination on the receiving end
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="NoFTPSleep" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The amount of time to sleep if there is not ftp method defined. 
+                        Ideally want it the length it would take to send a file. 
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
