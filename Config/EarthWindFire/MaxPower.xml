@@ -18,11 +18,11 @@
     </System>
     <FTP>
         <WhichProcedureToUseForFTP>redirect</WhichProcedureToUseForFTP>
-        <Hostaddress></Hostaddress>
-        <Username></Username>
-        <Password></Password>
+        <Hostaddress>null</Hostaddress>
+        <Username>null</Username>
+        <Password>null</Password>
         <OutboundDir>../../FTP/Outbound</OutboundDir>
-        <Destination></Destination>
+        <Destination>null</Destination>
         <NoFTPSleep>5</NoFTPSleep>
     </FTP>
     <Files>
