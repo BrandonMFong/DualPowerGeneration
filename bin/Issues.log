@@ -1,0 +1,4 @@
+Issue: System.File has no close attribute
+    Fix commit:
+    Notes:
+        - Log works fine though
