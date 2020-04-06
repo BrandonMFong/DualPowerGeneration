@@ -6,7 +6,7 @@
 -->
 <Scripts>
     <insert_data>
-        <FTP_Folder>/home/dual/public_ftp/incoming/FTP/Outbound</FTP_Folder>
+        <FTP_Folder>/home/dualpower/public_ftp/incoming/FTP/Outbound</FTP_Folder>
         <SecondsToWaitToReadFolder>5</SecondsToWaitToReadFolder>
         <DatabaseToInjectFTPDataInto>dualpower_datacenter</DatabaseToInjectFTPDataInto>
         <UsernameForDatabase>dualpower_dual</UsernameForDatabase>
