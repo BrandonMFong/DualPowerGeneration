@@ -25,7 +25,7 @@ Username = FTPXML.string('Username');
 Password = FTPXML.string('Password');
 # PrivateKey = FTPXML.string('PrivateKey')
 type = FTPXML.string('WhichProcedureToUseForFTP');
-NoFTPSleep = FTPXML.string('NoFTPSleep');
+NoFTPSleep = FTPXML.int('NoFTPSleep');
 
 class FTP:
     @staticmethod
