@@ -24,6 +24,7 @@
         <OutboundDir>../../FTP/Outbound</OutboundDir>
         <Destination>null</Destination>
         <NoFTPSleep>5</NoFTPSleep>    
+        <PrivateKey>null</PrivateKey>    
     </FTP>
     <Files>
         <DirectoryForOutboundFTPFiles>../../FTP/Outbound</DirectoryForOutboundFTPFiles>
