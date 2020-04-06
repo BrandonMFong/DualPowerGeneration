@@ -8,7 +8,7 @@
     <insert_data>
         <FTP_Folder>/home/dualpower/public_ftp/incoming/FTP/Outbound</FTP_Folder>
         <SecondsToWaitToReadFolder>5</SecondsToWaitToReadFolder>
-        <DatabaseToInjectFTPDataInto>dualpower_datacenter</DatabaseToInjectFTPDataInto>
+        <DatabaseToInjectFTPDataInto>dualpower_DataCenter</DatabaseToInjectFTPDataInto>
         <UsernameForDatabase>dualpower_dual</UsernameForDatabase>
         <PasswordForDatabase>dualpower27182</PasswordForDatabase>
         <tablecl>Client</tablecl>
