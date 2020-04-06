@@ -17,13 +17,13 @@
         <ClientID>1000</ClientID>
     </System>
     <FTP>
-        <WhichProcedureToUseForFTP>python</WhichProcedureToUseForFTP>
-        <Hostaddress>146.244.101.140</Hostaddress>
-        <Username>dualpower</Username>
-        <Password>ToInfiniti!</Password>
+        <WhichProcedureToUseForFTP>redirect</WhichProcedureToUseForFTP>
+        <Hostaddress>null</Hostaddress>
+        <Username>null</Username>
+        <Password>null</Password>
         <OutboundDir>../../FTP/Outbound</OutboundDir>
-        <Destination>/home/dualpower/public_ftp/incoming/FTP</Destination>
-        <PrivateKey>../../FTP/BrandonMFong.ppk</PrivateKey>
+        <Destination>null</Destination>
+        <NoFTPSleep>5</NoFTPSleep>    
     </FTP>
     <Files>
         <DirectoryForOutboundFTPFiles>../../FTP/Outbound</DirectoryForOutboundFTPFiles>

@@ -4,9 +4,6 @@
 # Engineers: Lorans Hirmez, Brandon Fong            #
 #####################################################
 -->
-
-<!-- <?xml version="1.0" encoding="UTF-8"?> -->
-
 <Scripts>
     <insert_data>
         <FTP_Folder>/home/dualpower/public_ftp/incoming/FTP</FTP_Folder>
@@ -20,4 +17,9 @@
         <tablesol>Solar</tablesol>
         <tablewin>Wind</tablewin>
     </insert_data>
+    <Redirect>
+        <Path>B:\SOURCES\Repos\DualPowerGeneration\FTP\incoming\Outbound</Path>
+        <ArchivePath>B:\SOURCES\Repos\DualPowerGeneration\FTP\incoming\archive</ArchivePath>
+        <NoFTPSleep>5</NoFTPSleep>
+    </Redirect>
 </Scripts>
