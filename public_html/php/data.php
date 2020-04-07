@@ -41,18 +41,21 @@
 
 		if ($result->num_rows > 0) 
 		{
-			echo "<br>This is the " . $Data . " data<br>";
+			echo "<h2>This is the " . $Data . " data<h2>";
+			echo "<Table style=\"width:100%\">";
+			echo "<tr>";
+			echo "<th>Name</th><th>ID</th><th>Time</th><th>Power</th>";
+			echo "</tr>";
 			while($row = $result->fetch_assoc()) 
 			{
-				echo $row["Organization_Name"];
-				echo "|" ;
-				echo $row["ID"] ;
-				echo "|" ;
-				echo $row["Time"] ;
-				echo "|" ;
-				echo $row["Power"] ;
-				echo "|<br>";
+				echo "<tr>";
+				echo "<td>" . $row["Organization_Name"] . "</td>";
+				echo "<td>" . $row["ID"] . "</td>";
+				echo "<td>" . $row["Time"] . "</td>";
+				echo "<td>" . $row["Power"] . "</td>";
+				echo "</tr>";
 			}
+			echo "</Table>";
 		}
 		else {echo "0 results for " . $Data;}
 		$conn->close();
@@ -75,13 +78,16 @@
 		$conn->close();
 	}
 
+	// Opens files
 	$SelectSolar = fopen("../SQL/SELECT_Solar.sql", "r") or die("Unable to read file.");
 	$SelectMaxSolar = fopen("../SQL/SELECT_MaxSolar.sql", "r") or die("Unable to read file.");
 	$SelectWind = fopen("../SQL/SELECT_Wind.sql", "r") or die("Unable to read file.");
 	$SelectMaxWind = fopen("../SQL/SELECT_MaxWind.sql", "r") or die("Unable to read file.");
 
+	// Solar
 	GetAllData(fread($SelectSolar, filesize("../SQL/SELECT_Solar.sql")), 'Solar');
 	GetMaxData(fread($SelectMaxSolar, filesize("../SQL/SELECT_MaxSolar.sql")), 'Solar');
+	// Wind
 	GetAllData(fread($SelectWind, filesize("../SQL/SELECT_Wind.sql")), 'Solar');
 	GetMaxData(fread($SelectMaxWind, filesize("../SQL/SELECT_MaxWind.sql")), 'Wind');
 ?>
