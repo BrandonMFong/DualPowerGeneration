@@ -40,7 +40,7 @@ pushd $FTP_dir
         while true 
         do 
         
-                if [ $(find . -empty -type f | wc -l) -gt 0 ] # checks for empty files
+                if [ $(find . -empty -type f | wc -l) -gt 0 ] # counts all empty files and if it greater than 0 then delete those files
                 then
                         echo "Removing empty files";
                         rm $(find -empty -type f); # Removes all files that are empty, this actually throws an error on the cmd line

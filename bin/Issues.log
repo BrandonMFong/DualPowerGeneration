@@ -6,6 +6,11 @@ Issue: System.File has no close attribute
             - This is true.  I manually transferred over and query executed. 
             - I think I need to have a check in the insert data script.
                 - Should I sync? or have check?
+                    - putting a check is better
+    Post:
+        - The issue was the script I made on my machine will send empty files
+        - on the insert_data.sh there is a check for empty files but it was misplaced. It was nested
+            - I moved it outside the if statement
 
 
 issue: rpi not in the right time zone
