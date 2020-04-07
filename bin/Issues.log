@@ -1,5 +1,5 @@
 Issue: System.File has no close attribute
-    Fix commit:
+    Fix commit: fe17ea1
     Notes:
         - Log works fine though
         - I think because I am archiving all the written files and getting all the writting in progress
