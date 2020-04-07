@@ -1,3 +1,9 @@
+Issue: Incorrect data in datacenter
+    Fix commit:
+    Notes:
+        - I think the query is wrong
+        - There is no wind data 
+
 Issue: System.File has no close attribute
     Fix commit: fe17ea1
     Notes:
