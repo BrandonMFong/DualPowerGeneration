@@ -23,6 +23,11 @@ database=$(awk -F '[<>]' '/DatabaseToInjectFTPDataInto/{print $3}' ../Config/Ear
 Archive_dir="archive/"
 FTP_dir=$(awk -F '[<>]' '/FTP_Folder/{print $3}' ../Config/EarthWindFire/Scripts.xml)
 DelayVar=$(awk -F '[<>]' '/SecondsToWaitToReadFolder/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
+cl=$(awk -F '[<>]' '/tablecl/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
+dc=$(awk -F '[<>]' '/tabledc/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
+dev=$(awk -F '[<>]' '/tabledev/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
+sol=$(awk -F '[<>]' '/tablesol/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
+win=$(awk -F '[<>]' '/tablewin/{print $3}' ../Config/EarthWindFire/Scripts.xml); # Delays for 5 seconds
 
 ### MAIN ###
 pushd $FTP_dir
@@ -34,6 +39,13 @@ pushd $FTP_dir
 
         while true 
         do 
+        
+                if [ $(find . -empty -type f | wc -l) -gt 0 ] # counts all empty files and if it greater than 0 then delete those files
+                then
+                        echo "Removing empty files";
+                        rm $(find -empty -type f); # Removes all files that are empty, this actually throws an error on the cmd line
+                fi
+
                 if [ $(find . -maxdepth 1 -type f|wc -l) -gt 0 ]; # keeps reading files in dir until there are not more files in dir
                 then
                         # Testing if archive existss
@@ -41,12 +53,6 @@ pushd $FTP_dir
                         then
                                 mkdir $Archive_dir;
                                 echo "$Archive_dir does not exist...Made directory.";
-                        fi
-
-                        if [ $(find . -empty -type f | wc -l) -gt 0 ] # checks for empty files
-                        then
-                                echo "Removing empty files";
-                                rm $(find -empty -type f); # Removes all files that are empty, this actually throws an error on the cmd line
                         fi
 
                         current_working_file=$(find . -maxdepth 1  -type f | head -1);  # filters out the dir and filters files
@@ -59,12 +65,12 @@ pushd $FTP_dir
                                 # This accesses the db correctly but it now says that client does not exist in the directory
                                 # echo "Date time variable";
                                 # echo $DateTime;
-                                querystring="set @Solar_ID = (select Solar_ID from client as cl join device_client as dc";
-                                querystring+=" on cl.ID = dc.Client_ID join device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID);";
-                                querystring+=" set @Wind_ID = (select Wind_ID from client as cl join device_client as dc";
-                                querystring+=" on cl.ID = dc.Client_ID join device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID);";
-                                querystring+=" insert into solar (ID,Time,Power) values (@Solar_ID, '$DateTime', $Max_Power_for_Solar);";
-                                querystring+=" insert into wind (ID,Time,Power) values (@Wind_ID, '$DateTime', $Max_Power_for_Wind);";
+                                querystring="set @Solar_ID = (select Solar_ID from Client as cl join Device_Client as dc";
+                                querystring+=" on cl.ID = dc.Client_ID join Device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID);";
+                                querystring+=" set @Wind_ID = (select Wind_ID from Client as cl join Device_Client as dc";
+                                querystring+=" on cl.ID = dc.Client_ID join Device as dev on dev.ID = dc.Device_ID where cl.ID = $Client_ID);";
+                                querystring+=" insert into Solar (ID,Time,Power) values (@Solar_ID, '$DateTime', $Max_Power_for_Solar);";
+                                querystring+=" insert into Solar (ID,Time,Power) values (@Wind_ID, '$DateTime', $Max_Power_for_Wind);";
                                 echo -n "${querystring}";
                         
                         # This should be a FIFO procedure for the files coming into the server

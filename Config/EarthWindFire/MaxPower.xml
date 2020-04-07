@@ -11,18 +11,20 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="..\..\Schema\MaxPower.xsd">
     <System>
-        <SecondsToCountForEachLine>3</SecondsToCountForEachLine>
-        <delay>1</delay><!-- this is just for simiulation -->
-        <MaxLinesForEachCSVFile>2</MaxLinesForEachCSVFile>
+        <SecondsToCountForEachLine>5</SecondsToCountForEachLine>
+        <!-- <delay>1</delay>this is just for simiulation -->
+        <MaxLinesForEachCSVFile>5</MaxLinesForEachCSVFile>
         <ClientID>1000</ClientID>
     </System>
     <FTP>
-        <WhichProcedureToUseForFTP>python</WhichProcedureToUseForFTP>
-        <Hostaddress>192.168.0.49</Hostaddress>
-        <Username>dual</Username>
-        <Password>power</Password>
+        <WhichProcedureToUseForFTP>redirect</WhichProcedureToUseForFTP>
+        <Hostaddress>null</Hostaddress>
+        <Username>null</Username>
+        <Password>null</Password>
         <OutboundDir>../../FTP/Outbound</OutboundDir>
-        <Destination>/home/dual/public_ftp/incoming/FTP</Destination>
+        <Destination>null</Destination>
+        <NoFTPSleep>5</NoFTPSleep>    
+        <PrivateKey>null</PrivateKey>    
     </FTP>
     <Files>
         <DirectoryForOutboundFTPFiles>../../FTP/Outbound</DirectoryForOutboundFTPFiles>
@@ -34,15 +36,17 @@
         <FileTypeForFTP>.csv</FileTypeForFTP>
         <FileTypeForLogs>.log</FileTypeForLogs>
         <FileTypeForZippedFolder>.7z</FileTypeForZippedFolder>
-        <!-- <PrivateKey>../../FTP/BrandonMFong.ppk</PrivateKey> -->
     </Files>  
     <MaxPower_Classes>
         <RadiusForWindTurbine>50</RadiusForWindTurbine>
         <AngleForBlades>120</AngleForBlades>
+        <SolarVoltagePort>0</SolarVoltagePort>
+        <SolarPortTestPort>2</SolarPortTestPort>
     </MaxPower_Classes>
     <IO>
         <!--Infrared pins-->
         <InfraredInputPin>21</InfraredInputPin>
         <AckBitForInfraredReadPin>15</AckBitForInfraredReadPin>
+        <InfraredReadInterval>0.1</InfraredReadInterval>
     </IO>
 </MaxPower>
