@@ -4,15 +4,23 @@
 # Engineers: Lorans Hirmez, Brandon Fong            #
 #####################################################
 -->
-
-<!-- <?xml version="1.0" encoding="UTF-8"?> -->
-
 <Scripts>
     <insert_data>
-        <FTP_Folder>/home/dual/public_ftp/incoming/FTP</FTP_Folder>
+        <FTP_Folder>/home/dualpower/public_ftp/incoming/FTP/Outbound</FTP_Folder>
         <SecondsToWaitToReadFolder>5</SecondsToWaitToReadFolder>
-        <DatabaseToInjectFTPDataInto>dualpower_datacenter</DatabaseToInjectFTPDataInto>
-        <UsernameForDatabase>dual</UsernameForDatabase>
-        <PasswordForDatabase>power</PasswordForDatabase>
+        <DatabaseToInjectFTPDataInto>dualpower_DataCenter</DatabaseToInjectFTPDataInto>
+        <UsernameForDatabase>dualpower_dual</UsernameForDatabase>
+        <PasswordForDatabase>dualpower27182</PasswordForDatabase>
+        <tablecl>Client</tablecl>
+        <tabledc>Device_Client</tabledc>
+        <tabledev>Device</tabledev>
+        <tablesol>Solar</tablesol>
+        <tablewin>Wind</tablewin>
     </insert_data>
+    <Redirect>
+        <Path>B:\SOURCES\Repos\DualPowerGeneration\FTP\incoming\Outbound</Path>
+        <ArchivePath>B:\SOURCES\Repos\DualPowerGeneration\FTP\incoming\archive</ArchivePath>
+        <NoFTPSleep>5</NoFTPSleep>
+        <FileExt>.csv</FileExt>
+    </Redirect>
 </Scripts>

@@ -17,12 +17,14 @@
         <ClientID>1000</ClientID>
     </System>
     <FTP>
-        <WhichProcedureToUseForFTP>python</WhichProcedureToUseForFTP>
-        <Hostaddress>192.168.0.49</Hostaddress>
-        <Username>dual</Username>
-        <Password>power</Password>
+        <WhichProcedureToUseForFTP>redirect</WhichProcedureToUseForFTP>
+        <Hostaddress>null</Hostaddress>
+        <Username>null</Username>
+        <Password>null</Password>
         <OutboundDir>../../FTP/Outbound</OutboundDir>
-        <Destination>/home/dual/public_ftp/incoming/FTP</Destination>
+        <Destination>null</Destination>
+        <NoFTPSleep>5</NoFTPSleep>    
+        <PrivateKey>null</PrivateKey>    
     </FTP>
     <Files>
         <DirectoryForOutboundFTPFiles>../../FTP/Outbound</DirectoryForOutboundFTPFiles>
@@ -34,7 +36,6 @@
         <FileTypeForFTP>.csv</FileTypeForFTP>
         <FileTypeForLogs>.log</FileTypeForLogs>
         <FileTypeForZippedFolder>.7z</FileTypeForZippedFolder>
-        <!-- <PrivateKey>../../FTP/BrandonMFong.ppk</PrivateKey> -->
     </Files>  
     <MaxPower_Classes>
         <RadiusForWindTurbine>50</RadiusForWindTurbine>
