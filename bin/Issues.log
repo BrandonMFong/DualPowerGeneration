@@ -2,3 +2,14 @@ Issue: System.File has no close attribute
     Fix commit:
     Notes:
         - Log works fine though
+        - I think because I am archiving all the written files and getting all the writting in progress
+            - This is true.  I manually transferred over and query executed. 
+            - I think I need to have a check in the insert data script.
+                - Should I sync? or have check?
+
+
+issue: rpi not in the right time zone
+    fix commit: na
+    notes:
+        - Set date, data should now be in time
+    

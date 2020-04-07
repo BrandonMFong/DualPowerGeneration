@@ -39,6 +39,13 @@ pushd $FTP_dir
 
         while true 
         do 
+        
+                if [ $(find . -empty -type f | wc -l) -gt 0 ] # checks for empty files
+                then
+                        echo "Removing empty files";
+                        rm $(find -empty -type f); # Removes all files that are empty, this actually throws an error on the cmd line
+                fi
+
                 if [ $(find . -maxdepth 1 -type f|wc -l) -gt 0 ]; # keeps reading files in dir until there are not more files in dir
                 then
                         # Testing if archive existss
@@ -46,12 +53,6 @@ pushd $FTP_dir
                         then
                                 mkdir $Archive_dir;
                                 echo "$Archive_dir does not exist...Made directory.";
-                        fi
-
-                        if [ $(find . -empty -type f | wc -l) -gt 0 ] # checks for empty files
-                        then
-                                echo "Removing empty files";
-                                rm $(find -empty -type f); # Removes all files that are empty, this actually throws an error on the cmd line
                         fi
 
                         current_working_file=$(find . -maxdepth 1  -type f | head -1);  # filters out the dir and filters files
