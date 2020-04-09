@@ -1,22 +1,27 @@
 
 ## Log files ##
-*.log 
+# *.log 
 
 ## SSH ##
 *.ppk
 Scripts/FTP.*
 
-## MAX POWER FILES ##
+## MAX POWER  ##
 /FTP/*
 logs/
 MaxPowerTracker/.vs/*
 MaxPowerTracker/MaxPower/__pycache__/*
 MaxPowerTracker/MaxPower/__pycache__/*.pyc
-/MaxPowerTracker/MaxPower/*.pyc
+MaxPowerTracker/MaxPower/*.pyc
+MaxPowerTracker/MaxPower/adafruit_ads1x15/__pycache__
 MaxPowerTracker/py/*
+Config/EarthWindFire/Redirect.json
+
 ## SITE ## 
 .vscode
 .well-known
+YES-app/py/*
+YES-app/YES/lib/*
 
 ## USER DEFINED FILES ##
 VCODE_DualPowerGeneration.code-workspace

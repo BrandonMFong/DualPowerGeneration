@@ -29,6 +29,8 @@ LOGArchiveDir = FilesXML.string('ArchiveForMaxPowerLogFiles');
 FTPFileType = FilesXML.string('FileTypeForFTP');
 LOGFileType = FilesXML.string('FileTypeForLogs');
 ZipExtension = FilesXML.string('FileTypeForZippedFolder');
+ZippedFTP = FilesXML.string('ZippedFTP');
+ZippedLog = FilesXML.string('ZippedLog');
 
 # Makes directory if it does not exist
 def MakeDir(makepath):
@@ -41,6 +43,7 @@ def MakeDir(makepath):
                 print("\nSuccessfully created the directory %s " % makepath);
     else:
         print("\nDirectory %s already exits.\n" % makepath);
+
 
 # .csv files
 class File_Handler:
@@ -129,6 +132,8 @@ class Archive_Handler:
 
         MakeDir(FTPArchiveDir);
         MakeDir(LOGArchiveDir);
+        MakeDir(ZippedFTP);
+        MakeDir(ZippedLog);
 
         ## MOVES ##
 
@@ -154,7 +159,7 @@ class Archive_Handler:
         FTPArchivedFiles = os.listdir(FTPArchiveDir);
         if (FTPArchivedFiles.__len__()) > 10:
             print("\nBeginning to zip files in %s\n" % FTPArchiveDir)
-            filename = FTPArchiveDir +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ZipExtension; 
+            filename = ZippedFTP +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ZipExtension; 
             zipper = ZipFile(filename, 'w');
             for f in FTPArchivedFiles:
                 if f.endswith(FTPFileType):
@@ -168,7 +173,7 @@ class Archive_Handler:
         LOGArchivedFiles = os.listdir(LOGArchiveDir);
         if (LOGArchivedFiles.__len__()) > 10:
             print("\nBeginning to zip files in %s\n" % LOGArchiveDir)
-            filename = LOGArchiveDir +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ZipExtension; 
+            filename = ZippedLog +  "/Archive_" + datetime.datetime.now().strftime("%m%d%Y_%H%M%S") + ZipExtension; 
             zipper = ZipFile(filename, 'w');
             for f in LOGArchivedFiles:
                 if f.endswith(LOGFileType):

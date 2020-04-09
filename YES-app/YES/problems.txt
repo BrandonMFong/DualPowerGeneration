@@ -1,0 +1,28 @@
+Problem Board
+
+Main Problems:
+- LoginRequiredMixin is not working as intended 
+    //maybe its working so good that it remembers your signin, work on account
+
+Secondary Problems:
+- add functionality to nav link after Login
+
+- work on signup
+- email sending for signup process
+
+Improvements:
+- work on teams
+- work on permissions with in the teams
+- design login form
+
+Done:
+-change the nav links for after the Login
+
+_____________________________
+Think Board
+
+- work on your User
+    User will have:
+    fname, lname, username, email, pass1, pass2
+
+    
