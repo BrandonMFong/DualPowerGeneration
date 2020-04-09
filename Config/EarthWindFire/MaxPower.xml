@@ -40,6 +40,8 @@
     <MaxPower_Classes>
         <RadiusForWindTurbine>50</RadiusForWindTurbine>
         <AngleForBlades>120</AngleForBlades>
+        <SolarVoltagePort>0</SolarVoltagePort>
+        <SolarPortTestPort>1</SolarPortTestPort>
     </MaxPower_Classes>
     <IO>
         <!--Infrared pins-->

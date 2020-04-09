@@ -77,8 +77,8 @@ class Max_Power_Solar:
         while True:
             if System.timer_flag: break;
             time.sleep(System.delay);
-            solar_voltage = RPI_Handler.ReadIO(0);# TODO configure ports
-            solar_current = Random_IO.SOLAR_CURR_listener();
+            solar_voltage = RPI_Handler.ReadIO(MaxPower_ClassesXML.int("SolarVoltagePort"));
+            solar_current = RPI_Handler.ReadIO(MaxPower_ClassesXML.int("SolarPortTestPort"));
             total_solar_pwr = (solar_current*solar_voltage) + total_solar_pwr;
             Log_Handler.Write_Log(os.path.basename(__file__) + "solar curr, solar volt, and total solar power calculated\n");
 
