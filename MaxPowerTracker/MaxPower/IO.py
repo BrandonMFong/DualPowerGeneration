@@ -17,7 +17,7 @@ from XML import xmlreader
 from random import random
 from adafruit_ads1x15.analog_in import AnalogIn
 
-xmlreader = xmlreader();
+IOXml = xmlreader();
 
 # TODO delete 
 class Random_IO:
@@ -32,13 +32,13 @@ class RPI_Handler:
 
         # Input GPIO pins
         global InfraredInput;
-        InfraredInput = xmlreader.int('InfraredInputPin');
+        InfraredInput = IOXml.int('InfraredInputPin');
         GPIO.setmode(GPIO.BCM);
         GPIO.setup(InfraredInput, GPIO.IN, pull_up_down=GPIO.PUD_DOWN);
 
         # Output GPIO pins
         global AckBitForInfraredRead
-        AckBitForInfraredRead = xmlreader.int('AckBitForInfraredReadPin');
+        AckBitForInfraredRead = IOXml.int('AckBitForInfraredReadPin');
         GPIO.setmode(GPIO.BCM);
         GPIO.setup(AckBitForInfraredRead, GPIO.OUT, initial=GPIO.LOW);
 
@@ -60,13 +60,12 @@ class RPI_Handler:
     # Reads infrared device
     def ReadInfrared():
         while True:
+            if System.timer_flag:
+                MaxPower_Classes.total_rpm = 0;
+                return exit();
             if GPIO.input(InfraredInput):
-                
-                if System.timer_flag:
-                    MaxPower_Classes.total_rpm = 0;
-                    return exit();
                 MaxPower_Classes.Max_Power_Wind.Get_RPM();
-            time.sleep(0.1);
+            time.sleep(IOXml.double("InfraredReadInterval"));
     
     # This has a terrible latency
     # This does not work, LED might have blown out

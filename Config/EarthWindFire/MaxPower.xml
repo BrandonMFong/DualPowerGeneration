@@ -47,5 +47,6 @@
         <!--Infrared pins-->
         <InfraredInputPin>21</InfraredInputPin>
         <AckBitForInfraredReadPin>15</AckBitForInfraredReadPin>
+        <InfraredReadInterval>0.1</InfraredReadInterval>
     </IO>
 </MaxPower>
