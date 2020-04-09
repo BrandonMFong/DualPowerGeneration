@@ -20,7 +20,7 @@ def init():
     Seconds = SystemXML.int('SecondsToCountForEachLine');
     File = 0;
     Log = 0;
-    delay = SystemXML.int('delay'); # this is redundant, will always be one
+    # delay = SystemXML.int('delay'); # this is redundant, will always be one
     MaxLines = SystemXML.int('MaxLinesForEachCSVFile');
 
 # Counts to Seconds
