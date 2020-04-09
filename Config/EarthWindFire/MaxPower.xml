@@ -12,7 +12,7 @@
     xsi:noNamespaceSchemaLocation="..\..\Schema\MaxPower.xsd">
     <System>
         <SecondsToCountForEachLine>5</SecondsToCountForEachLine>
-        <delay>1</delay><!-- this is just for simiulation -->
+        <!-- <delay>1</delay>this is just for simiulation -->
         <MaxLinesForEachCSVFile>5</MaxLinesForEachCSVFile>
         <ClientID>1000</ClientID>
     </System>
@@ -41,7 +41,7 @@
         <RadiusForWindTurbine>50</RadiusForWindTurbine>
         <AngleForBlades>120</AngleForBlades>
         <SolarVoltagePort>0</SolarVoltagePort>
-        <SolarPortTestPort>1</SolarPortTestPort>
+        <SolarPortTestPort>2</SolarPortTestPort>
     </MaxPower_Classes>
     <IO>
         <!--Infrared pins-->
