@@ -37,7 +37,7 @@ class Max_Power_Wind:
         # Getting Torque
         while True: 
             if System.timer_flag: break;
-            time.sleep(1); Sampling every second
+            time.sleep(1); # Sampling every second
             force_of_the_blades = Random_IO.BLADE_FORCE_listener(); # simulating a analog read of the torque
             # Random is temporary, we will read real values
             num = radius_of_the_blades * force_of_the_blades * math.sin(angle_of_the_blades);
