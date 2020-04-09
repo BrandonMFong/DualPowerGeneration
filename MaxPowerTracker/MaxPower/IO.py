@@ -65,7 +65,7 @@ class RPI_Handler:
                 return exit();
             if GPIO.input(InfraredInput):
                 MaxPower_Classes.Max_Power_Wind.Get_RPM();
-            time.sleep(IOXml.double("InfraredReadInterval"));
+            time.sleep(IOXml.float("InfraredReadInterval"));
     
     # This has a terrible latency
     # This does not work, LED might have blown out
