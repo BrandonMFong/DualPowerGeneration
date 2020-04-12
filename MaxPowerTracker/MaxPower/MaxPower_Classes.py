@@ -86,7 +86,7 @@ class Max_Power_Solar:
         voltage1 = RPI_Handler.ReadIO(MaxPower_ClassesXML.int("SolarCurrentPort1")); 
         voltage2 = RPI_Handler.ReadIO(MaxPower_ClassesXML.int("SolarCurrentPort2")); 
         Resistor = MaxPower_ClassesXML.int("ResistorVal"); 
-        return (voltage1-voltage2)/Resistor;
+        return abs((voltage1-voltage2)/Resistor);
 
 # Calls all functions
 def do(i):
