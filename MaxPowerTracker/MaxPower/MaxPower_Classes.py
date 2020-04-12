@@ -79,6 +79,8 @@ class Max_Power_Solar:
             time.sleep(1);
             solar_voltage = RPI_Handler.ReadIO(MaxPower_ClassesXML.int("SolarVoltagePort")); # Voltage 
             solar_current = Max_Power_Solar.CalculateCurrent();
+            print("\nSolar Voltage = {}\n".format(solar_voltage));
+            print("\nSolar Current = {}\n".format(solar_current));
             total_solar_pwr = (solar_current*solar_voltage) + total_solar_pwr;
             Log_Handler.Write_Log(os.path.basename(__file__) + " solar curr, solar volt, and total solar power calculated\n");
 
