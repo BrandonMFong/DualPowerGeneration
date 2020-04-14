@@ -41,7 +41,9 @@
         <RadiusForWindTurbine>50</RadiusForWindTurbine>
         <AngleForBlades>120</AngleForBlades>
         <SolarVoltagePort>0</SolarVoltagePort>
-        <SolarPortTestPort>2</SolarPortTestPort>
+        <SolarCurrentPort1>0</SolarCurrentPort1><!-- Using the same port as the voltage because I need to read the same current-->
+        <SolarCurrentPort2>1</SolarCurrentPort2>
+        <ResistorVal>1000000</ResistorVal>
     </MaxPower_Classes>
     <IO>
         <!--Infrared pins-->

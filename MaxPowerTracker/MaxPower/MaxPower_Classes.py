@@ -78,9 +78,17 @@ class Max_Power_Solar:
             if System.timer_flag: break;
             time.sleep(1);
             solar_voltage = RPI_Handler.ReadIO(MaxPower_ClassesXML.int("SolarVoltagePort")); # Voltage 
-            solar_current = RPI_Handler.ReadIO(MaxPower_ClassesXML.int("SolarPortTestPort")); # Current
+            solar_current = Max_Power_Solar.CalculateCurrent();
+            print("\nSolar Voltage = {}\n".format(solar_voltage));
+            print("\nSolar Current = {}\n".format(solar_current));
             total_solar_pwr = (solar_current*solar_voltage) + total_solar_pwr;
             Log_Handler.Write_Log(os.path.basename(__file__) + " solar curr, solar volt, and total solar power calculated\n");
+
+    def CalculateCurrent():
+        voltage1 = RPI_Handler.ReadIO(MaxPower_ClassesXML.int("SolarCurrentPort1")); 
+        voltage2 = RPI_Handler.ReadIO(MaxPower_ClassesXML.int("SolarCurrentPort2")); 
+        Resistor = MaxPower_ClassesXML.int("ResistorVal"); 
+        return abs((voltage1-voltage2)/Resistor);
 
 # Calls all functions
 def do(i):
