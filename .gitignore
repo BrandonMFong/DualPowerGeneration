@@ -34,3 +34,6 @@ SQL_Queries/BackUps/archive/*
 
 ## Archive  ##
 archive/*
+
+## Video files ##
+*/videos/*
