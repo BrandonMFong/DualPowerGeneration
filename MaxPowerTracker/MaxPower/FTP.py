@@ -11,6 +11,8 @@ from XML import xmlreader
 import Files
 import pysftp
 import subprocess, sys, os
+import traceback
+import time
 
 global file_basename;
 file_basename = '..\\..\\Scripts\\FTP';
@@ -21,8 +23,9 @@ DestinationDir = FTPXML.string('Destination');
 Hostname = FTPXML.string('Hostaddress');
 Username = FTPXML.string('Username');
 Password = FTPXML.string('Password');
-# PrivateKey = FTPXML.string('PrivateKey')
+PrivateKey = FTPXML.string('PrivateKey');
 type = FTPXML.string('WhichProcedureToUseForFTP');
+NoFTPSleep = FTPXML.int('NoFTPSleep');
 
 class FTP:
     @staticmethod
@@ -68,7 +71,7 @@ class FTP:
                 cnopts.hostkeys = None;
                 
                 # Establish connection
-                with pysftp.Connection(host=Hostname, username=Username, password=Password, cnopts=cnopts) as sftp: # temporarily chdir to allcode
+                with pysftp.Connection(host=Hostname, username=Username, password=Password, cnopts=cnopts, private_key=PrivateKey) as sftp: # temporarily chdir to allcode
                     dest = DestinationDir + Files.filename.replace("\\", "/");
                     sftp.put(Files.fullpath, dest);  	# upload file to allcode/pycode on remote
                 
@@ -76,6 +79,15 @@ class FTP:
             except Exception as ex:
                 print(ex);
                 print("File not sent through ftp.  Check if folder exists on remote server.");
-                Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + str(ex) + "\n\n File not sent through cmd\n");
+                print("\nThe error can be traced back with the following stack trace");
+                track = traceback.format_exc()
+                print(track)
+                Log_Handler.Write_Log(os.path.basename(__file__) + "\n\n" + str(ex) + "\n\n File not sent through cmd\n\n" + str(track));
+        elif type == 'redirect':
+            # The issue is that I do not think I can send ftp files directly to cpanel from rpi
+            # Figuring this out but making this just in case
+            # Made ps1 script but not pushing since it has sensitive data
+            print("Configured to use redirect.");
+            time.sleep(NoFTPSleep);
         else:
-            print("FTP procedure not defined.  Please check configuration on MaxPower.xml");
+            print("FTP procedure not defined.  (Please check configuration on MaxPower.xml)");

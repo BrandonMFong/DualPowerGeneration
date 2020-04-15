@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Site" minOccurs="1" maxOccurs="1" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>
+                Configuration for YES-app
+            </xs:documentation>
+        </xs:annotation>
+        <xs:element name="UserForSettings" minOccurs="1" maxOccurs="1" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    Default is Abdullah.  Choices: 'Dual', 'EarthWindFire', 'Brandon', or 'Abdullah'
+                </xs:documentation>
+            </xs:annotation>
+        </xs:element>
+        <xs:element name="AllowedHosts" minOccurs="1" maxOccurs="1" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    The names of hosts names that can submit a web request to 
+                </xs:documentation>
+            </xs:annotation>
+        </xs:element>
+        <xs:element name="TimeZone" minOccurs="1" maxOccurs="1" type="xs:string"/>
+        <xs:element name="UseTZ" minOccurs="1" maxOccurs="1" type="xs:bool"/>
+    </xs:element>
+</xs:schema>

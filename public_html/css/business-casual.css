@@ -5,7 +5,7 @@
  */
 
 body {
-    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background: url('../img/bg.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -19,7 +19,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Josefin Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Josefin Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 700;
     letter-spacing: 1px;
 }
@@ -75,7 +75,7 @@ hr {
     margin-bottom: 20px;
     padding: 30px 15px;
     background: #fff;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .intro-text {
@@ -97,7 +97,7 @@ hr {
 
 footer {
     background: #fff;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255, 255, 255, 0.9);
 }
 
 footer .copyright {
@@ -126,61 +126,51 @@ ul.icons li a {
         margin: 0;
         padding: 30px 0 10px;
         text-align: center;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        font-family: "Josefin Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        font-family: "Josefin Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 5em;
         font-weight: 700;
         line-height: normal;
         color: #fff;
     }
-
     .top-divider {
         margin-top: 0;
     }
-
     .img-left {
         float: left;
         margin-right: 25px;
     }
-
     .address-bar {
         display: inherit;
         margin: 0;
         padding: 0 0 40px;
         text-align: center;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         font-size: 1.25em;
         font-weight: 400;
         letter-spacing: 3px;
         color: #fff;
     }
-
     .navbar {
         border-radius: 0;
     }
-
     .navbar-header {
         display: none;
     }
-
     .navbar {
         min-height: 0;
     }
-
     .navbar-default {
         border: none;
         background: #fff;
-        background: rgba(255,255,255,0.9);
+        background: rgba(255, 255, 255, 0.9);
     }
-
     .nav>li>a {
         padding: 35px;
     }
-
     .navbar-nav>li>a {
         line-height: normal;
     }
-
     .navbar-nav {
         display: table;
         float: none;
@@ -198,75 +188,98 @@ ul.icons li a {
     }
 }
 
+
 /********************************************/
 
+
 /*class for members*/
-.Member
-{
-	min-height: 50px;
-	clear: left;
-	margin-top: 25px;
+
+.Member {
+    min-height: 50px;
+    clear: left;
+    margin-top: 25px;
     margin-bottom: 25px;
     padding: 25px;
 }
 
+
 /*class for members' photos */
-.MemPhoto
-{
-	clear: left; /*using this to make sure the next photo isn't position next to the last*/
-    overflow: auto; /* controling the margins with photo and paragraphs */
+
+.MemPhoto {
+    clear: left;
+    /*using this to make sure the next photo isn't position next to the last*/
+    overflow: auto;
+    /* controling the margins with photo and paragraphs */
     max-width: 80%;
     height: auto;
 }
+
+
 /* width=\"500\" height=\"500\" style=\"float:left\"*/
 
+
 /* CSS for hamburger icon */
+
 .container_for_menu {
-  display: inline-block;
-  cursor: pointer;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 80%;
+    display: inline-block;
+    cursor: pointer;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 80%;
 }
 
-.bar1, .bar2, .bar3 {
-  width: 35px;
-  height: 5px;
-  background-color: #333;
-  margin: 6px 0;
-  transition: 0.4s;
+.bar1,
+.bar2,
+.bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
 }
+
 
 /* Rotate first bar */
+
 .change .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
-  transform: rotate(-45deg) translate(-9px, 6px) ;
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
 }
+
 
 /* Fade out the second bar */
+
 .change .bar2 {
-  opacity: 0;
+    opacity: 0;
 }
+
 
 /* Rotate last bar */
+
 .change .bar3 {
-  -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
-  transform: rotate(45deg) translate(-8px, -8px) ;
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
 }
+
 
 /* TABS */
+
+
 /* Set height of body and the document to 100% to enable "full page tabs" */
-body_for_tabs, html {
-  height: 100%;
-  margin: 0;
-  font-family: Arial;
+
+body_for_tabs,
+html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial;
 }
 
+
 /* Style tab links */
-.tablink 
-{
+
+.tablink {
     background-color: #555;
     color: white;
     float: left;
@@ -282,89 +295,125 @@ body_for_tabs, html {
     background-color: #777;
 }
 
-.tab
-{
+.tab {
     margin: 10px;
     padding: 30px;
 }
 
-.btntxt
-{
+.btntxt {
     overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  display: block;
-  line-height: 1em; /* a */
-  max-height: 2em; /* a x number of line to show (ex : 2 line)  */
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    display: block;
+    line-height: 1em;
+    /* a */
+    max-height: 2em;
+    /* a x number of line to show (ex : 2 line)  */
 }
 
-.slides
-{
+.slides {
     clear: left;
     overflow: auto;
     max-width: 80%;
     height: auto;
 }
+
+
 /* Style the tab content (and add height:100% for full page content) */
+
 .tabcontent {
-  display: none;
-  padding: 100px 20px;
-  height: 100%;
-  width: auto;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+    width: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
+
 
 /* SIDE NAVIGATION */
+
+
 /* The side navigation menu */
+
 .sidenav {
-  height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0;
-  left: 0;
-  background-color: #fff;
-  background: rgba(255,255,255,0.9);
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    height: 100%;
+    /* 100% Full-height */
+    width: 0;
+    /* 0 width - change this with JavaScript */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    background: rgba(255, 255, 255, 0.9);
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    padding-top: 60px;
+    /* Place content 60px from the top */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidenav */
 }
+
 
 /* The navigation menu links */
+
 .sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
 }
+
 
 /* When you mouse over the navigation links, change their color */
+
 .sidenav a:hover {
-  color: #D2C3C3;
+    color: #D2C3C3;
 }
+
 
 /* Position and style the close button (top right corner) */
+
 .sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
+
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+
 #main {
-  transition: margin-left .5s;
-  padding: 20px;
+    transition: margin-left .5s;
+    padding: 20px;
 }
 
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+
+/* Table for data.php */
+
+Table,
+th,
+td {
+    border: 1px solid black;
 }

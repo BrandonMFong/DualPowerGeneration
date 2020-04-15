@@ -1,0 +1,12 @@
+{% extends "loggedin_layout.html" %} {% block title %} Profile {% endblock %}
+<!---->
+{% block content %}
+
+<div class="container mt-5">
+  <p>username: @{{ user.username }}</p>
+  <p>name: {{ user.display_name }}</p>
+  <p>email: {{ user.email }}</p>
+  <!-- user is django object represent current user. (doesn't need to be passed as context) -->
+</div>
+
+{% endblock %}
