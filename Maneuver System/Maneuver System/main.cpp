@@ -2,7 +2,7 @@
  * Maneuver System.cpp
  *
  * Created: 2/18/2020 3:25:51 PM
- * Author : Joseph Morga
+ * Author : Joseph Morga & Brandon Fong
  */ 
 
 #define F_CPU 16000000UL  //16MHz
@@ -30,9 +30,12 @@ void uart_Transmit(char data[]);
 void convertToString(int16_t value, char word[]);
 char getChar(int  digit);
 
+//Initialization functions
 void adc_Init();
-uint16_t adc_read(uint8_t channel);
 void dac_Init();
+void inputOutput_Init();
+uint16_t adc_read(uint8_t channel);
+
 
 
 //Moving functions
@@ -44,25 +47,12 @@ char value[7];
 
 int main(void)
 {
-	//Init
-	
-	DDRB |= (1 << DDRB5);  //Set portB 5 as output LED
-	
-	//Output pinD 2 and 3 for linear actuator and pinD 4 and 5 for stepper motor
-	DDRD |= (1 << DDD2) | (1 << DDD3) | (1 << DDD4)| (1 << DDD5);
-	
-	DDRB &= ~(1<<DDRB7);   //Set portB 7 as input (Button input)
-	
-	//PinC 0, 1, 2 and 3 as input for voltage values from photoresistors
-	DDRC &= ~((1<<DDRC0) | (1 << DDRC1) | (1 << DDRC2) | (1 << DDRC3));
-	
-	//Set pins D 2 and 3 to power off the linear actuator by default
-	PORTD |= (1 << PORTD3) | (1 << PORTD2);
-
 	uart_Init();
 	adc_Init();
-	
+	inputOutput_Init();	
+
 	sei();
+
 	while (1) {
 		if(!(PINB & (1<<PINB7))) // PINB7 is low (Button has been pressed)
 		{
@@ -85,6 +75,20 @@ void adc_Init(){
 	ADCSRA = (1<<ADEN) | (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0);
 }
 
+void inputOutput_Init(){
+	DDRB |= (1 << DDRB5);  //Set portB 5 as output LED
+	
+	//Output pinD 2 and 3 for linear actuator and pinD 4 and 5 for stepper motor
+	DDRD |= (1 << DDD2) | (1 << DDD3) | (1 << DDD4)| (1 << DDD5);
+	
+	DDRB &= ~(1<<DDRB7);   //Set portB 7 as input (Button input)
+	
+	//PinC 0, 1, 2 and 3 as input for voltage values from photoresistors
+	DDRC &= ~((1<<DDRC0) | (1 << DDRC1) | (1 << DDRC2) | (1 << DDRC3));
+	
+	//Set pins D 2 and 3 to power off the linear actuator by default
+	PORTD |= (1 << PORTD3) | (1 << PORTD2);
+}
 
 void startManeuvering(){
 	
@@ -102,28 +106,21 @@ void moveLinearActuator(){
 	int16_t v0;
 	int16_t v1;
 	int16_t difference;
+	unsigned int timer = 0;
 	
-	v0 = adc_read(R0);              //Read voltage value v0
-	
-	convertToString(v0, value);     //Used to convert the value into
-	uart_Transmit(value);			//a string and to display it
-	
-	v1 = adc_read(R1);				//Read voltage value v1
-	convertToString(v1, value);
-	uart_Transmit(value);
+	v0 = adc_read(R0);              //Read voltage value v0 and v1
+	v1 = adc_read(R1);
 	
 	difference = v0 - v1;           //Take difference
-	
-	convertToString(difference, value);
-	uart_Transmit(value);
 	
 	if(difference > 50) PORTD |= (1 << PORTD3);       //Send signal to start retracting
 	else if(difference < -50) PORTD &= ~(1 << PORTD2); //Send signal to start expanding
 	
 	while(difference < -50 || difference > 50){//True while the difference is outside the [-50, 50] range
 		v0 = adc_read(R0);
-		v1 = adc_read(R1);			//Continue reading voltage values and take difference
+		v1 = adc_read(R1);			           //Continue reading voltage values and take difference
 		difference = v0 - v1;
+	  
 	}
 	
 	PORTD |= (1 << PORTD3) | (1 << PORTD2);  //Cut the power of the linear actuator
@@ -235,4 +232,3 @@ char getChar(int digit){
 		default: return '0';
 	}
 }
-
