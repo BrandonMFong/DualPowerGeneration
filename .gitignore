@@ -14,7 +14,7 @@ MaxPowerTracker/MaxPower/__pycache__/*
 MaxPowerTracker/MaxPower/__pycache__/*.pyc
 MaxPowerTracker/MaxPower/*.pyc
 MaxPowerTracker/MaxPower/adafruit_ads1x15/__pycache__
-MaxPowerTracker/py/*
+#MaxPowerTracker/py/*
 Config/EarthWindFire/Redirect.json
 
 ## SITE ## 
