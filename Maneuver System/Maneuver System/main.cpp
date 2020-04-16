@@ -33,6 +33,7 @@ char getChar(int  digit);
 //Initialization functions
 void adc_Init();
 void dac_Init();
+void timer_Init();
 void inputOutput_Init();
 uint16_t adc_read(uint8_t channel);
 
@@ -44,22 +45,24 @@ void moveLinearActuator();
 void moveStepperMotor();
 
 char value[7];
+int notManeuvering = 1;
 
 int main(void)
 {
 	uart_Init();
 	adc_Init();
+	timer_Init();
 	inputOutput_Init();	
 
 	sei();
 
 	while (1) {
-		if(!(PINB & (1<<PINB7))) // PINB7 is low (Button has been pressed)
-		{
-			while(!(PINB & (1<<PINB7)));
-			
-			startManeuvering();
-		}
+// 		if(!(PINB & (1<<PINB7))) // PINB7 is low (Button has been pressed)
+// 		{
+// 			while(!(PINB & (1<<PINB7)));
+// 			
+// 			startManeuvering();
+// 		}
 	}
 }
 
@@ -73,6 +76,31 @@ void adc_Init(){
 	ADMUX = (1<<REFS0);
 	
 	ADCSRA = (1<<ADEN) | (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0);
+}
+
+void timer_Init(){
+	OCR1A = 0x3D08;
+
+	TCCR1B |= (1 << WGM12);
+	// Mode 4, CTC on OCR1A
+
+	TIMSK1 |= (1 << OCIE1A);
+	//Set interrupt on compare match
+
+	TCCR1B |= (1 << CS12) | (1 << CS10);
+	// set prescaler to 1024 and start the timer
+}
+
+ISR (TIMER1_COMPA_vect)
+{
+	if(notManeuvering){
+		notManeuvering = 0;
+		PINB |= (1<<PINB5); //toggle LED
+		startManeuvering();
+		PINB |= (1<<PINB5); //toggle LED
+		notManeuvering = 1;
+	}
+	//We done ;)
 }
 
 void inputOutput_Init(){
@@ -91,14 +119,8 @@ void inputOutput_Init(){
 }
 
 void startManeuvering(){
-	
-	PINB |= (1<<PINB5); //toggle LED
-	
 	moveStepperMotor();
-	//moveLinearActuator();
-	
-	PINB |= (1<<PINB5); //toggle LED
-	//We done ;)
+	moveLinearActuator();
 }
 
 void moveLinearActuator(){
@@ -106,21 +128,37 @@ void moveLinearActuator(){
 	int16_t v0;
 	int16_t v1;
 	int16_t difference;
-	unsigned int timer = 0;
+	int count = 0;
+	int displaceTimer = 0;
 	
 	v0 = adc_read(R0);              //Read voltage value v0 and v1
+	
+// 	convertToString(v0, value);     //Used to convert the value into
+// 	uart_Transmit(value);			//a string and to display it
+	
 	v1 = adc_read(R1);
+// 	convertToString(v1, value);     //Used to convert the value into
+// 	uart_Transmit(value);			//a string and to display it
 	
 	difference = v0 - v1;           //Take difference
 	
-	if(difference > 50) PORTD |= (1 << PORTD3);       //Send signal to start retracting
+	if(difference > 50) PORTD |= (1 << PORTD3);        //Send signal to start retracting
 	else if(difference < -50) PORTD &= ~(1 << PORTD2); //Send signal to start expanding
 	
-	while(difference < -50 || difference > 50){//True while the difference is outside the [-50, 50] range
+	while(difference < -50 || difference > 50){        //True while the difference is outside the [-50, 50] range
+		
+		if(displaceTimer == 20) break;  //After 20 seconds leave the loop
+		
 		v0 = adc_read(R0);
-		v1 = adc_read(R1);			           //Continue reading voltage values and take difference
+		v1 = adc_read(R1);			                   //Continue reading voltage values and take difference
 		difference = v0 - v1;
-	  
+		
+		count++;
+		
+		if(count == 4286){     //4286 is about 1 second
+			 displaceTimer++;
+			 count = 0;
+		}
 	}
 	
 	PORTD |= (1 << PORTD3) | (1 << PORTD2);  //Cut the power of the linear actuator
@@ -133,17 +171,17 @@ void moveStepperMotor(){
 	
 	v2 = adc_read(R2);              //Read voltage value v2
 	
-	convertToString(v2, value);     //Used to convert the value into
-	uart_Transmit(value);			//a string and to display it
+// 	convertToString(v2, value);     //Used to convert the value into
+// 	uart_Transmit(value);			//a string and to display it
 	
 	v3 = adc_read(R3);				//Read voltage value v3
-	convertToString(v3, value);
-	uart_Transmit(value);
+// 	convertToString(v3, value);
+// 	uart_Transmit(value);
 	
 	difference = v2 - v3;           //Take difference
 	
-	convertToString(difference, value);
-	uart_Transmit(value);
+// 	convertToString(difference, value);
+// 	uart_Transmit(value);
 	
 	if(difference > 50) PORTD |= (1 << PORTD5);        //Rotate Clockwise
 	else if(difference < -50) PORTD &= ~(1 << PORTD5); //Rotate Counter-Clockwise
