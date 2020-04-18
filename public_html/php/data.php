@@ -58,7 +58,7 @@
 			}
 			echo "</Table>";
 		}
-		else {echo "0 results for " . $Data;}
+		else {echo "\n0 results for " . $Data;}
 		$conn->close();
 	}
 	function GetMaxData($querystring, $Data)
@@ -88,7 +88,7 @@
 	// Solar
 	GetAllData(fread($SelectSolar, filesize("../SQL/SELECT_Solar.sql")), 'Solar');
 	// Wind
-	GetAllData(fread($SelectWind, filesize("../SQL/SELECT_Wind.sql")), 'Solar');
+	GetAllData(fread($SelectWind, filesize("../SQL/SELECT_Wind.sql")), 'Wind');
 ?>
 
 
