@@ -16,6 +16,7 @@
     global $dbname_member;
     global $page_Home;
     global $page_DataCenter;
+    global $page_Slides;
     global $currpage;
     
     // Testing what environment you are in
@@ -37,6 +38,7 @@
                 $dbname_membmers = "dualpower_Members";
                 $page_Home = "http://localhost/public_html/";
                 $page_DataCenter = "http://localhost/public_html/datacenter/";
+                $page_Slides = "http://localhost/public_html/Slides/";
                 break;
             }
             else 
@@ -48,6 +50,39 @@
                 $dbname_membmers = "dualpower_Members";
                 $page_Home = "https://dualpowergeneration.sdsu.edu/";
                 $page_DataCenter = "https://dualpowergeneration.sdsu.edu/datacenter/";
+                $page_Slides = "https://dualpowergeneration.sdsu.edu/Slides/";
+                break;
+            }
+        }
+        case "Slides": // For the Data center
+        {
+            $css_bootstrap = '../css/bootstrap.min.css';
+            $css_business_casual = '../css/business-casual.css';
+            $css_fonts = '../font-awesome/css/font-awesome.min.css';
+            $js_bootstrap = '../js/bootstrap.min.js';
+            $js_jquery = '../js/jquery.js';
+            if(file_exists('../logs/.is_local'))
+            {
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname_datacenter = "dualpower_DataCenter";
+                $dbname_membmers = "dualpower_Members";
+                $page_Home = "http://localhost/public_html/";
+                $page_DataCenter = "http://localhost/public_html/datacenter/";
+                $page_Slides = "http://localhost/public_html/Slides/";
+                break;
+            }
+            else 
+            {
+                $servername = "localhost";
+                $username = "dualpower_BrandonMFong";
+                $password = "dualpower27182";
+                $dbname_datacenter = "dualpower_DataCenter";
+                $dbname_membmers = "dualpower_Members";
+                $page_Home = "https://dualpowergeneration.sdsu.edu/";
+                $page_DataCenter = "https://dualpowergeneration.sdsu.edu/datacenter/";
+                $page_Slides = "https://dualpowergeneration.sdsu.edu/Slides/";
                 break;
             }
         }
@@ -67,6 +102,7 @@
                 $dbname_membmers = "dualpower_Members";
                 $page_Home = "http://localhost/public_html/";
                 $page_DataCenter = "http://localhost/public_html/datacenter/";
+                $page_Slides = "http://localhost/public_html/Slides/";
                 break;
             }
             else 
@@ -78,6 +114,7 @@
                 $dbname_membmers = "dualpower_Members";
                 $page_Home = "https://dualpowergeneration.sdsu.edu/";
                 $page_DataCenter = "https://dualpowergeneration.sdsu.edu/datacenter/";
+                $page_Slides = "https://dualpowergeneration.sdsu.edu/Slides/";
                 break;
             }
         }
