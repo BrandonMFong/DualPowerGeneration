@@ -20,7 +20,7 @@ def init():
     Seconds = SystemXML.int('SecondsToCountForEachLine');
     File = 0;
     Log = 0;
-    delay = SystemXML.int('delay'); # using in torque and solar
+    # delay = SystemXML.int('delay'); # this is redundant, will always be one
     MaxLines = SystemXML.int('MaxLinesForEachCSVFile');
 
 # Counts to Seconds
@@ -29,7 +29,7 @@ def timer():
     global timer_flag;
     timer_flag = False;
     while i < Seconds:
-        time.sleep(delay);
+        time.sleep(1);
         i = i + 1;
         print("Time: {} seconds\n" .format(i));
     timer_flag = True;

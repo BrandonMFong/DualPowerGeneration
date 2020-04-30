@@ -25,7 +25,7 @@ class Max_Power_Wind:
         else:
             total_rpm = total_rpm + 1;
             print("total_rpm = {}" .format(total_rpm));
-            Log_Handler.Write_Log(os.path.basename(__file__) + "total_rpm = {}\n" .format(total_rpm));
+            Log_Handler.Write_Log(os.path.basename(__file__) + " total_rpm = {}\n" .format(total_rpm));
         
         Max_Power_Wind.Avg_RPM(total_rpm);
 
@@ -37,13 +37,13 @@ class Max_Power_Wind:
         # Getting Torque
         while True: 
             if System.timer_flag: break;
-            time.sleep(System.delay); # Will execute equation after one second passes
+            time.sleep(1); # Sampling every second
             force_of_the_blades = Random_IO.BLADE_FORCE_listener(); # simulating a analog read of the torque
             # Random is temporary, we will read real values
             num = radius_of_the_blades * force_of_the_blades * math.sin(angle_of_the_blades);
             total_torque = total_torque + num;
             print("total_torque = {} " .format(total_torque));
-            Log_Handler.Write_Log(os.path.basename(__file__) + "total_torque = {} \n" .format(total_torque));
+            Log_Handler.Write_Log(os.path.basename(__file__) + " total_torque = {} \n" .format(total_torque));
 
         Max_Power_Wind.Avg_Torque(total_torque);
 
@@ -76,11 +76,19 @@ class Max_Power_Solar:
         total_solar_pwr = 0;
         while True:
             if System.timer_flag: break;
-            time.sleep(System.delay);
-            solar_voltage = RPI_Handler.ReadIO(0);# TODO configure ports
-            solar_current = Random_IO.SOLAR_CURR_listener();
+            time.sleep(1);
+            solar_voltage = RPI_Handler.ReadIO(MaxPower_ClassesXML.int("SolarVoltagePort")); # Voltage 
+            solar_current = Max_Power_Solar.CalculateCurrent();
+            print("\nSolar Voltage = {}\n".format(solar_voltage));
+            print("\nSolar Current = {}\n".format(solar_current));
             total_solar_pwr = (solar_current*solar_voltage) + total_solar_pwr;
-            Log_Handler.Write_Log(os.path.basename(__file__) + "solar curr, solar volt, and total solar power calculated\n");
+            Log_Handler.Write_Log(os.path.basename(__file__) + " solar curr, solar volt, and total solar power calculated\n");
+
+    def CalculateCurrent():
+        voltage1 = RPI_Handler.ReadIO(MaxPower_ClassesXML.int("SolarCurrentPort1")); 
+        voltage2 = RPI_Handler.ReadIO(MaxPower_ClassesXML.int("SolarCurrentPort2")); 
+        Resistor = MaxPower_ClassesXML.int("ResistorVal"); 
+        return abs((voltage1-voltage2)/Resistor);
 
 # Calls all functions
 def do(i):

@@ -48,16 +48,17 @@
 			echo "</tr>";
 			while($row = $result->fetch_assoc()) 
 			{
+				$date = date_create($row["Time"]);
 				echo "<tr>";
 				echo "<td>" . $row["Organization_Name"] . "</td>";
 				echo "<td>" . $row["ID"] . "</td>";
-				echo "<td>" . $row["Time"] . "</td>";
+				echo "<td>" . date_format($date, 'm/d/Y g:i A') . "</td>";
 				echo "<td>" . $row["Power"] . "</td>";
 				echo "</tr>";
 			}
 			echo "</Table>";
 		}
-		else {echo "0 results for " . $Data;}
+		else {echo "\n0 results for " . $Data;}
 		$conn->close();
 	}
 	function GetMaxData($querystring, $Data)
@@ -86,10 +87,8 @@
 
 	// Solar
 	GetAllData(fread($SelectSolar, filesize("../SQL/SELECT_Solar.sql")), 'Solar');
-	GetMaxData(fread($SelectMaxSolar, filesize("../SQL/SELECT_MaxSolar.sql")), 'Solar');
 	// Wind
-	GetAllData(fread($SelectWind, filesize("../SQL/SELECT_Wind.sql")), 'Solar');
-	GetMaxData(fread($SelectMaxWind, filesize("../SQL/SELECT_MaxWind.sql")), 'Wind');
+	GetAllData(fread($SelectWind, filesize("../SQL/SELECT_Wind.sql")), 'Wind');
 ?>
 
 

@@ -19,5 +19,5 @@ class xmlreader:
     def string(self, value):
         return str((reader.getElementsByTagName(value))[0].firstChild.data);
 
-    def double(self, value):
-        return double((reader.getElementsByTagName(value))[0].firstChild.data);
+    def float(self, value):
+        return float((reader.getElementsByTagName(value))[0].firstChild.data);
