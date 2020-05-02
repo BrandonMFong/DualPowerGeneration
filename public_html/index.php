@@ -72,10 +72,10 @@
 							<img  class="img-responsive img-full"  src="img/Solar_Panel_Coding_Diagram.PNG" alt="Solar Panel Manuevering"/>
 							
 							<h2><small><strong>Max Power Tracker</strong></small></h2>
-							<img  class="img-responsive img-full"  src="img/MaxPower_Diagram.PNG" alt="Max Power Tracker"/>
+							<img  class="img-responsive img-full"  src="img/MaxPower_Diagram.png" alt="Max Power Tracker"/>
 							
 							<h2><small><strong>Insert Data</strong></small></h2>
-							<img  class="img-responsive img-full"  src="img/InsertDB_Diagram.PNG" alt="Insert Data"/>
+							<img  class="img-responsive img-full"  src="img/InsertDB_Diagram.png" alt="Insert Data"/>
 
 							<h2><small><strong>Database structure</strong></small></h2>
 							<img  class="img-responsive img-full"  src="img/DatabaseSruct_Diagram.PNG" alt="Database"/>
