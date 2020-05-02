@@ -35,6 +35,7 @@
 						<div class='embed-container'>
 							<iframe src='https://www.youtube.com/embed/BoU5vMe_PXg' frameborder='0' allowfullscreen></iframe>
 						</div>
+						<img style="padding: 10px" alt="" class="img-responsive img-full" src="img/PhotoOfEquipment.PNG" />
 						<img style="padding: 10px" alt="" class="img-responsive img-full" src="img/DP_Group.jpg" />
 						<img style="padding: 10px" alt="" class="img-responsive img-full" src="img/dp_group_photo.jpg" />
 						<h2 class="brand-before"><small>Welcome to</small></h2>
@@ -57,17 +58,27 @@
 				<div class="row">
 					<div class="box">
 						<div class="col-lg-12 text-center">
+
 							<h2><small><strong>DC To AC Converter</strong></small></h2>
-							<img  class="img-responsive img-full"  src="/img/DCAC_Converter.PNG" alt="ACDC Converter"/>
+							<img  class="img-responsive img-full"  src="img/DCAC_Converter.PNG" alt="ACDC Converter"/>
 							
 							<h2><small><strong>DC To DC Converter</strong></small></h2>
-							<img  class="img-responsive img-full"  src="/img/DCDC_Converter.PNG" alt="DCDC Converter"/>
-							
-							<h2><small><strong>Max Power Tracker</strong></small></h2>
-							<img  class="img-responsive img-full"  src="/img/Max_Pwr_Tracker_Coding_Diagram.PNG" alt="Max Power Tracker"/>
+							<img  class="img-responsive img-full"  src="img/DCDC_Converter.PNG" alt="DCDC Converter"/>
+
+							<h2><small><strong>Overall DualPower Diagram</strong></small></h2>
+							<img  class="img-responsive img-full"  src="img/OverallDiagram.PNG" alt="Overall DualPower Diagram"/>
 							
 							<h2><small><strong>Solar Panel Manuevering</strong></small></h2>
-							<img  class="img-responsive img-full"  src="/img/Solar_Panel_Coding_Diagram.PNG" alt="Solar Panel Manuevering"/>
+							<img  class="img-responsive img-full"  src="img/Solar_Panel_Coding_Diagram.PNG" alt="Solar Panel Manuevering"/>
+							
+							<h2><small><strong>Max Power Tracker</strong></small></h2>
+							<img  class="img-responsive img-full"  src="img/MaxPower_Diagram.PNG" alt="Max Power Tracker"/>
+							
+							<h2><small><strong>Insert Data</strong></small></h2>
+							<img  class="img-responsive img-full"  src="img/InsertDB_Diagram.PNG" alt="Insert Data"/>
+
+							<h2><small><strong>Database structure</strong></small></h2>
+							<img  class="img-responsive img-full"  src="img/DatabaseSruct_Diagram.PNG" alt="Database"/>
 							
 						</div>
 					</div>
