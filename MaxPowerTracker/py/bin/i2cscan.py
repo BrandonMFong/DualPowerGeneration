@@ -33,17 +33,17 @@ from pyftdi.i2c import I2cController, I2cNackError
 
 
 class I2cBusScanner(object):
-    """Scan I2C bus to find slave.
+    """Scan I2C bus to find subordinate.
 
        Emit the I2C address message, but no data. Detect any ACK on each valid
        address.
     """
 
     def scan(self):
-        """Open an I2c connection to a slave"""
+        """Open an I2c connection to a subordinate"""
         url = environ.get('FTDI_DEVICE', 'ftdi://ftdi:2232h/1')
         i2c = I2cController()
-        slaves = []
+        subordinates = []
         getLogger('pyftdi.i2c').setLevel(ERROR)
         try:
             i2c.set_retry_count(1)
@@ -52,16 +52,16 @@ class I2cBusScanner(object):
                 port = i2c.get_port(addr)
                 try:
                     port.read(0)
-                    slaves.append('X')
+                    subordinates.append('X')
                 except I2cNackError:
-                    slaves.append('.')
+                    subordinates.append('.')
         finally:
             i2c.terminate()
         columns = 16
         row = 0
         print('   %s' % ''.join(' %01X ' % col for col in range(columns)))
         while True:
-            chunk = slaves[row:row+columns]
+            chunk = subordinates[row:row+columns]
             if not chunk:
                 break
             print(' %1X:' % (row//columns), '  '.join(chunk))
